@@ -55,8 +55,7 @@ public class Member {
         this.role = Role.USER;
     }
 
-    //good
-    //good
+    //connection testing
 
 }
 
