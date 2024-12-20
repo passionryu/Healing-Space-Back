@@ -1,4 +1,4 @@
-package website.server.Member.Role;
+package website.server.Domain.Member.Role;
 
 public enum Role {
     ADMIN("this is admin"),
