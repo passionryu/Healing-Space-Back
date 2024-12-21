@@ -7,14 +7,13 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -33,7 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req.
                         /*무권한 접근 url*/
                         requestMatchers("/register").permitAll().
-                        requestMatchers("/member/login").permitAll().
+                        requestMatchers("/auth/login").permitAll().
                         requestMatchers("/member/logout").permitAll().
                         requestMatchers("/member/register").permitAll().
 
@@ -47,6 +46,12 @@ public class SecurityConfig {
 
 
         return http.build();
+
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }

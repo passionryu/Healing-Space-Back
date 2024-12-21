@@ -1,9 +1,11 @@
 package website.server.Domain.Member.Entity;
 
+import aj.org.objectweb.asm.commons.Remapper;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,5 +25,10 @@ public class Member {
     private String password;
     private LocalDate birth;
 
+
+    //비밀번호 인코딩 함수
+    public void encodePassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(this.password);
+    }
 }
 
