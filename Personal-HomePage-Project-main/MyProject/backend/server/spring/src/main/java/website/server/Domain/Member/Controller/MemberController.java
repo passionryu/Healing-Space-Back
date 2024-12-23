@@ -35,6 +35,11 @@ public class MemberController {
         return ResponseEntity.ok().body("회원 가입 성공! userID는" + createdID + "입니다.");
     }
 
+    /**
+     * 아이디 찾기 API
+     * @param request
+     * @return
+     */
     @Operation(summary = "아이디 찾기", description = "아이디 찾기")
     @PostMapping("/findID")
     public ResponseEntity<String> findID(HttpServletRequest request){
@@ -42,6 +47,11 @@ public class MemberController {
         return null;
     }
 
+    /**
+     * 비밀번호 변경 API
+     * @param request
+     * @return
+     */
     @Operation(summary = "비밀번호 변경", description = "비밀번호 변경")
     @PostMapping("/changePW")
     public ResponseEntity<String> changePW(HttpServletRequest request){
