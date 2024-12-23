@@ -1,8 +1,15 @@
 package website.server.Domain.Member.Role;
 
+
 public enum Role {
+    /**
+     * Role type = 3
+     * Admin > user > visitor
+     */
     ADMIN("this is admin"),
-    USER("this is user");
+    USER("this is user"),
+    VISITOR("this is visitor");
+
 
     private final String description;
 
