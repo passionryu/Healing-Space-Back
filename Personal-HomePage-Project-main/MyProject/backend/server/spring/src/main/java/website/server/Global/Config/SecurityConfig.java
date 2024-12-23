@@ -4,11 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -31,19 +33,13 @@ public class SecurityConfig {
                 // 권한 url 설정
                 .authorizeHttpRequests(req -> req.
                         /*무권한 접근 url*/
-                        requestMatchers("/register").permitAll().
-                        requestMatchers("/auth/login").permitAll().
-                        requestMatchers("/member/logout").permitAll().
                         requestMatchers("/member/register").permitAll().
+                        requestMatchers("/auth/login").permitAll().
 
-                        //(사용자 용)한 회원 정보 조회
-                                requestMatchers(HttpMethod.GET,"/api/member").permitAll().
-
-                        /*Swagger-무권한 접근 허용*/
-                                requestMatchers("/swagger-ui/**").permitAll().
+                        /*Swagger 무권한 접근 허용*/
+                        requestMatchers("/swagger-ui/**").permitAll().
                         requestMatchers("/v3/api-docs/**").permitAll().
                         anyRequest().authenticated());
-
 
         return http.build();
 
@@ -52,6 +48,22 @@ public class SecurityConfig {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    //권한계층 생성
+    @Bean
+    public RoleHierarchyImpl roleHierarchy() {
+        return RoleHierarchyImpl.fromHierarchy("""
+            ADMIN > USER > VISITOR
+            """);
+    }
+
+    //권한 계층 등록
+    @Bean
+    public DefaultWebSecurityExpressionHandler customWebSecurityExpressionHandler() {
+        DefaultWebSecurityExpressionHandler expressionHandler = new DefaultWebSecurityExpressionHandler();
+        expressionHandler.setRoleHierarchy(roleHierarchy());
+        return expressionHandler;
     }
 
 }
