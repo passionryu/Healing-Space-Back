@@ -1,20 +1,27 @@
 package website.server.Domain.Member.Entity;
 
-import aj.org.objectweb.asm.commons.Remapper;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data //getter,setter,tostring,EqualsAndHashCode,RequiredArgsConstructor 포함
 @Builder
-@NoArgsConstructor // 기본 생성자 생성
-@AllArgsConstructor // 모든 필드를 포함한 생성자 생성
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
+
+    /* 추가 가능한 필드 */
+
+    // 활동명, 닉네임
+    // 전화번호
+    // 성별
+    // 프로필 사진
+    // 거주지 주소
+    // 활동 상태 : 활성화, 비활성화 , 정지상태
 
     private Long userID;
     //private Role role = Role.USER;
