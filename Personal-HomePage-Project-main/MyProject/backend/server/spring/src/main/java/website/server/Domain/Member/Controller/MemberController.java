@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import website.server.Domain.Member.DTO.Request.FindIDRequest_Option1;
 import website.server.Domain.Member.DTO.Request.MemberRequest;
 import website.server.Domain.Member.Service.MemberService;
 
@@ -36,13 +37,28 @@ public class MemberController {
     }
 
     /**
-     * 아이디 찾기 API
-     * @param request
-     * @return
+     * 정보 조회로 아이디 찾기 API
+     * @param request (username,email,password)가 들어있는 DTO
+     * @return nickname 반환
      */
-    @Operation(summary = "아이디 찾기", description = "아이디 찾기")
-    @PostMapping("/findID")
-    public ResponseEntity<String> findID(HttpServletRequest request){
+    @Operation(summary = "정보 조회로 아이디 찾기", description = "아이디 찾기 : 이메일,이름,비밀번호 입력")
+    @PostMapping("/findID/option1")
+    public ResponseEntity<String> findID_Option1(@RequestBody @Valid FindIDRequest_Option1 request){
+
+        String nickname = memberService.findID_option1(request);
+
+        return ResponseEntity.ok(nickname);
+    }
+
+    // TODO : working now ...
+    /* 전화번호 인증으로 아이디 찾기 */
+    @Operation(summary = "전화번호 인증으로 아이디 찾기", description = "아이디 찾기 : 전화번호,이름 입력")
+    @PostMapping("/findID/option2")
+    public ResponseEntity<String> findID_Option2(){
+
+        // DTO 송신
+        // 서비스 단으로 DTO 넘기고, 인증
+        // 아이디 반환
 
         return null;
     }

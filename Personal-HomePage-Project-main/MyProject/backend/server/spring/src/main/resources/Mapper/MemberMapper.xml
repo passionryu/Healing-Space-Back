@@ -46,4 +46,14 @@
             nickname = #{nickname}
     </select>
 
+    <!-- 정보 조회로 아이디 찾기 -->
+    <select id ="findID_option1" resultType="String">
+        SELECT
+            nickname
+        FROM
+            member
+        WHERE
+            username = #{username} AND email = #{email}
+    </select>
+
 </mapper>
