@@ -14,6 +14,10 @@ public record MemberRequest(
         @NotBlank(message = "Username is required")
         String username,
 
+        String nickName,
+        String phoneNumber,
+        String gender,
+
         @NotBlank(message = "Password is required")
         @Size(min = 6, message = "Password must be at least 6 characters long")
         String password,
@@ -29,6 +33,9 @@ public record MemberRequest(
         public Member toEntity() {
         return Member.builder()
                 .username(this.username)
+                .nickname(this.nickName)
+                .phoneNumber(this.phoneNumber)
+                .gender(this.gender)
                 .password(this.password)
                 .email(this.email)
                 .birth(this.birth)

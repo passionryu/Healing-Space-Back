@@ -34,7 +34,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req.
                         /*무권한 접근 url*/
                         requestMatchers("/member/register").permitAll().
-                        requestMatchers("/auth/login").permitAll().
+                        requestMatchers("/auth/login/email").permitAll().
+                        requestMatchers("/auth/login/id").permitAll().
 
                         /*Swagger 무권한 접근 허용*/
                         requestMatchers("/swagger-ui/**").permitAll().

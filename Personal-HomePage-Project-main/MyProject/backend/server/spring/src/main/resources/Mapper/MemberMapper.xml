@@ -4,17 +4,36 @@
 <mapper namespace="website.server.Domain.Member.Mapper.MemberMapper">
 
     <!-- 회원가입 -->
-    <insert id="register" useGeneratedKeys="true" keyProperty="userID">
-        INSERT INTO member (role, register_date, username, email, password, birth)
-        VALUES ('USER', NOW(), #{username}, #{email}, #{password}, #{birth})
+    <insert id="register" useGeneratedKeys="true" keyProperty="userNumber">
+        INSERT INTO member (role, registerDate, username, nickname,phoneNumber,gender ,email, password, birth)
+        VALUES ('USER', NOW(), #{username},#{nickname},#{phoneNumber},#{gender},#{email}, #{password}, #{birth})
     </insert>
 
     <!-- 이메일로 사용자 찾기 -->
     <select id="findMemberByEmail" resultType="website.server.Domain.Member.Entity.Member">
-        SELECT user_id, role, username, email, password, birth, register_date
+        SELECT userNumber, role, username, email, password, birth, registerDate
         FROM member
         WHERE email = #{email}
         LIMIT 1
+    </select>
+
+    <!-- 아이디로 사용자 찾기 -->
+    <select id="findMemberByNickname" resultType="website.server.Domain.Member.Entity.Member" parameterType="String">
+        SELECT
+            userNumber,
+            role,
+            registerDate,
+            username,
+            nickname,
+            phoneNumber,
+            gender,
+            email,
+            password,
+            birth
+        FROM
+            member
+        WHERE
+            nickname = #{nickname}
     </select>
 
 </mapper>
