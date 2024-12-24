@@ -11,7 +11,17 @@
 
     <!-- 이메일로 사용자 찾기 -->
     <select id="findMemberByEmail" resultType="website.server.Domain.Member.Entity.Member">
-        SELECT userNumber, role, username, email, password, birth, registerDate
+        SELECT
+               userNumber,
+               role,
+               registerDate,
+               username,
+               nickname,
+               phoneNumber,
+               gender,
+               email,
+               password,
+               birth
         FROM member
         WHERE email = #{email}
         LIMIT 1
