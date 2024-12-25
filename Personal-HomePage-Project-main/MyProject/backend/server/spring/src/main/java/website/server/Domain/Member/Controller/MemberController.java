@@ -50,24 +50,15 @@ public class MemberController {
         return ResponseEntity.ok(nickname);
     }
 
-    // TODO : working now ...
+    // TODO : Work Later....
     /* 전화번호 인증으로 아이디 찾기 */
     @Operation(summary = "전화번호 인증으로 아이디 찾기", description = "아이디 찾기 : 전화번호,이름 입력")
     @PostMapping("/findID/option2")
     public ResponseEntity<String> findID_Option2(){
-
-        // DTO 송신
-        // 서비스 단으로 DTO 넘기고, 인증
-        // 아이디 반환
-
         return null;
     }
 
-    /**
-     * 비밀번호 변경 API
-     * @param request
-     * @return
-     */
+    // TODO : Work Later....
     @Operation(summary = "비밀번호 변경", description = "비밀번호 변경")
     @PostMapping("/changePW")
     public ResponseEntity<String> changePW(HttpServletRequest request){
