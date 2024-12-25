@@ -44,7 +44,9 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 	/* Spring Security 의존성 */
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-
+	/* Redis */
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'io.lettuce.core:lettuce-core' // 기본 클라이언트
 
 }
 
