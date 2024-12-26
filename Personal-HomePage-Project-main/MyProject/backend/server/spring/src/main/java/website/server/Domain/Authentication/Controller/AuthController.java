@@ -56,7 +56,6 @@ public class AuthController {
         return ResponseEntity.ok(jwtToken);
     }
 
-    // todo : working now ...
     /**
      * 로그아웃 API
      * @param request 사용자 로그아웃 요청
@@ -73,16 +72,13 @@ public class AuthController {
 
     /**
      * 회원 탈퇴 API
-     * @param request 사용자 회원 탈퇴 요청
      * @return 회원탈퇴 메시지
      */
     @Operation(summary = "회원 탈퇴 API",description = "회원 탈퇴")
     @PostMapping("/delete")
-    public ResponseEntity<String> delete(HttpServletRequest request){
+    public ResponseEntity<String> delete(){
 
         return ResponseEntity.ok("Delete Success");
     }
-
-
 
 }

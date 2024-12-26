@@ -79,6 +79,10 @@ public class AuthService {
         return new JwtTokenDto(AccessToken,RefreshToken);
     }
 
+    /**
+     * 로그아웃 메서드
+     * @param request 사용자 요청
+     */
     public void logout(HttpServletRequest request){
 
         // Get AccessToken & nickname
@@ -87,9 +91,12 @@ public class AuthService {
 
         // Extract token's expiration time
         Date expirationDate = jwtService.extractClaims(AccessToken).getExpiration();
+        log.info("{}'s expirationDate : {}",nickname,expirationDate);
 
         // Set ttl(Remain time for AccessToken)
         long ttl = expirationDate.getTime() - System.currentTimeMillis();
+        double ttlInMinutes = ttl / (1000.0 * 60); // 부동소수점 연산
+        log.info("{}'s ttl : {} minutes", nickname, ttlInMinutes);
 
         // Upload to BlackList
         redisTemplate.opsForValue().set("blacklist:" + nickname, AccessToken, ttl, TimeUnit.MILLISECONDS);

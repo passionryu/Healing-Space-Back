@@ -38,6 +38,7 @@ public class SecurityConfig {
                         requestMatchers("/auth/login/id").permitAll().
                         requestMatchers("/member/findID/option1").permitAll().
                         requestMatchers("/member/findID/option2").permitAll().
+                        requestMatchers("/auth/logout").permitAll().
 
                         /*Swagger 무권한 접근 허용*/
                         requestMatchers("/swagger-ui/**").permitAll().

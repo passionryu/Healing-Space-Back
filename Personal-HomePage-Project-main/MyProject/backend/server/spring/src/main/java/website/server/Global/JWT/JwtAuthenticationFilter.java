@@ -16,6 +16,7 @@ import website.server.Domain.Member.Mapper.MemberMapper;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -24,7 +25,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final MemberMapper memberMapper;
 
-    // TODO : 오류 일어날 가능성 높은 영역
+    /* 권한이 필요 없는 API Path 선언 */
+    private static final List<String> PUBLIC_APIS = List.of(
+            "/auth/login/email",
+            "/auth/login/id",
+            "/member/register",
+            "/member/findID/option1",
+            "/member/findID/option2"
+    );
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -35,34 +43,49 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String nickname = null;
         String jwt = null;
 
+        // 권한이 필요 없는 API 경로는 필터를 건너뜀
+        if (isPublicApi(request)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
             nickname = jwtService.extractUsername(jwt);
         }
 
-        Member member = memberMapper.findMemberByNickname(nickname);
-        if (nickname == null) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // Unauthorized 상태 코드 반환
+        Member member = (nickname != null) ? memberMapper.findMemberByNickname(nickname) : null;
+        if (nickname == null || member == null) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("User not found or unauthorized");
+            response.getWriter().flush();
             return;
         }
 
-        if (jwt != null && !jwt.isEmpty()) {
-            if (jwtService.validateToken(jwt)) {
-                // 유효한 토큰 처리 (예: 사용자 정보 설정)
-                Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(member.getRole()));
-
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(member, null, authorities);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            } else {
-                 // 블랙리스트에 있으면 Unauthorized
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                response.getWriter().write("Invalid or expired JWT token");
-                response.getWriter().flush();
-                return;
-            }
+        if (jwt != null && jwtService.validateToken(jwt)) {
+            Collection<? extends GrantedAuthority> authorities =
+                    Collections.singletonList(new SimpleGrantedAuthority(member.getRole()));
+            UsernamePasswordAuthenticationToken authentication =
+                    new UsernamePasswordAuthenticationToken(member, null, authorities);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        } else if (jwt != null) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Invalid or expired JWT token");
+            response.getWriter().flush();
+            return;
         }
 
         filterChain.doFilter(request, response);
 
+    }
+
+    /**
+     * 권한 불필요 API들은 넘기는 메서드
+     * @param request 사용자 요청
+     * @return ture/false
+     */
+    private boolean isPublicApi(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return PUBLIC_APIS.stream().anyMatch(path::startsWith);
     }
 }
