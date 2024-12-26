@@ -2,6 +2,9 @@
 
 ## 홈페이지 기능
 
+![slide1 - 복사본](https://github.com/user-attachments/assets/6d38151c-0306-42d1-966e-633182bf681a)
+
+
 ### 기능1. 멤버 시스템
 1.로그인      
 2.권한 처리      
