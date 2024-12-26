@@ -1,33 +1,86 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>기본 Index 페이지</title>
     <link rel="stylesheet" href="../src/assets/styles/index.css"> <!-- 외부 CSS 파일 연결 (옵션) -->
 </head>
+
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="#">소개</a></li>
-            <li><a href="#">캘린더</a></li>
-            <li><a href="#">게시판</a></li>
-            <li><a href="#">메신저</a></li>
-            <li><a href="#">AI 챗봇</a></li>
+
+<!--Header-->
+<!--Header-->
+<!--Header-->
+<!--Header-->
+<!--Header-->
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 10px ; background-color: rgba(255, 255, 255, 0.5); ">
+    <!-- 로고 이미지 -->
+    <div class="logo">
+        <img src="../src/assets/images/main_logo.png" alt="웹 서비스 로고" style="height: 70px;">
+    </div>
+
+    <nav style="display: flex; justify-content: flex-end;">
+        <ul style="list-style: none; display: flex; gap: 15px;">
+            <li class="menu-item" style="position: relative;">
+                <a href="#">기업 소개</a>
+                <ul class="dropdown" style="display: none; position: absolute; background-color: #f1f1f1; list-style: none; padding: 10px; border-radius: 5px; top: 100%; left: 0; z-index: 10;">
+                    <li><a href="#">회사 연혁</a></li>
+                    <li><a href="#">비전</a></li>
+                    <li><a href="#">팀 소개</a></li>
+                </ul>
+            </li>
+            <li><a href="#">힐링 프로그램</a></li>
+            <li><a href="#">소식 & 소통</a></li>
+            <li><a href="#">고객센터</a></li>
+            <li><a href="#">마이페이지</a></li>
         </ul>
     </nav>
 </header>
 
-<main>
-    <section>
-        <h2>Home Page</h2>
 
+<!--Main-->
+<!--Main-->
+<!--Main-->
+<!--Main-->
+<!--Main-->
+<main>
+    <!-- 슬라이더 -->
+    <section>
+        <div class="slider">
+            <div class="slide-track">
+                <div class="slide"><img src="../src/assets/images/slide1.png" alt="이미지 1"></div>
+                <div class="slide"><img src="../src/assets/images/slide2.png" alt="이미지 2"></div>
+                <div class="slide"><img src="../src/assets/images/slide3.png" alt="이미지 3"></div>
+            </div>
+        </div>
     </section>
 </main>
 
-<footer>
-    <p>&copy; 2024 나의 웹사이트. 모든 권리 보유.</p>
+
+<!--Footer-->
+<!--Footer-->
+<!--Footer-->
+<!--Footer-->
+<!--Footer-->
+<footer style="display: flex; justify-content: space-between; padding: 20px; background-color: #f1f1f1; align-items: center;">
+    <!-- 좌측: 로고 -->
+    <div class="footer-logo">
+        <img src="../src/assets/images/main_logo.png" alt="Healing Space Logo" style="height: 100px;">
+    </div>
+
+    <!-- 우측: 회사 정보 -->
+    <div class="company-info" style="text-align: left;">
+        <h2>Healing Space Company</h2>
+        <p>경기도 성남시 수정구 성남대로 1342</p>
+        <p>&copy; 2024 by Healing Space Company. All rights reserved.</p>
+    </div>
 </footer>
+
+<!-- 외부 JavaScript 파일 연결 -->
+<script src="../src/assets/js/main_slide.js"></script>
+
 </body>
+
 </html>

@@ -1,3 +1,34 @@
+/* main page */
+/* main page */
+/* main page */
+/* main page */
+/* main page */
+
+/* 전체 페이지를 flexbox로 설정 */
+body, html {
+    height: 100%; /* 화면 전체 높이를 사용 */
+    margin: 0;    /* 기본 여백 제거 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* main 영역은 가능한 공간을 차지하도록 설정 */
+main {
+    flex-grow: 1;
+}
+
+/* footer는 항상 페이지 하단에 위치 */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+/* nav 스타일 */
+nav {
+    display: flex;
+    justify-content: flex-end;
+}
 nav ul {
     list-style-type: none; /* 기본 리스트 스타일 제거 */
     padding: 0;
@@ -16,5 +47,107 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #007bff; /* 마우스를 올렸을 때 색상 변경 */
+    color: #645610; /* 마우스를 올렸을 때 색상 변경 */
+}
+
+/* 슬라이드 */
+/* 슬라이드 */
+/* 슬라이드 */
+/* 슬라이드 */
+/* 슬라이드 컨테이너 */
+.slider {
+    width: 100%;  /* 화면 가로 길이에 맞게 슬라이드 너비 설정 */
+    max-width: 1100px; /* 최대 너비 설정 - 조절하여 가로 화면에 딱 맞게(none으로 하면 됨) 혹은 여분이 있게 조절이 가능 */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* 이미지 슬라이드 */
+.slide-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    transition: opacity 1s ease-in-out;
+}
+
+/* 이미지 크기 설정 */
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+/* 자동 슬라이드용 설정 */
+.slider-container {
+    position: relative;
+}
+
+
+/* footer */
+/* footer */
+/* footer */
+/* footer */
+/* footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f1f1f1;
+    align-items: center;
+}
+
+.footer-logo img {
+    height: 50px;
+}
+
+.company-info {
+    text-align: right;
+}
+
+.company-info h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.company-info p {
+    margin: 5px 0;
+}
+
+/* Menu DropDown Hover */
+/* Menu DropDown Hover */
+/* Menu DropDown Hover */
+/* Menu DropDown Hover */
+/* Menu DropDown Hover */
+.menu-item {
+    position: relative;
+}
+
+.menu-item:hover .dropdown {
+    display: block; /* 마우스를 올렸을 때 드롭다운 메뉴 표시 */
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    list-style: none;
+    margin: 0;
+    top: 100%;
+    left: 0;
+    z-index: 10; /* 메뉴가 다른 요소 위에 표시되도록 설정 */
+}
+
+.dropdown li a {
+    padding: 5px 10px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown li a:hover {
+    background-color: #ddd; /* 호버 시 드롭다운 항목에 배경색 추가 */
 }
