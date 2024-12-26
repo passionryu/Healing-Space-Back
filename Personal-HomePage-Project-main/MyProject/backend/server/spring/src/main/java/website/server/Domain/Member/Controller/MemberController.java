@@ -59,7 +59,7 @@ public class MemberController {
     }
 
     // TODO : Work Later....
-    @Operation(summary = "비밀번호 변경", description = "비밀번호 변경")
+    @Operation(summary = "비밀번호 분실 시 비밀번호 변경", description = "비밀번호 변경")
     @PostMapping("/changePW")
     public ResponseEntity<String> changePW(HttpServletRequest request){
 
