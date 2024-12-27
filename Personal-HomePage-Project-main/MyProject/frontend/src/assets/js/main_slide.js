@@ -11,4 +11,4 @@ function moveSlide() {
     slideTrack.style.transform = `translateX(-${index * 100}%)`;
 }
 
-setInterval(moveSlide, 4500); // 4.5초마다 슬라이드 이동
+setInterval(moveSlide, 4000); // 4초마다 슬라이드 이동
