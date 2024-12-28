@@ -1,8 +1,11 @@
 package website.server.Domain.HealingProgram.HealingService.DewCalendar.Util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class TextPurificationUtil {
 
     public static String emotionPurify(String rawEmotion){
@@ -12,6 +15,7 @@ public class TextPurificationUtil {
         // rawEmotion 문자열에서 리스트 내의 감정을 찾아 반환
         for (String emotion : emotions) {
             if (rawEmotion.contains(emotion)) {
+                log.info("추출된 감정 : {}",emotion);
                 return emotion; // 감정 단어를 반환
             }
         }

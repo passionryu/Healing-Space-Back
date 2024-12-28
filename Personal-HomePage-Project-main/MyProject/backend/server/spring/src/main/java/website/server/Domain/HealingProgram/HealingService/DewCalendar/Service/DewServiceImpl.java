@@ -17,6 +17,7 @@ import website.server.Domain.HealingProgram.HealingService.DewCalendar.Util.Text
 public class DewServiceImpl implements DewService{
 
     private final ChatClient chatClient;
+
     /**
      * 일기 저장 메서드
      * @param diaryRequest 일기 제목 + 일기 본문
@@ -25,22 +26,18 @@ public class DewServiceImpl implements DewService{
     @Override
     public DiaryResponse saveDiary(DiaryRequest diaryRequest) {
 
-        log.info("diaryRequest : {} ",diaryRequest);
         String title = diaryRequest.title();
-        log.info("title : {}",title);
         String diary = diaryRequest.diary();
-        log.info("diary : {}",diary);
 
-        String fullDiaryRequest = PromptUtils.writeDiaryRequest(title,diary);
-        String rawEmotion = chatClient.call(fullDiaryRequest);
+        /* 일기 감정 분석 */
+        String rawEmotion = chatClient.call(PromptUtils.writeDiaryRequest(title,diary));
         String emotion = TextPurificationUtil.emotionPurify(rawEmotion);
 
+        /* 감정에 맞는 힐링 메시지 & 힐링 뮤직 추천 */
         String healingMessage = HealingMessageList.getMessageByEmotion(emotion);
-        log.info("AI의 healingMessage : {}",healingMessage);
-
         String healingMusic = HealingMusicList.getMusicByEmotion(emotion);
-        log.info("AI의 healingMusic : {}",healingMusic);
 
+        // todo : AiResponse 로 바꾸기
         return new DiaryResponse(emotion, healingMessage, healingMusic);
     }
 }

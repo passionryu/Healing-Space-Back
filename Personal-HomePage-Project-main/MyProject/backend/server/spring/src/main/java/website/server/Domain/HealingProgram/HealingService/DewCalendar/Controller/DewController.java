@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ai.chat.ChatClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,6 @@ import website.server.Domain.HealingProgram.HealingService.DewCalendar.Service.D
 @Tag(name = "DEW Calendar", description = "Dew 캘린더 서비스 API")
 public class DewController {
 
-    private final ChatClient chatClient;
     private final DewService dewService;
 
     /**
@@ -35,6 +33,10 @@ public class DewController {
 
         DiaryResponse diaryResponse = dewService.saveDiary(diaryRequest);
 
+        // todo : 날씨 매칭 메서드 - 감정 / (날씨,격려의 메시지)
+        // todo : 일기 저장 메서드 -diaryRequest,AiResponse,(날씨,격려의 메시지) / 저장
+
+        // todo : 최종 반환은 AiResponse 와 날씨,격려의 메시지
         return ResponseEntity.ok(diaryResponse);
     }
 
