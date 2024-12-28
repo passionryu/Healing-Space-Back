@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,6 +19,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -40,6 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String authorizationHeader = request.getHeader("Authorization");
+        log.info("authorizationHeader : {}",authorizationHeader);
         String nickname = null;
         String jwt = null;
 
@@ -52,9 +55,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
             nickname = jwtService.extractUsername(jwt);
+            log.info("authorizationHeader : {}",authorizationHeader);
+            log.info("jwt : {}" , jwt);
+            log.info("nickname : {}",nickname);
         }
 
         Member member = (nickname != null) ? memberMapper.findMemberByNickname(nickname) : null;
+        log.info("nickname : {}",nickname);
+        log.info("member : {}",member);
+
         if (nickname == null || member == null) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("User not found or unauthorized");

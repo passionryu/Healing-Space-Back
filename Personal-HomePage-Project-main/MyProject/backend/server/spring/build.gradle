@@ -21,6 +21,14 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' } //spring ai 저장소
+	maven {url 'https://repo.spring.io/snapshot'} //스냅샷 저장소 추가
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.ai:spring-ai-bom:0.8.1"
+	}
 }
 
 dependencies {
@@ -47,6 +55,10 @@ dependencies {
 	/* Redis */
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'io.lettuce.core:lettuce-core' // 기본 클라이언트
+	/* Spring AI */
+	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter:1.0.0-SNAPSHOT'
+	//implementation 'org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter:1.0.0-SNAPSHOT'
+
 
 }
 
