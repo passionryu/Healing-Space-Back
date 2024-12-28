@@ -1,4 +1,5 @@
 /* GLOBAL */
+
 a {
     text-decoration: none; /* 링크에 밑줄 없애기 */
 }
@@ -114,7 +115,7 @@ nav {
 
 /* 섹션 간 간격 조절 */
 section {
-    margin-bottom: 50px; /* 섹션 하단에 50px 간격 추가 */
+    margin-bottom: 0px; /* 섹션 하단에 50px 간격 추가 */
 }
 
 /* SLIDE AD */
@@ -238,6 +239,13 @@ section {
     order: 3;
     margin-right: auto; /* 왼쪽으로 붙이기 */
 }
+
+/* 3번 카드 왼쪽 */
+.card4 {
+    order: 4;
+    margin-left: auto; /* 오른쪽으로 붙이기 */
+}
+
 
 /* FOOTER */
 
