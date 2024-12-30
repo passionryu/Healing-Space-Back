@@ -11,9 +11,5 @@ public interface DewMapper {
      * @param diary 일기 객체
      */
     void saveDiary(Diary diary);
-//    void saveDiary(
-//            @Param("userNumber") Long userNumber,
-//            @Param("diaryRequest") DiaryRequest diaryRequest,
-//            @Param("aiResponse") AiResponse aiResponse
-//    );
+
 }
