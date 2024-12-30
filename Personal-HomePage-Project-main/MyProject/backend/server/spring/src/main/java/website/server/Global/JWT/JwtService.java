@@ -18,6 +18,8 @@ public class JwtService {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+    /* extractUserNumberFromToken때문에 static으로 변환 .12.30 */
+    /* 다시 수정 .12.30 */
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 
@@ -88,11 +90,50 @@ public class JwtService {
                 .getBody();
     }
 
-    /* BLACK LIST CODE */
-    /* BLACK LIST CODE */
+    public Long extractUserNumberFromToken(String token) {
+        return extractClaims2(token).get("userNumber", Long.class);
+    }
+    public Claims extractClaims2(String token) {
+        return Jwts.parser()// JWT 파서 객체 생성
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    /**
+     * 사용자 고유 번호 추출 메서드
+     * @param request
+     * @return
+     */
+//    public Long extractUserNumberFromToken(HttpServletRequest request) {
+//        // 헤더에서 JWT 토큰 추출
+//        String authorizationHeader = request.getHeader("Authorization");
+//
+//        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+//            throw new IllegalArgumentException("JWT 토큰이 제공되지 않았습니다.");
+//        }
+//
+//        // "Bearer " 부분 제거 후 토큰 추출
+//        String token = authorizationHeader.substring(7);
+//
+//        // JWT 파싱 및 클레임 추출
+//        Claims claims = Jwts.parserBuilder()
+//                .setSigningKey(SECRET_KEY.getBytes()) // 키 설정
+//                .build()
+//                .parseClaimsJws(token) // 토큰 파싱
+//                .getBody();
+//
+//        // "userNumber" 클레임 추출
+//        return claims.get("userNumber", Long.class);
+//    }
+
     /* BLACK LIST CODE */
 
-    // 토큰 검증 (블랙리스트 체크 포함)
+    /**
+     * 토큰 검증 메서드 (블랙리스트 체크 포함)
+     * @param token
+     * @return
+     */
     public boolean validateToken(String token) {
         if (isTokenBlacklisted(token)) {
             return false;  // 블랙리스트에 있으면 유효하지 않음
@@ -101,7 +142,11 @@ public class JwtService {
         return true;
     }
 
-    // 토큰이 블랙리스트에 있는지 확인
+    /**
+     * 토큰이 블랙리스트에 있는지 확인
+     * @param token
+     * @return true & flase
+     */
     public boolean isTokenBlacklisted(String token) {
         return redisTemplate.hasKey("blacklist:" + token);
     }

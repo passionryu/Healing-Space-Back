@@ -12,11 +12,15 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Diary {
 
+    private Long userNumber;
     private Long diaryNumber;
     private String title;
     private String diary;
     private String emotion;
     private String weather;
     private LocalDate date;
+
+    private String healingMessage;
+    private String healingMusic;
 
 }

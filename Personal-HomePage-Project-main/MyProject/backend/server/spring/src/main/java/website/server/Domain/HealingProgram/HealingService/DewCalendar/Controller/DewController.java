@@ -4,15 +4,23 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.DiaryRequest;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response.DiaryResponse;
+import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.FullDiaryRequest;
+import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.HealingService.DewCalendar.Entity.Diary;
+import website.server.Domain.HealingProgram.HealingService.DewCalendar.Mapper.DewMapper;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.Service.DewService;
+import website.server.Global.JWT.JwtService;
 
+import java.time.LocalDate;
+
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/dew")
@@ -20,6 +28,8 @@ import website.server.Domain.HealingProgram.HealingService.DewCalendar.Service.D
 public class DewController {
 
     private final DewService dewService;
+    private final DewMapper dewMapper;
+    private final JwtService jwtService;
 
     /**
      * 일기 저장 API
@@ -29,15 +39,29 @@ public class DewController {
      */
     @Operation(summary = " 일기 저장 ", description = " ")
     @PostMapping("/diary")
-    public ResponseEntity<DiaryResponse> saveDiary(HttpServletRequest request, @RequestBody DiaryRequest diaryRequest){
+    public ResponseEntity<AiResponse> saveDiary(HttpServletRequest request, @RequestBody DiaryRequest diaryRequest){
 
-        DiaryResponse diaryResponse = dewService.saveDiary(diaryRequest);
+        AiResponse aiResponse = dewService.saveDiary(diaryRequest);
+        String AccessToken = jwtService.extractAccessToken(request);
+        Long userNumber = jwtService.extractUserNumberFromToken(AccessToken);
 
-        // todo : 날씨 매칭 메서드 - 감정 / (날씨,격려의 메시지)
-        // todo : 일기 저장 메서드 -diaryRequest,AiResponse,(날씨,격려의 메시지) / 저장
+        FullDiaryRequest fullDiaryRequest = new FullDiaryRequest(
+                null,
+                userNumber,
+                diaryRequest.title(),
+                diaryRequest.diary(),
+                aiResponse.emotion(),
+                aiResponse.weather(),
+                LocalDate.now(),  // 현재 날짜를 사용 (원하는 날짜로 변경 가능)
+                aiResponse.healingMessage(),
+                aiResponse.healingMusic()
+        );
 
-        // todo : 최종 반환은 AiResponse 와 날씨,격려의 메시지
-        return ResponseEntity.ok(diaryResponse);
+        Diary diary = fullDiaryRequest.toEntity();
+
+        dewMapper.saveDiary(diary);
+
+        return ResponseEntity.ok(aiResponse);
     }
 
     /* 일기 조회 */
