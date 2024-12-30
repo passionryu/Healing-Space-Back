@@ -40,13 +40,6 @@ public class HealingMessageList {
             "외로움은 지나가는 구름과 같습니다."
     );
 
-    private final static List<String> tiredMessages = List.of(
-            "잠시 쉬어도 괜찮습니다.",
-            "지친 마음을 스스로 보듬어 주세요.",
-            "오늘의 피로는 내일의 힘이 됩니다.",
-            "작은 휴식이 큰 에너지를 줍니다.",
-            "당신은 충분히 잘하고 있습니다."
-    );
 
     private final static List<String> sadMessages = List.of(
             "눈물은 마음을 치유합니다.",
@@ -64,13 +57,6 @@ public class HealingMessageList {
             "당신은 이 순간을 이겨낼 수 있습니다."
     );
 
-    private final static List<String> frustratedMessages = List.of(
-            "좌절은 새로운 시작의 전조입니다.",
-            "포기하지 마세요, 당신은 해낼 수 있습니다.",
-            "오늘의 어려움은 내일의 성장으로 바뀝니다.",
-            "작은 성공에서 희망을 찾으세요.",
-            "스스로를 믿고 계속 나아가세요."
-    );
 
     public static String getMessageByEmotion(String emotion) {
         return switch (emotion.toLowerCase()) {
@@ -78,10 +64,8 @@ public class HealingMessageList {
             case "설렘&사랑" -> getRandom(loveMessages);
             case "평온" -> getRandom(calmMessages);
             case "외로움" -> getRandom(lonelyMessages);
-            case "피곤함" -> getRandom(tiredMessages);
             case "슬픔" -> getRandom(sadMessages);
             case "화남" -> getRandom(angryMessages);
-            case "좌절" -> getRandom(frustratedMessages);
             default -> throw new IllegalArgumentException("Unknown emotion: " + emotion);
         };
     }

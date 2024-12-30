@@ -40,14 +40,6 @@ public class HealingMusicList {
             "https://youtu.be/lonely_music5"
     );
 
-    private final static List<String> tiredMusic = List.of(
-            "https://youtu.be/tired_music1",
-            "https://youtu.be/tired_music2",
-            "https://youtu.be/tired_music3",
-            "https://youtu.be/tired_music4",
-            "https://youtu.be/tired_music5"
-    );
-
     private final static List<String> sadMusic = List.of(
             "https://youtu.be/sad_music1",
             "https://youtu.be/sad_music2",
@@ -64,13 +56,7 @@ public class HealingMusicList {
             "https://youtu.be/angry_music5"
     );
 
-    private final static List<String> frustratedMusic = List.of(
-            "https://youtu.be/frustrated_music1",
-            "https://youtu.be/frustrated_music2",
-            "https://youtu.be/frustrated_music3",
-            "https://youtu.be/frustrated_music4",
-            "https://youtu.be/frustrated_music5"
-    );
+
 
     public static String getMusicByEmotion(String emotion) {
         return switch (emotion.toLowerCase()) {
@@ -78,10 +64,8 @@ public class HealingMusicList {
             case "설렘&사랑" -> getRandom(loveMusic);
             case "평온" -> getRandom(calmMusic);
             case "외로움" -> getRandom(lonelyMusic);
-            case "피곤함" -> getRandom(tiredMusic);
             case "슬픔" -> getRandom(sadMusic);
             case "화남" -> getRandom(angryMusic);
-            case "좌절" -> getRandom(frustratedMusic);
             default -> throw new IllegalArgumentException("Unknown emotion: " + emotion);
         };
     }
