@@ -10,4 +10,10 @@
                 #{emotion}, #{weather}, #{healingMessage}, #{healingMusic})
     </insert>
 
+    <!-- 일기 삭제 -->
+    <delete id="deleteDiary">
+        DELETE FROM diary
+        WHERE userNumber = #{userNumber} AND date = #{date}
+    </delete>
+
 </mapper>

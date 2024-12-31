@@ -5,16 +5,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.DiaryRequest;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.FullDiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response.AiResponse;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.Entity.Diary;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.Mapper.DewMapper;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.Service.DewService;
 import website.server.Global.JWT.JwtService;
-
 import java.time.LocalDate;
 
 @Slf4j
@@ -54,21 +51,29 @@ public class DewController {
         return ResponseEntity.ok(aiResponse);
     }
 
-    /* 일기 조회 */
-    /*
-    * 서비스 기획
-    * 1.달력 형태로 조회할지
-    * 2.리스트 형식으로 조회할지
-    * */
-
-    /* 일기 삭제 */
+    /**
+     * 일기 삭제 API
+     * @param request 사용자 요청
+     * @param date 일기 작성 날짜
+     * @return 일기 삭제 성공 메시지
+     */
     @Operation(summary = " 일기 삭제 ", description = " ")
     @DeleteMapping("/diary")
-    public ResponseEntity<String> deleteDiary(HttpServletRequest request,LocalDate date){
+    public ResponseEntity<String> deleteDiary(HttpServletRequest request,
+                                              @RequestParam(name = "date")
+                                              @DateTimeFormat(pattern = "yyyy-MM-dd")
+                                              LocalDate date){
 
-
+        dewService.deleteDiary(request,date);
 
         return ResponseEntity.ok("일기 삭제 성공!");
     }
+
+    /* 일기 조회 */
+    /*
+     * 서비스 기획
+     * 1.달력 형태로 조회할지
+     * 2.리스트 형식으로 조회할지
+     * */
 
 }

@@ -1,7 +1,10 @@
 package website.server.Domain.HealingProgram.HealingService.DewCalendar.Service;
 
+import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.DiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response.AiResponse;
+
+import java.time.LocalDate;
 
 public interface DewService {
 
@@ -27,4 +30,10 @@ public interface DewService {
      */
     void saveDiary(Long userNumber,DiaryRequest diaryRequest,AiResponse aiResponse);
 
+    /**
+     * 일기 삭제 메서드
+     * @param request 사용자 요청
+     * @param date 일기 작성 날짜
+     */
+    void deleteDiary(HttpServletRequest request, LocalDate date);
 }

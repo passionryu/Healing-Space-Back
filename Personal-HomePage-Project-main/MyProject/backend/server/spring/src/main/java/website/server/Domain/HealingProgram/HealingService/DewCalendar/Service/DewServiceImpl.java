@@ -1,5 +1,6 @@
 package website.server.Domain.HealingProgram.HealingService.DewCalendar.Service;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.ChatClient;
@@ -10,6 +11,7 @@ import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Respo
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.Entity.Diary;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.Mapper.DewMapper;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.Util.*;
+import website.server.Global.JWT.JwtService;
 
 import java.time.LocalDate;
 
@@ -20,6 +22,7 @@ public class DewServiceImpl implements DewService{
 
     private final ChatClient chatClient;
     private final DewMapper dewMapper;
+    private final JwtService jwtService;
 
     /**
      * 일기 저장 메서드
@@ -88,6 +91,21 @@ public class DewServiceImpl implements DewService{
 
         dewMapper.saveDiary(diary);
 
+    }
+
+    /**
+     * 일기 삭제 메서드
+     * @param request 사용자 요청
+     * @param date 일기 작성 날짜
+     */
+    @Override
+    public void deleteDiary(HttpServletRequest request, LocalDate date) {
+
+        /* 사용자 고유번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 다이어리 삭제 */
+        dewMapper.deleteDiary(userNumber,date);
 
     }
 
