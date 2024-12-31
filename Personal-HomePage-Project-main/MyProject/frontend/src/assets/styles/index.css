@@ -207,6 +207,7 @@ section {
     margin: 5px 0 0 0; /* 상단 여백 추가 */
     font-size: 1rem;
     color: #555;
+
 }
 
 /* 애니메이션 효과 */
@@ -225,6 +226,7 @@ section {
 .card1 {
     order: 1;
     margin-right: auto; /* 왼쪽으로 붙이기 */
+
 }
 
 /* 2번 카드 오른쪽 */
