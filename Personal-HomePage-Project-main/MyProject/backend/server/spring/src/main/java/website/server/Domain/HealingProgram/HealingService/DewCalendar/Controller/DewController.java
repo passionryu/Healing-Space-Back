@@ -64,6 +64,7 @@ public class DewController {
                                               @DateTimeFormat(pattern = "yyyy-MM-dd")
                                               LocalDate date){
 
+        /* 일기 삭제 */
         dewService.deleteDiary(request,date);
 
         return ResponseEntity.ok("일기 삭제 성공!");
