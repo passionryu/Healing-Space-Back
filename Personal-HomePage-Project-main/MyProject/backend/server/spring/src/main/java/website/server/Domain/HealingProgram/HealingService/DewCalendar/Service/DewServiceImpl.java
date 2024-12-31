@@ -5,8 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.stereotype.Service;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.DiaryRequest;
+import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.FullDiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.HealingService.DewCalendar.Entity.Diary;
+import website.server.Domain.HealingProgram.HealingService.DewCalendar.Mapper.DewMapper;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.Util.*;
+
+import java.time.LocalDate;
 
 @Slf4j
 @Service
@@ -14,6 +19,7 @@ import website.server.Domain.HealingProgram.HealingService.DewCalendar.Util.*;
 public class DewServiceImpl implements DewService{
 
     private final ChatClient chatClient;
+    private final DewMapper dewMapper;
 
     /**
      * 일기 저장 메서드
@@ -21,7 +27,7 @@ public class DewServiceImpl implements DewService{
      * @return AI 연산 결과(감정,날씨,힐링 메시지,힐링 뮤직)
      */
     @Override
-    public AiResponse saveDiary(DiaryRequest diaryRequest) {
+    public AiResponse AiCalculation(DiaryRequest diaryRequest) {
 
         /* 일기 감정 분석 */
         String rawEmotion = chatClient.call(PromptUtils.writeDiaryRequest(diaryRequest.title(),diaryRequest.diary()));
@@ -54,6 +60,34 @@ public class DewServiceImpl implements DewService{
             case "화남" -> "천둥";
             default -> throw new IllegalArgumentException("Unknown emotion: " + emotion);
         };
+
+    }
+
+    /**
+     * 일기 최종 저장 메서드
+     * @param userNumber 사용자 고유 번호
+     * @param diaryRequest 일기 제목 + 본문
+     * @param aiResponse AI 연산결과
+     */
+    @Override
+    public void saveDiary(Long userNumber, DiaryRequest diaryRequest, AiResponse aiResponse) {
+
+        FullDiaryRequest fullDiaryRequest = new FullDiaryRequest(
+                null,
+                userNumber,
+                diaryRequest.title(),
+                diaryRequest.diary(),
+                aiResponse.emotion(),
+                aiResponse.weather(),
+                LocalDate.now(),
+                aiResponse.healingMessage(),
+                aiResponse.healingMusic()
+        );
+
+        Diary diary = fullDiaryRequest.toEntity();
+
+        dewMapper.saveDiary(diary);
+
 
     }
 

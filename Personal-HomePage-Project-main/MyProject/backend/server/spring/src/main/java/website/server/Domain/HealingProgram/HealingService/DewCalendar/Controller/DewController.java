@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.DiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.FullDiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response.AiResponse;
@@ -27,6 +24,10 @@ import java.time.LocalDate;
 @Tag(name = "DEW Calendar", description = "Dew 캘린더 서비스 API")
 public class DewController {
 
+    /*
+    * 서비스 흐름상 일기 수정은 없음
+    * */
+
     private final DewService dewService;
     private final DewMapper dewMapper;
     private final JwtService jwtService;
@@ -37,37 +38,38 @@ public class DewController {
      * @param diaryRequest 일기 제목,본문
      * @return 응답 DTO (감정,글귀,음악)
      */
+    // todo 하루에 한번만 작성
     @Operation(summary = " 일기 저장 ", description = " ")
     @PostMapping("/diary")
     public ResponseEntity<AiResponse> saveDiary(HttpServletRequest request, @RequestBody DiaryRequest diaryRequest){
 
-        AiResponse aiResponse = dewService.saveDiary(diaryRequest);
-        String AccessToken = jwtService.extractAccessToken(request);
-        Long userNumber = jwtService.extractUserNumberFromToken(AccessToken);
+        /* AI 연산 */
+        AiResponse aiResponse = dewService.AiCalculation(diaryRequest);
 
-        FullDiaryRequest fullDiaryRequest = new FullDiaryRequest(
-                null,
-                userNumber,
-                diaryRequest.title(),
-                diaryRequest.diary(),
-                aiResponse.emotion(),
-                aiResponse.weather(),
-                LocalDate.now(),  // 현재 날짜를 사용 (원하는 날짜로 변경 가능)
-                aiResponse.healingMessage(),
-                aiResponse.healingMusic()
-        );
+        /* 사용자 고유번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
 
-        Diary diary = fullDiaryRequest.toEntity();
-
-        dewMapper.saveDiary(diary);
+        /* 일기 최종 저장 */
+        dewService.saveDiary(userNumber,diaryRequest,aiResponse);
 
         return ResponseEntity.ok(aiResponse);
     }
 
     /* 일기 조회 */
-
-    /* 일기 수정 */
+    /*
+    * 서비스 기획
+    * 1.달력 형태로 조회할지
+    * 2.리스트 형식으로 조회할지
+    * */
 
     /* 일기 삭제 */
+    @Operation(summary = " 일기 삭제 ", description = " ")
+    @DeleteMapping("/diary")
+    public ResponseEntity<String> deleteDiary(HttpServletRequest request,LocalDate date){
+
+
+
+        return ResponseEntity.ok("일기 삭제 성공!");
+    }
 
 }
