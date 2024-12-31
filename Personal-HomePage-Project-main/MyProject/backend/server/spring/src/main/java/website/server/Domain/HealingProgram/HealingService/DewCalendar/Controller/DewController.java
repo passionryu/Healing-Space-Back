@@ -25,11 +25,11 @@ import java.time.LocalDate;
 public class DewController {
 
     /*
-    * 서비스 흐름상 일기 수정은 없음
+    * 서비스 흐름상 일기 수정은 없음, 일기는 하루에 한번씩만 저장
+    * 다시 한번 일기 작성 요청이 오면, "일기는 하루에 한번만 작성 가능합니다"라는 문구로 안내하기
     * */
 
     private final DewService dewService;
-    private final DewMapper dewMapper;
     private final JwtService jwtService;
 
     /**
@@ -38,7 +38,6 @@ public class DewController {
      * @param diaryRequest 일기 제목,본문
      * @return 응답 DTO (감정,글귀,음악)
      */
-    // todo 하루에 한번만 작성
     @Operation(summary = " 일기 저장 ", description = " ")
     @PostMapping("/diary")
     public ResponseEntity<AiResponse> saveDiary(HttpServletRequest request, @RequestBody DiaryRequest diaryRequest){
