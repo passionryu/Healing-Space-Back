@@ -240,13 +240,6 @@ section {
     margin-right: auto; /* 왼쪽으로 붙이기 */
 }
 
-/* 3번 카드 왼쪽 */
-.card4 {
-    order: 4;
-    margin-left: auto; /* 오른쪽으로 붙이기 */
-}
-
-
 /* FOOTER */
 
 footer {
