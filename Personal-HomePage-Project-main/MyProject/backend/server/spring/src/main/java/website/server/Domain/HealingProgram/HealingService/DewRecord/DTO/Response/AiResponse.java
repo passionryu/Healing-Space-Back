@@ -1,4 +1,4 @@
-package website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response;
+package website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response;
 
 public record AiResponse(
         String emotion,

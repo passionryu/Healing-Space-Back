@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="website.server.Domain.HealingProgram.HealingService.DewCalendar.Mapper.DewMapper">
+<mapper namespace="website.server.Domain.HealingProgram.HealingService.DewRecord.Mapper.DewMapper">
 
     <!-- 일기 결과 저장 -->
     <insert id="saveDiary" useGeneratedKeys="true" keyProperty="diaryNumber">

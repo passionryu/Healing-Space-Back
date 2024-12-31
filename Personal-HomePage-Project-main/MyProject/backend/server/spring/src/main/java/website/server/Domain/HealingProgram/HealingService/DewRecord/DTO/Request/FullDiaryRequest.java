@@ -1,6 +1,6 @@
-package website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request;
+package website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request;
 
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.Entity.Diary;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.Entity.Diary;
 
 import java.time.LocalDate;
 

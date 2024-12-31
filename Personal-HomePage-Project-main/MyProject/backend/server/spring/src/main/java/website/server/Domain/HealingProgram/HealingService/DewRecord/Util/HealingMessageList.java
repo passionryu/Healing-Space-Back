@@ -1,4 +1,4 @@
-package website.server.Domain.HealingProgram.HealingService.DewCalendar.Util;
+package website.server.Domain.HealingProgram.HealingService.DewRecord.Util;
 
 import java.util.List;
 import java.util.Random;

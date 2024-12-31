@@ -1,8 +1,8 @@
-package website.server.Domain.HealingProgram.HealingService.DewCalendar.Mapper;
+package website.server.Domain.HealingProgram.HealingService.DewRecord.Mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.Entity.Diary;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.Entity.Diary;
 
 import java.time.LocalDate;
 

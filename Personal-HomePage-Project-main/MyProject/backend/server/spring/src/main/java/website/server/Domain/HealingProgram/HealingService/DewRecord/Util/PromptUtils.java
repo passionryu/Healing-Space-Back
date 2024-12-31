@@ -1,4 +1,4 @@
-package website.server.Domain.HealingProgram.HealingService.DewCalendar.Util;
+package website.server.Domain.HealingProgram.HealingService.DewRecord.Util;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package website.server.Domain.HealingProgram.HealingService.DewCalendar.Entity;
+package website.server.Domain.HealingProgram.HealingService.DewRecord.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

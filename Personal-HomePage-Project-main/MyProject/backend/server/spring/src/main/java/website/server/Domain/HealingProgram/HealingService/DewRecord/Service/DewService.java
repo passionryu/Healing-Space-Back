@@ -1,8 +1,8 @@
-package website.server.Domain.HealingProgram.HealingService.DewCalendar.Service;
+package website.server.Domain.HealingProgram.HealingService.DewRecord.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.DiaryRequest;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.DiaryRequest;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.AiResponse;
 
 import java.time.LocalDate;
 

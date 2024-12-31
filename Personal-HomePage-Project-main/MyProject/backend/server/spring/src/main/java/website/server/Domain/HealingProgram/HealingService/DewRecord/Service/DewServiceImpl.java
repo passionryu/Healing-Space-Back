@@ -1,16 +1,16 @@
-package website.server.Domain.HealingProgram.HealingService.DewCalendar.Service;
+package website.server.Domain.HealingProgram.HealingService.DewRecord.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.stereotype.Service;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.DiaryRequest;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Request.FullDiaryRequest;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.DTO.Response.AiResponse;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.Entity.Diary;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.Mapper.DewMapper;
-import website.server.Domain.HealingProgram.HealingService.DewCalendar.Util.*;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.DiaryRequest;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.FullDiaryRequest;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.Entity.Diary;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.Mapper.DewMapper;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.Util.*;
 import website.server.Global.JWT.JwtService;
 
 import java.time.LocalDate;
