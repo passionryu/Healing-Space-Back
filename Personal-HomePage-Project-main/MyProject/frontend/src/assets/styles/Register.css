@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+}
+
+.card {
+    width: 500px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.card img {
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.card input[type="text"],
+.card input[type="password"],
+.card input[type="email"],
+.card input[type="date"],
+.card input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.card .radio-group {
+    text-align: left;
+    margin: 10px 0;
+}
+
+.card .radio-group label {
+    margin-right: 15px;
+}
+
+.card button {
+    width: 100%;
+    padding: 12px;
+    background-color: #917f27;
+    color: white;
+    border: none;
+    border-radius: 25px; /* 타원 모양 */
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.card button:hover {
+    background-color: #a99638;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-column {
+    width: 48%;
+}
+
+.form-column input {
+    width: 100%;
+}
+
+.form-column .radio-group {
+    text-align: left;
+}
