@@ -33,12 +33,12 @@ public class DewController {
     private final JwtService jwtService;
 
     /**
-     * 일기 저장 API
+     * 일기 작성 API
      * @param request 사용자 요청
      * @param diaryRequest 일기 제목,본문
      * @return 응답 DTO (감정,글귀,음악)
      */
-    @Operation(summary = " 일기 저장 API ", description = " ")
+    @Operation(summary = " 일기 작성 API ", description = " ")
     @PostMapping("/diary")
     public ResponseEntity<AiResponse> saveDiary(HttpServletRequest request, @RequestBody DiaryRequest diaryRequest){
 
