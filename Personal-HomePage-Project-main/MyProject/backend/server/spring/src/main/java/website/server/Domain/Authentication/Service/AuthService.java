@@ -43,8 +43,8 @@ public class AuthService {
         if (!passwordEncoder.matches(password, member.getPassword())) {return new JwtTokenDto("PW not match","x");}
 
         // Generate JWT token
-        String AccessToken = jwtService.generateAccessToken(email,member.getNickname(),member.getUserNumber());
-        String RefreshToken =jwtService.generateRefreshToken(email, member.getNickname(), member.getUserNumber());
+        String AccessToken = jwtService.generateAccessToken(email,member.getNickName(),member.getUserNumber());
+        String RefreshToken =jwtService.generateRefreshToken(email, member.getNickName(), member.getUserNumber());
 
         // Input AccessToken to Redis
         redisTemplate.opsForValue().set("auth:" + member.getUserNumber(), AccessToken, Duration.ofHours(1));
@@ -69,8 +69,8 @@ public class AuthService {
         if (!passwordEncoder.matches(password, member.getPassword())) {return new JwtTokenDto("PW not match","x");}
 
         // Generate JWt token
-        String AccessToken = jwtService.generateAccessToken(member.getEmail(), member.getNickname(),member.getUserNumber());
-        String RefreshToken =jwtService.generateRefreshToken(member.getEmail(), member.getNickname(), member.getUserNumber());
+        String AccessToken = jwtService.generateAccessToken(member.getEmail(), member.getNickName(),member.getUserNumber());
+        String RefreshToken =jwtService.generateRefreshToken(member.getEmail(), member.getNickName(), member.getUserNumber());
 
         // Input AccessToken to Redis
         redisTemplate.opsForValue().set("auth:" + member.getUserNumber(), AccessToken, Duration.ofHours(1));
@@ -85,7 +85,7 @@ public class AuthService {
      */
     public void logout(HttpServletRequest request){
 
-        // Get AccessToken & nickname
+        // Get AccessToken & nickName
         String AccessToken = jwtService.extractAccessToken(request);
         String nickname = jwtService.extractUsername(AccessToken);
 

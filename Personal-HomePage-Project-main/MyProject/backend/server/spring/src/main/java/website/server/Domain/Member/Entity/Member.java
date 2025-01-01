@@ -26,7 +26,7 @@ public class Member {
 
     /* 회원가입 시 사용자 직접 입력 정보  */
     private String username; // 실제 사용자 이름
-    private String nickname; // 아이디(활동명)
+    private String nickName; // 아이디(활동명)
     private String phoneNumber;
     private String gender;
     private String email;

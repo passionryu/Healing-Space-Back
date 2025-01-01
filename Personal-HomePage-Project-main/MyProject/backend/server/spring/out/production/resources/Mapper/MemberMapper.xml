@@ -6,7 +6,7 @@
     <!-- 회원가입 -->
     <insert id="register" useGeneratedKeys="true" keyProperty="userNumber">
         INSERT INTO member (role, registerDate, username, nickname,phoneNumber,gender ,email, password, birth)
-        VALUES ('USER', NOW(), #{username},#{nickname},#{phoneNumber},#{gender},#{email}, #{password}, #{birth})
+        VALUES ('USER', NOW(), #{username},#{nickName},#{phoneNumber},#{gender},#{email}, #{password}, #{birth})
     </insert>
 
     <!-- 이메일로 사용자 찾기 -->

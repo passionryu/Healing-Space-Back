@@ -33,7 +33,7 @@ public record MemberRequest(
         public Member toEntity() {
         return Member.builder()
                 .username(this.username)
-                .nickname(this.nickName)
+                .nickName(this.nickName)
                 .phoneNumber(this.phoneNumber)
                 .gender(this.gender)
                 .password(this.password)

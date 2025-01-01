@@ -38,7 +38,7 @@ public class JwtService {
         return Jwts.builder()
                 .setSubject(email)
                 .claim("userNumber",userNumber)
-                .claim("nickname", nickname)
+                .claim("nickName", nickname)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
@@ -54,7 +54,7 @@ public class JwtService {
         return Jwts.builder()
                 .setSubject(email)
                 .claim("userNumber",userNumber)
-                .claim("nickname", nickname)
+                .claim("nickName", nickname)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
@@ -93,7 +93,7 @@ public class JwtService {
      * @return 사용자의 이름
      */
     public String extractUsername(String token) {
-        return extractClaims(token).get("nickname").toString();
+        return extractClaims(token).get("nickName").toString();
     }
     public Claims extractClaims(String token) {
 //        return Jwts.parser()// JWT 파서 객체 생성

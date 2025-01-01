@@ -3,7 +3,6 @@ package website.server.Global.Config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,7 +25,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
 
                 // cors 설정
-                //.cors(cors -> cors.configurationSource(configurationSource()))
+                .cors(cors -> cors.configurationSource(CorsConfig.corsConfigurationSource()))
 
                 // 시큐리티 기본 로그인 비활성화
                 .formLogin(AbstractHttpConfigurer::disable)
@@ -41,7 +40,7 @@ public class SecurityConfig {
                         requestMatchers("/member/findID/option1").permitAll().
                         requestMatchers("/member/findID/option2").permitAll().
                         requestMatchers("/auth/logout").permitAll().
-                        requestMatchers("/dew/diary").permitAll(). // 이게 왜 ???
+                        requestMatchers("/dew/diary").permitAll().
 
                         /*Swagger 무권한 접근 허용*/
                         requestMatchers("/swagger-ui/**").permitAll().

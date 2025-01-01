@@ -39,7 +39,7 @@ public class MemberController {
     /**
      * 정보 조회로 아이디 찾기 API
      * @param request (username,email,password)가 들어있는 DTO
-     * @return nickname 반환
+     * @return nickName 반환
      */
     @Operation(summary = "정보 조회로 아이디 찾기", description = "아이디 찾기 : 이메일,이름,비밀번호 입력")
     @PostMapping("/findID/option1")

@@ -41,6 +41,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
+        // OPTIONS 요청은 필터를 건너뜀
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            log.info("OPTIONS request - skipping filter");
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String authorizationHeader = request.getHeader("Authorization");
         log.info("authorizationHeader : {}",authorizationHeader);
         String nickname = null;
@@ -57,11 +64,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             nickname = jwtService.extractUsername(jwt);
             log.info("authorizationHeader : {}",authorizationHeader);
             log.info("jwt : {}" , jwt);
-            log.info("nickname : {}",nickname);
+            log.info("nickName : {}",nickname);
         }
 
         Member member = (nickname != null) ? memberMapper.findMemberByNickname(nickname) : null;
-        log.info("nickname : {}",nickname);
+        log.info("nickName : {}",nickname);
         log.info("member : {}",member);
 
         if (nickname == null || member == null) {

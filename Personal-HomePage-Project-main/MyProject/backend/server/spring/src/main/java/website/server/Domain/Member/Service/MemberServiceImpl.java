@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService{
     /**
      * 정보 조회로 아이디 찾기 메서드
      * @param request (username,email,password)가 들어있는 DTO
-     * @return nickname 반환
+     * @return nickName 반환
      */
     @Override
     public String findID_option1(FindIDRequest_Option1 request) {
