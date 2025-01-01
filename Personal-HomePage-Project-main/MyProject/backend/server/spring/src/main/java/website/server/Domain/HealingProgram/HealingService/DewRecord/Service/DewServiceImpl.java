@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.DiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.FullDiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryThumbnailResponse;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.Entity.Diary;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.Mapper.DewMapper;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.Util.*;
 import website.server.Global.JWT.JwtService;
-
 import java.time.LocalDate;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -107,6 +108,25 @@ public class DewServiceImpl implements DewService{
         /* 다이어리 삭제 */
         dewMapper.deleteDiary(userNumber,date);
 
+    }
+
+    /**
+     * 일기 썸네일 리스트 반환 메서드
+     * @param request 사용자 요청
+     * @return 사용자가 작성한 일기의 썸네일 리스트
+     */
+    @Override
+    public List<DiaryThumbnailResponse> getDiaryThumbnails(HttpServletRequest request) {
+
+        /* 사용자 고유번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+        log.info("리스트 조회 사용자 번호 : {}", userNumber);
+
+        /* 일기 썸네일 리스트 반환 */
+        List<DiaryThumbnailResponse> diaryThumbnailResponseList = dewMapper.getDiaryThumbnails(userNumber);
+        log.info("리스트 조회 : {}", diaryThumbnailResponseList);
+
+        return diaryThumbnailResponseList;
     }
 
 }

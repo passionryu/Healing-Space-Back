@@ -10,9 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.DiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryThumbnailResponse;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.Service.DewService;
 import website.server.Global.JWT.JwtService;
 import java.time.LocalDate;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -70,15 +72,27 @@ public class DewController {
         return ResponseEntity.ok("일기 삭제 성공!");
     }
 
-
+    /**
+     * 일기 리스트 조회 API
+     * @param request 사용자 요청
+     * @return 내 일기 리스트(diaryNumber,weather,date,title)
+     */
     @Operation(summary = " 일기 리스트 조회 API ", description = " ")
     @PostMapping("/diary/show/list")
-    public ResponseEntity<String> showDiaryList(HttpServletRequest request){
+    public ResponseEntity<List<DiaryThumbnailResponse>> showDiaryList(HttpServletRequest request){
 
+        log.info("request :{}", request);
+        /* 다이어리 DTO 리스트 반환 */
+        List<DiaryThumbnailResponse> diaryThumbnailResponse = dewService.getDiaryThumbnails(request);
 
-        return ResponseEntity.ok("일기 리스트 조회 성공!");
+        return ResponseEntity.ok(diaryThumbnailResponse);
     }
 
+    /**
+     * 선택한 일기 조회 API
+     * @param request 사용자 요청
+     * @return 일기장 (제목,본문,감정,힐링 메시지,힐링 뮤직)
+     */
     @Operation(summary = " 선택한 일기 조회 API ", description = " ")
     @PostMapping("/diary/show")
     public ResponseEntity<String> showDiary(HttpServletRequest request){

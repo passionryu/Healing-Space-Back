@@ -16,4 +16,15 @@
         WHERE userNumber = #{userNumber} AND date = #{date}
     </delete>
 
+    <!-- 일기 썸네일 리스트 반환 -->
+    <select id="getDiaryThumbnails" resultType="website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryThumbnailResponse">
+        SELECT
+            diaryNumber,
+            weather,
+            date,
+            title
+        FROM diary
+        WHERE userNumber= #{userNumber}
+    </select>
+
 </mapper>

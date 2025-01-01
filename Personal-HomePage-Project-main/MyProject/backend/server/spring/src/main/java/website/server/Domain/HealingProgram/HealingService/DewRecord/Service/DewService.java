@@ -3,8 +3,9 @@ package website.server.Domain.HealingProgram.HealingService.DewRecord.Service;
 import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.DiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.AiResponse;
-
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryThumbnailResponse;
 import java.time.LocalDate;
+import java.util.List;
 
 public interface DewService {
 
@@ -36,4 +37,12 @@ public interface DewService {
      * @param date 일기 작성 날짜
      */
     void deleteDiary(HttpServletRequest request, LocalDate date);
+
+    /**
+     * 일기 썸네일 리스트 반환 메서드
+     * @param request 사용자 요청
+     * @return 사용자가 작성한 일기의 썸네일 리스트
+     */
+    List<DiaryThumbnailResponse> getDiaryThumbnails(HttpServletRequest request);
+
 }
