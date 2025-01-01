@@ -44,11 +44,8 @@ public class DewController {
         /* AI 연산 */
         AiResponse aiResponse = dewService.AiCalculation(diaryRequest);
 
-        /* 사용자 고유번호 조회 */
-        Long userNumber = jwtService.extractUserNumberFromRequest(request);
-
         /* 일기 최종 저장 */
-        dewService.saveDiary(userNumber,diaryRequest,aiResponse);
+        dewService.saveDiary(jwtService.extractUserNumberFromRequest(request),diaryRequest,aiResponse);
 
         return ResponseEntity.ok(aiResponse);
     }
