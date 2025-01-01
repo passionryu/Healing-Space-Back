@@ -5,12 +5,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class JwtService {
@@ -94,10 +96,19 @@ public class JwtService {
         return extractClaims(token).get("nickname").toString();
     }
     public Claims extractClaims(String token) {
-        return Jwts.parser()// JWT 파서 객체 생성
-                .setSigningKey(SECRET_KEY)
-                .parseClaimsJws(token)
-                .getBody();
+//        return Jwts.parser()// JWT 파서 객체 생성
+//                .setSigningKey(SECRET_KEY)
+//                .parseClaimsJws(token)
+//                .getBody();
+        try {
+            return Jwts.parser()
+                    .setSigningKey(SECRET_KEY)
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception e) {
+            log.error("Failed to extract claims from token: {}", token, e);
+            throw e; // 혹은 적절히 처리
+        }
     }
 
     public Long extractUserNumberFromToken(String token) {
@@ -114,20 +125,32 @@ public class JwtService {
 
     /**
      * 토큰 검증 메서드 (블랙리스트 체크 포함)
-     * @param token
-     * @return
+     * @param token 사용자의 엑세스 토큰
+     * @return true & false
      */
     public boolean validateToken(String token) {
-        if (isTokenBlacklisted(token)) {
-            return false;  // 블랙리스트에 있으면 유효하지 않음
+//        if (isTokenBlacklisted(token)) {
+//            return false;  // 블랙리스트에 있으면 유효하지 않음
+//        }
+//        // 여기서 JWT 토큰의 유효성 검사를 추가적으로 할 수 있습니다 (예: Expiration, Signature 등)
+//        return true;
+        try {
+            // 블랙리스트 체크
+            if (isTokenBlacklisted(token)) {
+                return false;
+            }
+            // JWT 자체 유효성 검사
+            Claims claims = extractClaims(token);
+            return !claims.getExpiration().before(new Date());
+        } catch (Exception e) {
+            log.error("Token validation failed: {}", token, e);
+            return false;
         }
-        // 여기서 JWT 토큰의 유효성 검사를 추가적으로 할 수 있습니다 (예: Expiration, Signature 등)
-        return true;
     }
 
     /**
      * 토큰이 블랙리스트에 있는지 확인
-     * @param token
+     * @param token 사용자의 엑세스 토큰
      * @return true & flase
      */
     public boolean isTokenBlacklisted(String token) {

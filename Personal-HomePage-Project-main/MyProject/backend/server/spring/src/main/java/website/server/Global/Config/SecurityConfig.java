@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import website.server.Global.JWT.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +20,7 @@ import org.springframework.security.web.access.expression.DefaultWebSecurityExpr
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
                 // csrf 차단
                 .csrf(AbstractHttpConfigurer::disable)
@@ -39,12 +41,13 @@ public class SecurityConfig {
                         requestMatchers("/member/findID/option1").permitAll().
                         requestMatchers("/member/findID/option2").permitAll().
                         requestMatchers("/auth/logout").permitAll().
-                        requestMatchers("/dew/diary").permitAll().
+                        requestMatchers("/dew/diary").permitAll(). // 이게 왜 ???
 
                         /*Swagger 무권한 접근 허용*/
                         requestMatchers("/swagger-ui/**").permitAll().
                         requestMatchers("/v3/api-docs/**").permitAll().
-                        anyRequest().authenticated());
+                        anyRequest().authenticated())
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // 필터 추가
 
         return http.build();
 
