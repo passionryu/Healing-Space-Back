@@ -14,13 +14,20 @@
     <form>
         <div class="form-row">
             <div class="form-column">
-                <input type="text" placeholder="Username" required>
-                <input type="text" placeholder="Nickname (ID)" required>
-                <input type="tel" placeholder="Phone Number" required>
-
                 <div class="form-group">
-
-                <label for="gender">Gender</label>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="nickname">Nickname (ID)</label>
+                    <input type="text" id="nickname" placeholder="Enter your nickname" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
                     <div class="radio-group">
                         <label for="gender-male">Male</label>
                         <input type="radio" id="gender-male" name="gender" value="male" required>
@@ -29,19 +36,29 @@
                         <input type="radio" id="gender-female" name="gender" value="female" required>
                     </div>
                 </div>
-
             </div>
 
             <div class="form-column">
-                <input type="password" placeholder="Password" required>
-                <input type="password" placeholder="Confirm Password" required>
-                <input type="email" placeholder="Email" required>
-                <input type="date" placeholder="Birth Date" required>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Re-enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">Birth Date</label>
+                    <input type="date" id="birthdate" required>
+                </div>
             </div>
         </div>
-
-        <button type="submit">Sign Up</button>
     </form>
+
 </div>
 </body>
 </html>

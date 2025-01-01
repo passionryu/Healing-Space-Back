@@ -58,6 +58,7 @@ nav {
     transition: background-color 0.3s ease; /* 배경 색상 전환 효과 */
 }
 
+
 .menu > a:hover {
     background-color: #917f27; /* 마우스를 올렸을 때 배경 색상 */
 }
@@ -150,6 +151,71 @@ section {
     /*z-index: 1; !* 낮은 값으로 설정 *!*/
 }
 
+/* OUR MISSION */
+
+.mission{
+    transition: transform 0.2s ease; /*호버시 효과*/
+}
+
+.mission:hover{
+    transform: scale(1.10); /* 크기 5% 확대 */
+}
+
+.img-container {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 20px; /* 이미지와 텍스트 사이 간격 */
+    padding: 20px;
+}
+
+.img-container img {
+    width: 400px; /* 이미지 너비 설정 */
+    height: auto; /* 비율에 맞게 높이 설정 */
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    transition: transform 0.3s ease; /*호버시 효과*/
+}
+
+.img-container img:hover{
+    transform: scale(1.05); /* 크기 5% 확대 */
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column; /* 제목과 본문을 세로로 정렬 */
+
+}
+
+.text-content h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+    transition: transform 0.5s ease; /*호버시 효과*/
+}
+
+.text-content h1:hover{
+    transform: scale(1.05); /* 크기 5% 확대 */
+}
+
+.text-content h4 {
+    margin: 10px 0 0;
+    font-size: 18px;
+    color: #666;
+    transition: transform 0.5s ease; /*호버시 효과*/
+}
+
+.text-content h4:hover{
+    transform: scale(1.02); /* 크기 5% 확대 */
+}
+
+
+.mission{
+    display: flex;
+    /*justify-content: center; /* 가로 가운데 정렬 */
+    margin-left: 390px;
+}
+
+
 /* HEALING PROGRAM */
 #healing-program{
     color: #645610;
@@ -165,10 +231,15 @@ section {
     gap: 20px; /* 카드 사이 간격 */
     max-width: 900px; /* 섹션 너비 제한 */
     margin: 0 auto; /* 중앙 정렬 */
-
-
 }
 
+.service{
+    transition: transform 0.2s ease; /*호버시 효과*/
+}
+
+.service:hover{
+    transform: scale(1.10); /* 크기 5% 확대 */
+}
 .card {
     display: flex; /* 카드 내부의 요소를 가로로 배치 */
     align-items: center; /* 이미지와 텍스트 수직 정렬 */
@@ -178,7 +249,6 @@ section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     background-color: #fff; /* 배경 색상 */
     gap: 20px; /* 이미지와 텍스트 간 간격 */
-
     transition: transform 0.3s ease; /*호버시 효과*/
 }
 .card:hover {
@@ -239,6 +309,20 @@ section {
 .card3 {
     order: 3;
     margin-right: auto; /* 왼쪽으로 붙이기 */
+}
+
+/* NEWS */
+
+.news{
+    display: flex;
+    /*justify-content: center; /* 가로 가운데 정렬 */
+    margin-left: 390px;
+    margin-top: 30px;
+    transition: transform 0.3s ease; /*호버시 효과*/
+}
+
+.news:hover{
+    transform: scale(1.05); /* 크기 5% 확대 */
 }
 
 /* FOOTER */
