@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.DiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryResponse;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryThumbnailResponse;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.Service.DewService;
 import website.server.Global.JWT.JwtService;
@@ -85,26 +86,21 @@ public class DewController {
     }
 
     /**
-     * 선택한 일기 조회 API
+     * 일기장 조회 API
      * @param request 사용자 요청
-     * @return 일기장 (제목,본문,감정,힐링 메시지,힐링 뮤직)
+     * @return 일기장 (날짜,제목,본문,감정,힐링 메시지,힐링 뮤직)
      */
-    @Operation(summary = " 선택한 일기 조회 API ", description = " ")
+    @Operation(summary = " 일기장 조회 API ", description = " ")
     @PostMapping("/diary/show")
-    public ResponseEntity<String> showDiary(HttpServletRequest request){
+    public ResponseEntity<DiaryResponse> showDiary(HttpServletRequest request,
+                                                   @RequestParam(name = "date")
+                                                   @DateTimeFormat(pattern = "yyyy-MM-dd")
+                                                   LocalDate date){
 
+        /* 선택한 날짜의 일기 데이터 반환 */
+        DiaryResponse diaryResponse = dewService.getDiary(request,date);
 
-        return ResponseEntity.ok("일기 조회 성공!");
+        return ResponseEntity.ok(diaryResponse);
     }
-
-
-
-
-
-    /* 일기 조회 */
-    // 1번 방법. 달력 형태로 조회
-    // 2번 방법. 리스트 형태로 조회
-
-
 
 }

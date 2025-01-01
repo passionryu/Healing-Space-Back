@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.DiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Request.FullDiaryRequest;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryResponse;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryThumbnailResponse;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.Entity.Diary;
 import website.server.Domain.HealingProgram.HealingService.DewRecord.Mapper.DewMapper;
@@ -48,13 +49,14 @@ public class DewServiceImpl implements DewService{
     }
 
     /**
-     * 일기-날씨 매칭 메서드
+     * 감정-날씨 매칭 메서드
      * @param emotion 일기를 통해 추출된 사용자의 감정
      * @return 날씨
      */
     @Override
     public String matchEmotionToWeather(String emotion) {
 
+        /* 감정을 날씨로 매칭 */
         return switch (emotion.toLowerCase()) {
             case "기쁨" -> "맑음";
             case "설렘&사랑" -> "봄 비";
@@ -76,6 +78,7 @@ public class DewServiceImpl implements DewService{
     @Override
     public void saveDiary(Long userNumber, DiaryRequest diaryRequest, AiResponse aiResponse) {
 
+        /* 객체에 데이터 삽입 */
         FullDiaryRequest fullDiaryRequest = new FullDiaryRequest(
                 null,
                 userNumber,
@@ -90,6 +93,7 @@ public class DewServiceImpl implements DewService{
 
         Diary diary = fullDiaryRequest.toEntity();
 
+        /* 객체를 DB에 저장 */
         dewMapper.saveDiary(diary);
 
     }
@@ -125,6 +129,24 @@ public class DewServiceImpl implements DewService{
         List<DiaryThumbnailResponse> diaryThumbnailResponseList = dewMapper.getDiaryThumbnails(userNumber);
 
         return diaryThumbnailResponseList;
+    }
+
+    /**
+     * 선택한 날짜의 일기 조회 메서드
+     * @param request 사용자 요청
+     * @param date 선택한 날짜
+     * @return 일기장 (날짜,제목,본문,감정,힐링 메시지,힐링 뮤직)
+     */
+    @Override
+    public DiaryResponse getDiary(HttpServletRequest request,LocalDate date) {
+
+        /* 사용자 고유번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 해당 날짜의 일기장 반환 */
+        DiaryResponse diaryResponse = dewMapper.getDiary(userNumber,date);
+
+        return diaryResponse;
     }
 
 }

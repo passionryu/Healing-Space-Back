@@ -27,4 +27,17 @@
         WHERE userNumber= #{userNumber}
     </select>
 
+    <!-- 해당 날짜의 일기장 반환 -->
+    <select id="getDiary" resultType="website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryResponse">
+        SELECT
+            date,
+            title,
+            diary,
+            emotion,
+            healingMessage,
+            healingMusic
+        FROM diary
+        WHERE userNumber= #{userNumber} AND date = #{date}
+    </select>
+
 </mapper>
