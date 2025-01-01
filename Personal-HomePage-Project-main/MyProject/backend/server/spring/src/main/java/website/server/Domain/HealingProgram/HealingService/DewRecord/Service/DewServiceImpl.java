@@ -120,11 +120,9 @@ public class DewServiceImpl implements DewService{
 
         /* 사용자 고유번호 조회 */
         Long userNumber = jwtService.extractUserNumberFromRequest(request);
-        log.info("리스트 조회 사용자 번호 : {}", userNumber);
 
         /* 일기 썸네일 리스트 반환 */
         List<DiaryThumbnailResponse> diaryThumbnailResponseList = dewMapper.getDiaryThumbnails(userNumber);
-        log.info("리스트 조회 : {}", diaryThumbnailResponseList);
 
         return diaryThumbnailResponseList;
     }

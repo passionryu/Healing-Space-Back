@@ -81,7 +81,6 @@ public class DewController {
     @PostMapping("/diary/show/list")
     public ResponseEntity<List<DiaryThumbnailResponse>> showDiaryList(HttpServletRequest request){
 
-        log.info("request :{}", request);
         /* 다이어리 DTO 리스트 반환 */
         List<DiaryThumbnailResponse> diaryThumbnailResponse = dewService.getDiaryThumbnails(request);
 
