@@ -33,6 +33,15 @@ public class Member {
     private String password;
     private LocalDate birth;
 
+    /**
+     * 프로필 조회 데이터
+     * 1. 사진 경로
+     * 2. 사용자 ID
+     * 3. 짧은 자기 소개
+     */
+    private String profileImagePath;
+    private String intro;
+
     public void encodePassword(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(this.password);
     }
