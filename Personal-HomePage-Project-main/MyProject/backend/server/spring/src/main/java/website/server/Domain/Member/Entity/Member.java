@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Member {
 
     /* 추가 가능한 필드 */
-    // 1.프로필 사진
+    // 1.프로필 사진 - 추가 완료 : 20250104
     // 2.거주지 주소
     // 3.활동 상태 : 활성화,비활성화 ,정지상태
 
