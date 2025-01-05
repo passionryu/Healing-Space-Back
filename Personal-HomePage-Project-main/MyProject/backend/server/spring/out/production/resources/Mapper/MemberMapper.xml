@@ -56,6 +56,7 @@
             username = #{username} AND email = #{email}
     </select>
 
+    <!-- 내 프로필 조회 -->
     <select id="getMyInfo" resultType="website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse">
         SELECT
             profile_image_path,
@@ -66,5 +67,16 @@
         WHERE
             userNumber = #{userNumber}
     </select>
+
+    <!-- 내 프로필 수정 -->
+    <update id="changeMyInfo">
+        UPDATE member
+        SET
+            profile_image_path = #{profileImagePath},
+            nickname = #{nickname},
+            intro = #{intro}
+        WHERE
+            userNumber = #{userNumber}
+    </update>
 
 </mapper>

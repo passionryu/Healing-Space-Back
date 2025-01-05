@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import website.server.Domain.MyPage.DTO.Request.mypage.ChangeInformationRequest;
 import website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse;
 import website.server.Domain.MyPage.Service.MypageService.MypageService;
 
@@ -30,15 +32,26 @@ public class MyPageController {
     @GetMapping("/myinfo")
     private ResponseEntity<MyInformationResponse> getMyInfo(HttpServletRequest request){
 
+        /* 내 정보 조회 */
         MyInformationResponse myInformationResponse = mypageService.getMyInfo(request);
 
         return ResponseEntity.ok(myInformationResponse);
     }
 
-    /* 내 프로필 수정 */
+    /**
+     * 내 프로필 수정 API
+     * @param request 사용자 요청
+     * @return 수정된 프로필 DTO
+     */
+    @Operation(summary = " 내 프로필 수정 API ", description = "")
+    @PatchMapping("/myinfo")
+    private ResponseEntity<MyInformationResponse> changeInfo(HttpServletRequest request, ChangeInformationRequest changeInformationRequest){
 
+        /* 프로필 수정 API */
+        MyInformationResponse myInformationResponse = mypageService.changeInfo(request,changeInformationRequest);
 
-
+        return ResponseEntity.ok(myInformationResponse);
+    }
 
     /* 관리자에게 문의한 내용 리스트 조회 */
     /* 관리자에게  문의한 내용 상세 조회  */

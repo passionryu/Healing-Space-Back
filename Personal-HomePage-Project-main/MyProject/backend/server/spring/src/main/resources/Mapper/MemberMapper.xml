@@ -68,4 +68,15 @@
             userNumber = #{userNumber}
     </select>
 
+    <!-- 내 프로필 수정 -->
+    <update id="changeMyInfo">
+        UPDATE member
+        SET
+            profile_image_path = #{profileImagePath},
+            nickname = #{nickname},
+            intro = #{intro}
+        WHERE
+            userNumber = #{userNumber}
+    </update>
+
 </mapper>
