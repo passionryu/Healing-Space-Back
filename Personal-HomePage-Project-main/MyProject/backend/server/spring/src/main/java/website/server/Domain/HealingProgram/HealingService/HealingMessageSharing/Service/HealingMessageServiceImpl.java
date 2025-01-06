@@ -5,8 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Mapper.HealingMessageMapper;
 import website.server.Global.JWT.JwtService;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -46,5 +49,18 @@ public class HealingMessageServiceImpl implements HealingMessageService{
         /* 힐링 메시지 삭제 */
         healingMessageMapper.delete(messageId);
 
+    }
+
+    /**
+     * 힐링 메시지 게시판에서 힐링 메시지 리스트 조회
+     * @return 힐링 메시지 리스트 조회
+     */
+    @Override
+    public List<HealingMessageThumbNailResponse> getHealingMessageThumbNail() {
+
+        /* 힐링 메시지 게시판에서 힐링 메시지 리스트 조회 */
+        List<HealingMessageThumbNailResponse> healingMessageThumbNailResponses = healingMessageMapper.getHealingMessageThumbNail();
+
+        return healingMessageThumbNailResponses;
     }
 }

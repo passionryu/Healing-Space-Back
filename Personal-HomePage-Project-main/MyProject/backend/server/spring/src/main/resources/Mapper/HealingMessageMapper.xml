@@ -29,4 +29,18 @@
         WHERE messageId = #{messageId}
     </delete>
 
+    <!-- 힐링 메시지 게시판에서 힐링 메시지 리스트 조회 -->
+    <select id="getHealingMessageThumbNail" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse">
+        SELECT
+            hm.title AS title,
+            m.nickname AS nickname,
+            hm.createdDate AS createdDate
+        FROM
+            healing_message hm
+        JOIN
+            member m
+        ON
+            hm.userNumber = m.userNumber
+    </select>
+
 </mapper>

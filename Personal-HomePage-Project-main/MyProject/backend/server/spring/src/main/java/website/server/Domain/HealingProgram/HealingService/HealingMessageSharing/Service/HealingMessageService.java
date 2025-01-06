@@ -2,6 +2,9 @@ package website.server.Domain.HealingProgram.HealingService.HealingMessageSharin
 
 import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
+
+import java.util.List;
 
 public interface HealingMessageService {
 
@@ -18,6 +21,14 @@ public interface HealingMessageService {
      * @param messageId 삭제할 힐링 메시지 고유 번호
      */
     void delete(HttpServletRequest request, Long messageId);
+
+    /**
+     * 힐링 메시지 게시판에서 힐링 메시지 리스트 조회
+     * @return 힐링 메시지 썸네일 리스트
+     */
+    List<HealingMessageThumbNailResponse> getHealingMessageThumbNail();
+
+    /* 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회 */
 
     /* 내가 올린 힐링 메시지 리스트 */
 

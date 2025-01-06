@@ -2,6 +2,9 @@ package website.server.Domain.HealingProgram.HealingService.HealingMessageSharin
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
+
+import java.util.List;
 
 @Mapper
 public interface HealingMessageMapper {
@@ -23,6 +26,14 @@ public interface HealingMessageMapper {
      * @param messageId 삭제할 메시지의 고유 번호
      */
     void delete(Long messageId);
+
+    /**
+     * 힐링 메시지 게시판 썸네일 리스트 조회
+     * @return 힐링 메시지 썸네일 리스트 반환
+     */
+    List<HealingMessageThumbNailResponse> getHealingMessageThumbNail();
+
+    /* 힐링 메시지 게시판의 힐링 메시지 상세 보기 */
 
     /* 내가 올린 힐링 메시지 리스트 */
 
