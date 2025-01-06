@@ -23,5 +23,10 @@
                )
     </insert>
 
+    <!-- 선택한 힐링 메시지 삭제 -->
+    <delete id="delete">
+        DELETE FROM healing_message
+        WHERE messageId = #{messageId}
+    </delete>
 
 </mapper>

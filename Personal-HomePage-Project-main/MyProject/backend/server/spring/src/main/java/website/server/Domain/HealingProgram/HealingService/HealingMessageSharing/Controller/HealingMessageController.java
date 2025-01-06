@@ -40,10 +40,11 @@ public class HealingMessageController {
      * @return 삭제 완료 메시지
      */
     @Operation(summary = " 힐링 메시지 삭제 API ", description = "")
-    @DeleteMapping("")
-    public ResponseEntity<String> delete(HttpServletRequest request,@RequestBody Long MessageId){
+    @DeleteMapping("/{messageId}")
+    public ResponseEntity<String> delete(HttpServletRequest request, @PathVariable("messageId") Long messageId){
 
-
+        /* 선택한 힐링 메시지 삭제 */
+        healingMessageService.delete(request,messageId);
 
         return ResponseEntity.ok("힐링 메시지 삭제 완료");
     }

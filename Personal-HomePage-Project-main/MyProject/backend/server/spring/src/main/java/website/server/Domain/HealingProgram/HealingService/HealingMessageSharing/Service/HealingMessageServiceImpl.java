@@ -43,6 +43,8 @@ public class HealingMessageServiceImpl implements HealingMessageService{
     @Override
     public void delete(HttpServletRequest request, Long messageId) {
 
+        /* 힐링 메시지 삭제 */
+        healingMessageMapper.delete(messageId);
 
     }
 }

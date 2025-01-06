@@ -18,7 +18,11 @@ public interface HealingMessageMapper {
                 @Param("imagePath") String imagePath,
                 @Param("content") String content);
 
-    /* 힐링 메시지 삭제 */
+    /**
+     * 힐링 메시지 삭제
+     * @param messageId 삭제할 메시지의 고유 번호
+     */
+    void delete(Long messageId);
 
     /* 내가 올린 힐링 메시지 리스트 */
 
