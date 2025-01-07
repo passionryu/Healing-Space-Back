@@ -69,7 +69,7 @@ public class HealingMessageController {
     }
 
     /**
-     * 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회
+     * 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회 API
      * @return 게시물 요소(제목,프로필 사진,닉네임,작성일,게시글 사진,본문)
      */
     @Operation(summary = " 힐링 메시지 상세 조회 API ", description = "")
@@ -83,27 +83,34 @@ public class HealingMessageController {
     }
 
     /**
-     * 내가 올린 힐링 메시지 리스트 조회
+     * 내가 올린 힐링 메시지 리스트 조회 API
      * @param request 사용자 요청
-     * @return
+     * @return 내가 올린 힐링 메시지 리스트
      */
     @Operation(summary = " 내가 올린 힐링 메시지 리스트 조회  API ", description = "")
     @GetMapping("/list/my")
-    public ResponseEntity<String> getMyHealingMessageThumbNail(HttpServletRequest request){
+    public ResponseEntity<List<HealingMessageThumbNailResponse>> getMyHealingMessageThumbNail(HttpServletRequest request){
 
-        return ResponseEntity.ok("");
+        /* 내가 올린 힐링 메세지 리스트 조회 */
+        List<HealingMessageThumbNailResponse> healingMessageThumbNailResponseList = healingMessageService.getMyHealingMessageThumbNail(request);
+
+        return ResponseEntity.ok(healingMessageThumbNailResponseList);
     }
 
     /**
-     * 내가 올린 힐링 메시지 상세 조회
+     * 내가 올린 힐링 메세지 상세 조회 API
      * @param request 사용자 요청
-     * @return
+     * @return 게시물 요소(제목,프로필 사진,닉네임,작성일,좋아요 수,게시글 사진,본문,댓글 리스트)
      */
     @Operation(summary = " 내가 올린 힐링 메시지 상세 조회 API ", description = "")
-    @GetMapping("/my")
-    public ResponseEntity<String> getMyHealingMessage(HttpServletRequest request){
+    @GetMapping("/my/{messageId}")
+    public ResponseEntity<HealingMessageResponse> getMyHealingMessage(HttpServletRequest request,
+                                                      @PathVariable("messageId") Long messageId){
 
-        return ResponseEntity.ok("");
+        /* 내가 올린 힐링 메세지 상세 조회 */
+        HealingMessageResponse healingMessageResponse = healingMessageService.getMyHealingMessage(request,messageId);
+
+        return ResponseEntity.ok(healingMessageResponse);
     }
 
     /* 힐링 메시지 좋아요 누르기 */

@@ -41,9 +41,21 @@ public interface HealingMessageMapper {
      */
     HealingMessageResponse getHealingMessage(Long messageId);
 
-    /* 내가 올린 힐링 메시지 리스트 */
+    /**
+     * 내가 올린 힐링 메시지 리스트 조회
+     * @param userNumber 사용자 고유 번호
+     * @return 내가 올린 힐링 메시지 리스트
+     */
+    List<HealingMessageThumbNailResponse> getMyHealingMessageThumbNail(Long userNumber);
 
-    /* 내가 올린 힐링 메시지 상세 조회 */
+    /**
+     * 내가 올린 힐링 메시지 상세 조회
+     * @param userNumber 사용자 고유번호
+     * @param messageId 조회하고자 하는 힐링 메시지 고유번호
+     * @return 조회하고자 하는 게시글 반환
+     */
+    HealingMessageResponse getMyHealingMessage(@Param("userNumber") Long userNumber,
+                                               @Param("messageId") Long messageId);
 
     /* 힐링 메시지 좋아요 누르기 */
 

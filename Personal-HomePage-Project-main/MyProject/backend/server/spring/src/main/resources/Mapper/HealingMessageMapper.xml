@@ -72,4 +72,46 @@
 
     </select>
 
+    <select id="getMyHealingMessageThumbNail" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse">
+
+        SELECT
+            hm.messageId,
+            hm.title,
+            m.nickname,
+            hm.createdDate
+        FROM
+            healing_message hm
+        JOIN
+            member m
+        ON
+                hm.userNumber = m.userNumber
+        WHERE
+            m.userNumber = #{userNumber}
+
+    </select>
+
+    <select id="getMyHealingMessage" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse">
+
+        SELECT
+            hm.title,
+            m.profile_image_path,
+            m.nickname,
+            hm.createdDate,
+            hm.imagePath,
+            hm.content
+            # hml.like
+            # hmc.content
+        FROM
+            # healing_message_like hml,
+            # healing_message_comment hmc,
+            healing_message hm
+        JOIN
+
+            member m
+        ON
+            hm.userNumber = m.userNumber
+        WHERE
+             hm.userNumber=#{userNumber} AND messageId=#{messageId}
+
+    </select>
 </mapper>
