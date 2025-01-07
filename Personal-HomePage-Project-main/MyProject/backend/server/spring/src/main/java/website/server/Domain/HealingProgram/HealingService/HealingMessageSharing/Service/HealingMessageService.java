@@ -2,8 +2,8 @@ package website.server.Domain.HealingProgram.HealingService.HealingMessageSharin
 
 import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
-
 import java.util.List;
 
 public interface HealingMessageService {
@@ -28,7 +28,12 @@ public interface HealingMessageService {
      */
     List<HealingMessageThumbNailResponse> getHealingMessageThumbNail();
 
-    /* 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회 */
+    /**
+     * 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회
+     * @param messageId 조회하고자 하는 힐링 메시지 고유 번호
+     * @return 힐링 메시지 상세 정보
+     */
+    HealingMessageResponse getHealingMessage(Long messageId);
 
     /* 내가 올린 힐링 메시지 리스트 */
 

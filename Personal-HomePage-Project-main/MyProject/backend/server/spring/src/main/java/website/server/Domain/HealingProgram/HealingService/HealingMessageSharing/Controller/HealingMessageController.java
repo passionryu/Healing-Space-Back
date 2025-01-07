@@ -8,9 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Service.HealingMessageService;
-
 import java.util.List;
 
 @Slf4j
@@ -29,7 +29,8 @@ public class HealingMessageController {
      */
     @Operation(summary = " 힐링 메시지 쉐어링 API ", description = "")
     @PostMapping("")
-    public ResponseEntity<String> create(HttpServletRequest request, @RequestBody HealingMessageCreateRequest healingMessageCreateRequest){
+    public ResponseEntity<String> create(HttpServletRequest request,
+                                         @RequestBody HealingMessageCreateRequest healingMessageCreateRequest){
 
         /* 힐링 메시지 쉐어링 */
         healingMessageService.create(request,healingMessageCreateRequest);
@@ -44,7 +45,8 @@ public class HealingMessageController {
      */
     @Operation(summary = " 힐링 메시지 삭제 API ", description = "")
     @DeleteMapping("/{messageId}")
-    public ResponseEntity<String> delete(HttpServletRequest request, @PathVariable("messageId") Long messageId){
+    public ResponseEntity<String> delete(HttpServletRequest request,
+                                         @PathVariable("messageId") Long messageId){
 
         /* 선택한 힐링 메시지 삭제 */
         healingMessageService.delete(request,messageId);
@@ -54,12 +56,11 @@ public class HealingMessageController {
 
     /**
      * 힐링 메시지 게시판에서 힐링 메시지 리스트 조회 API
-     * @param request 사용자 요청
-     * @return 힐링 메시지 리스트
+     * @return 힐링 메시지 리스트 (messageId,title,nickname,createdDate)
      */
     @Operation(summary = " 힐링 메시지 리스트 조회  API ", description = "")
     @GetMapping("/list")
-    public ResponseEntity<List<HealingMessageThumbNailResponse>> getHealingMessageThumbNail(HttpServletRequest request){
+    public ResponseEntity<List<HealingMessageThumbNailResponse>> getHealingMessageThumbNail(){
 
         /* 힐링 메시지 리스트 조회 */
         List<HealingMessageThumbNailResponse> healingMessageThumbNailResponses = healingMessageService.getHealingMessageThumbNail();
@@ -67,17 +68,18 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageThumbNailResponses);
     }
 
-    //todo : workign
     /**
      * 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회
-     * @param request 사용자 요청
-     * @return
+     * @return 게시물 요소(제목,프로필 사진,닉네임,작성일,게시글 사진,본문)
      */
     @Operation(summary = " 힐링 메시지 상세 조회 API ", description = "")
     @GetMapping("/{messageId}")
-    public ResponseEntity<String> getHealingMessage(HttpServletRequest request, @PathVariable("messageId") Long messageId){
+    public ResponseEntity<HealingMessageResponse> getHealingMessage(@PathVariable("messageId") Long messageId){
 
-        return ResponseEntity.ok("힐링 메시지 상세 조회 성공");
+        /* 힐링 메시지 상세 조회 */
+        HealingMessageResponse healingMessageResponse = healingMessageService.getHealingMessage(messageId);
+
+        return ResponseEntity.ok(healingMessageResponse);
     }
 
     /**
@@ -85,24 +87,24 @@ public class HealingMessageController {
      * @param request 사용자 요청
      * @return
      */
-//    @Operation(summary = " 힐링 메시지 리스트 조회  API ", description = "")
-//    @GetMapping("")
-//    public ResponseEntity<String> getMyHealingMessageThumbNail(HttpServletRequest request){
-//
-//        return ResponseEntity.ok("");
-//    }
+    @Operation(summary = " 내가 올린 힐링 메시지 리스트 조회  API ", description = "")
+    @GetMapping("/list/my")
+    public ResponseEntity<String> getMyHealingMessageThumbNail(HttpServletRequest request){
+
+        return ResponseEntity.ok("");
+    }
 
     /**
      * 내가 올린 힐링 메시지 상세 조회
      * @param request 사용자 요청
      * @return
      */
-//    @Operation(summary = " 힐링 메시지 상세 조회 API ", description = "")
-//    @GetMapping("")
-//    public ResponseEntity<String> getMyHealingMessage(HttpServletRequest request){
-//
-//        return ResponseEntity.ok("");
-//    }
+    @Operation(summary = " 내가 올린 힐링 메시지 상세 조회 API ", description = "")
+    @GetMapping("/my")
+    public ResponseEntity<String> getMyHealingMessage(HttpServletRequest request){
+
+        return ResponseEntity.ok("");
+    }
 
     /* 힐링 메시지 좋아요 누르기 */
 

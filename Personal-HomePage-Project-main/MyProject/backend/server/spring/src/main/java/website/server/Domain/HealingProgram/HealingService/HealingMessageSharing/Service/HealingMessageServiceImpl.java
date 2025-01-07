@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Entity.HealingMessage;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Mapper.HealingMessageMapper;
 import website.server.Global.JWT.JwtService;
 
@@ -62,5 +64,19 @@ public class HealingMessageServiceImpl implements HealingMessageService{
         List<HealingMessageThumbNailResponse> healingMessageThumbNailResponses = healingMessageMapper.getHealingMessageThumbNail();
 
         return healingMessageThumbNailResponses;
+    }
+
+    /**
+     * 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회
+     * @param messageId 조회하고자 하는 힐링 메시지 고유 번호
+     * @return 게시물 요소(제목,프로필 사진,닉네임,작성일,좋아요 수,게시글 사진,본문,댓글 리스트)
+     */
+    @Override
+    public HealingMessageResponse getHealingMessage(Long messageId) {
+
+        /* 힐링 메세지 게시글 상세 보기 */
+        HealingMessageResponse healingMessageResponse = healingMessageMapper.getHealingMessage(messageId);
+
+        return healingMessageResponse;
     }
 }

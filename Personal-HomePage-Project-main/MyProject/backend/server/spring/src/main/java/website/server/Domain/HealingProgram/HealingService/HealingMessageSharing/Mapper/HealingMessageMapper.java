@@ -2,6 +2,7 @@ package website.server.Domain.HealingProgram.HealingService.HealingMessageSharin
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
 
 import java.util.List;
@@ -33,7 +34,12 @@ public interface HealingMessageMapper {
      */
     List<HealingMessageThumbNailResponse> getHealingMessageThumbNail();
 
-    /* 힐링 메시지 게시판의 힐링 메시지 상세 보기 */
+    /**
+     * 힐링 메시지 게시판의 힐링 메시지 상세 보기
+     * @param messageId 조회하고자 하는 힐링 메시지 고유번호
+     * @return 조회하고자 하는 게시글 반환
+     */
+    HealingMessageResponse getHealingMessage(Long messageId);
 
     /* 내가 올린 힐링 메시지 리스트 */
 

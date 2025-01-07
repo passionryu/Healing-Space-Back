@@ -32,6 +32,7 @@
     <!-- 힐링 메시지 게시판에서 힐링 메시지 리스트 조회 -->
     <select id="getHealingMessageThumbNail" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse">
         SELECT
+            hm.messageId AS messageId,
             hm.title AS title,
             m.nickname AS nickname,
             hm.createdDate AS createdDate
@@ -41,6 +42,34 @@
             member m
         ON
             hm.userNumber = m.userNumber
+    </select>
+
+
+    <!-- 힐링 메시지 게시판에서 힐링 메시지 상세 조회 -->
+    <select id="getHealingMessage" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse">
+
+        SELECT
+            hm.title,
+            m.profile_image_path,
+            m.nickname,
+            hm.createdDate,
+            hm.imagePath,
+            hm.content
+            # hml.like
+            # hmc.content
+
+        FROM
+            # healing_message_like hml,
+            # healing_message_comment hmc,
+            healing_message hm
+        JOIN
+
+            member m
+        ON
+            hm.userNumber = m.userNumber
+        WHERE
+            messageId=#{messageId}
+
     </select>
 
 </mapper>

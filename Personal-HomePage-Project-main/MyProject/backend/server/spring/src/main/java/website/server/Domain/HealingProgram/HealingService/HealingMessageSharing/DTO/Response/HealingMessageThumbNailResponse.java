@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public record HealingMessageThumbNailResponse(
 
+        Long messageId,
         String title,
         String nickname,
         LocalDateTime createdDate
