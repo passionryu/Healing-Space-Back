@@ -63,9 +63,7 @@ public class HealingMessageController {
     public ResponseEntity<List<HealingMessageThumbNailResponse>> getHealingMessageThumbNail(){
 
         /* 힐링 메시지 리스트 조회 */
-        List<HealingMessageThumbNailResponse> healingMessageThumbNailResponses = healingMessageService.getHealingMessageThumbNail();
-
-        return ResponseEntity.ok(healingMessageThumbNailResponses);
+        return ResponseEntity.ok(healingMessageService.getHealingMessageThumbNail());
     }
 
     /**
@@ -77,9 +75,7 @@ public class HealingMessageController {
     public ResponseEntity<HealingMessageResponse> getHealingMessage(@PathVariable("messageId") Long messageId){
 
         /* 힐링 메시지 상세 조회 */
-        HealingMessageResponse healingMessageResponse = healingMessageService.getHealingMessage(messageId);
-
-        return ResponseEntity.ok(healingMessageResponse);
+        return ResponseEntity.ok(healingMessageService.getHealingMessage(messageId));
     }
 
     /**
@@ -92,9 +88,7 @@ public class HealingMessageController {
     public ResponseEntity<List<HealingMessageThumbNailResponse>> getMyHealingMessageThumbNail(HttpServletRequest request){
 
         /* 내가 올린 힐링 메세지 리스트 조회 */
-        List<HealingMessageThumbNailResponse> healingMessageThumbNailResponseList = healingMessageService.getMyHealingMessageThumbNail(request);
-
-        return ResponseEntity.ok(healingMessageThumbNailResponseList);
+        return ResponseEntity.ok(healingMessageService.getMyHealingMessageThumbNail(request));
     }
 
     /**
@@ -108,9 +102,7 @@ public class HealingMessageController {
                                                       @PathVariable("messageId") Long messageId){
 
         /* 내가 올린 힐링 메세지 상세 조회 */
-        HealingMessageResponse healingMessageResponse = healingMessageService.getMyHealingMessage(request,messageId);
-
-        return ResponseEntity.ok(healingMessageResponse);
+        return ResponseEntity.ok(healingMessageService.getMyHealingMessage(request,messageId));
     }
 
     /* 힐링 메시지 좋아요 누르기 */
