@@ -1,5 +1,6 @@
 package website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Mapper;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
@@ -89,9 +90,22 @@ public interface HealingMessageMapper {
      */
     Long getLikeCount(Long messageId);
 
-    /* 좋아요 누른 힐링 메시지 리스트 조회 */
+    /**
+     *  좋아요 누른 힐링 메시지 리스트 조회
+     * @param userNumber 사용자 고유 번호
+     * @return  좋아요 누른 힐링 메시지 리스트
+     */
+    List<HealingMessageThumbNailResponse> getMyLikeMessageList(Long userNumber);
 
-    /* 좋아요 누른 힐링 메시지 상세 조회 */
+    /**
+     * 좋아요 누른 힐링 메시지 상세 조회
+     * @param userNumber 사용자 고유 번호
+     * @param messageId 조회하고자 하는 메시지 고유번호
+     * @return 힐링 메시지 상세 데이터 반환
+     */
+    HealingMessageResponse getMyLikeHealingMessage(@Param("userNumber") Long userNumber,
+                                                   @Param("messageId") Long messageId);
+
 
     /* 힐링 메시지에 댓글 달기 */
 

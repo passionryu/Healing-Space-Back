@@ -72,6 +72,7 @@
 
     </select>
 
+    <!-- 내가 올린 힐링 메시지 리스트 조회 -->
     <select id="getMyHealingMessageThumbNail" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse">
 
         SELECT
@@ -90,6 +91,7 @@
 
     </select>
 
+    <!-- 내가 작성한 힐링 메시지 상세 조회  -->
     <select id="getMyHealingMessage" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse">
 
         SELECT
@@ -151,6 +153,54 @@
             healing_message_like
         WHERE
             messageId = #{messageId}
+    </select>
+
+    <!-- 내가 좋아요 누른 힐링 메시지 리스트 조회 -->
+    <select id="getMyLikeMessageList" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse">
+
+        SELECT
+            hm.messageId,
+            hm.title,
+            m.nickname,
+            hm.createdDate
+        FROM
+            healing_message hm
+        JOIN
+            member m
+        ON
+            hm.userNumber = m.userNumber
+        JOIN
+            healing_message_like hml
+        ON
+            hm.messageId = hml.messageId
+        WHERE
+            hml.userNumber =#{userNumber}
+
+    </select>
+
+    <!-- 내가 좋아요 누른 힐링 메시지 상세 조회  -->
+    <select id="getMyLikeHealingMessage" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse">
+
+        SELECT
+            hm.title,
+            m.profile_image_path,
+            m.nickname,
+            hm.createdDate,
+            hm.imagePath,
+            hm.content
+            # hml.like
+            # hmc.content
+        FROM
+            # healing_message_like hml,
+            # healing_message_comment hmc,
+            healing_message hm
+        JOIN
+            member m
+        ON
+            hm.userNumber = m.userNumber
+        WHERE
+            hm.userNumber=#{userNumber} AND messageId=#{messageId}
+
     </select>
 
 </mapper>

@@ -121,24 +121,50 @@ public class HealingMessageServiceImpl implements HealingMessageService{
 
         /* 좋아요 클릭 여부 판단 */
         boolean clickStatus = healingMessageMapper.checkAlreadyCliked(messageId,userNumber);
-        log.info("clickStatus {} ", clickStatus);
 
         /*
         * 1. 이미 좋아요를 눌렀으면 , 좋아요 취소
         * 2. 좋아요가 기록이 없으면 , 좋아요 승인
         * */
-        if(clickStatus){
+        if(clickStatus)
             healingMessageMapper.deleteLike(messageId,userNumber);
-            log.info("좋아요 삭제");
-        }else{
+        else
             healingMessageMapper.permitLike(messageId,userNumber);
-            log.info("좋아요 추가");
-        }
 
-        /* 좋아요 총량 합산 */
-        Long likeCount = healingMessageMapper.getLikeCount(messageId);
-        log.info("like Count {}",likeCount);
-
-        return likeCount;
+        /* 좋아요 총량 합산 반환*/
+        return healingMessageMapper.getLikeCount(messageId);
     }
+
+    /**
+     * 좋아요 누른 힐링 메시지 리스트 조회 메서드
+     * @param request 사용자 요청
+     * @return 좋아요 누른 힐링 메시지 리스트 조회
+     */
+    @Override
+    public List<HealingMessageThumbNailResponse> getMyLikeMessageList(HttpServletRequest request) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 좋아요 누른 힐링 메시지 리스트 반환 */
+        return healingMessageMapper.getMyLikeMessageList(userNumber);
+    }
+
+    /**
+     * 좋아요 누른 힐링 메시지 상세 조회
+     * @param request 사용자 요청
+     * @param messageId 메시지 고유 번호
+     * @return 좋아요 누른 힐링 메시지 상세 데이터 반환
+     */
+    @Override
+    public HealingMessageResponse getMyLikeHealingMessage(HttpServletRequest request, Long messageId) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 힐링 메세지 게시글 상세 보기 */
+        return healingMessageMapper.getMyLikeHealingMessage(userNumber,messageId);
+    }
+
+
 }

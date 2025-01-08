@@ -57,9 +57,20 @@ public interface HealingMessageService {
      */
     Long clickLike(HttpServletRequest request, Long messageId);
 
-    /* 좋아요 누른 힐링 메시지 리스트 조회 */
+    /**
+     * 좋아요 누른 힐링 메시지 리스트 조회
+     * @param request 사용자 요청
+     * @return 내가 좋아요 누른 힐링 메시지 리스트
+     */
+    List<HealingMessageThumbNailResponse> getMyLikeMessageList(HttpServletRequest request);
 
-    /* 좋아요 누른 힐링 메시지 상세 조회 */
+    /**
+     * 좋아요 누른 힐링 메시지 상세 조회
+     * @param request 사용자 요청
+     * @param messageId 메시지 고유 번호
+     * @return 좋아요 누른 힐링 메시지 데이터 반환
+     */
+    HealingMessageResponse getMyLikeHealingMessage(HttpServletRequest request,Long messageId);
 
     /* 힐링 메시지에 댓글 달기 */
 
