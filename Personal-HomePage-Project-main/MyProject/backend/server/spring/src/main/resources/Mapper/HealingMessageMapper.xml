@@ -114,4 +114,43 @@
              hm.userNumber=#{userNumber} AND messageId=#{messageId}
 
     </select>
+
+    <!-- 동일한 messageId와 userNumber 데이터 확인 -->
+    <select id="checkAlreadyCliked" resultType="boolean">
+
+        SELECT
+            IF(COUNT(*) > 0, TRUE, FALSE)
+        FROM
+            healing_message_like
+        WHERE
+            messageId = #{messageId} AND userNumber = #{userNumber}
+
+    </select>
+
+    <!-- 좋아요 취소 -->
+    <delete id="deleteLike">
+        DELETE
+
+        FROM
+            healing_message_like
+        WHERE
+            messageId = #{messageId} AND userNumber = #{userNumber}
+    </delete>
+
+    <!-- 좋아요 승인 -->
+    <insert id="permitLike">
+        INSERT INTO healing_message_like (messageId,userNumber)
+        VALUES (#{messageId}, #{userNumber})
+    </insert>
+
+    <!-- DB에서 좋아요 총량 조회 -->
+    <select id="getLikeCount" resultType="java.lang.Long">
+        SELECT
+            COUNT(*)
+        FROM
+            healing_message_like
+        WHERE
+            messageId = #{messageId}
+    </select>
+
 </mapper>

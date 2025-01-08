@@ -105,7 +105,20 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getMyHealingMessage(request,messageId));
     }
 
-    /* 힐링 메시지 좋아요 누르기 */
+    /**
+     * 힐링 메시지 좋아요 누르기
+      * @param request 사용자 요청
+     * @param messageId 게시글 고유 번호
+     * @return 좋아요 누른 수
+     */
+    @Operation(summary = " 힐링 메시지에 좋아요 누르기 API ", description = "")
+    @PostMapping("/like/{messageId}")
+    public ResponseEntity<Long> clickLike(HttpServletRequest request,
+                                          @PathVariable("messageId") Long messageId){
+
+        /* 해당 게시글에 눌린 좋아요 총합 반환 */
+        return ResponseEntity.ok(healingMessageService.clickLike(request,messageId));
+    }
 
     /* 좋아요 누른 힐링 메시지 리스트 조회 */
 

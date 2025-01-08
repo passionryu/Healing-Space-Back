@@ -57,7 +57,37 @@ public interface HealingMessageMapper {
     HealingMessageResponse getMyHealingMessage(@Param("userNumber") Long userNumber,
                                                @Param("messageId") Long messageId);
 
-    /* 힐링 메시지 좋아요 누르기 */
+    /**
+     * 동일한 messageId,userNumber 데이터가 있는지 확인
+     * @param messageId 메시지 아이디
+     * @param userNumber 사용자 고유 번호
+     * @return
+     */
+    Boolean checkAlreadyCliked(@Param("messageId") Long messageId,
+                               @Param("userNumber") Long userNumber);
+
+    /**
+     * 좋아요 취소
+     * @param messageId 메시지 아이디
+     * @param userNumber 사용자 고유 번호
+     */
+    void deleteLike(@Param("messageId") Long messageId,
+                    @Param("userNumber") Long userNumber);
+
+    /**
+     * 좋아요 승인
+     * @param messageId 메시지 아이디
+     * @param userNumber 사용자 고유 번호
+     */
+    void permitLike(@Param("messageId") Long messageId,
+                    @Param("userNumber") Long userNumber);
+
+    /**
+     * DB에서 좋아요 총량 조회
+     * @param messageId 메시지 아이디
+     * @return 총량 반환
+     */
+    Long getLikeCount(Long messageId);
 
     /* 좋아요 누른 힐링 메시지 리스트 조회 */
 

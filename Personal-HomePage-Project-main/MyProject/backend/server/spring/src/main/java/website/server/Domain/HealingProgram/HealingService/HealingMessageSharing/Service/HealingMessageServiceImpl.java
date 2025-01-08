@@ -106,4 +106,39 @@ public class HealingMessageServiceImpl implements HealingMessageService{
         /* 힐링 메세지 게시글 상세 보기 */
         return healingMessageMapper.getMyHealingMessage(userNumber,messageId);
     }
+
+    /**
+     * 힐링 메시지 좋아요 누르기
+     * @param request 사용자 요청
+     * @param messageId 게시글 아이디
+     * @return 좋아요 누른 수
+     */
+    @Override
+    public Long clickLike(HttpServletRequest request, Long messageId) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 좋아요 클릭 여부 판단 */
+        boolean clickStatus = healingMessageMapper.checkAlreadyCliked(messageId,userNumber);
+        log.info("clickStatus {} ", clickStatus);
+
+        /*
+        * 1. 이미 좋아요를 눌렀으면 , 좋아요 취소
+        * 2. 좋아요가 기록이 없으면 , 좋아요 승인
+        * */
+        if(clickStatus){
+            healingMessageMapper.deleteLike(messageId,userNumber);
+            log.info("좋아요 삭제");
+        }else{
+            healingMessageMapper.permitLike(messageId,userNumber);
+            log.info("좋아요 추가");
+        }
+
+        /* 좋아요 총량 합산 */
+        Long likeCount = healingMessageMapper.getLikeCount(messageId);
+        log.info("like Count {}",likeCount);
+
+        return likeCount;
+    }
 }
