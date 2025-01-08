@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.service.invoker.HttpServiceArgumentResolver;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
@@ -61,9 +60,7 @@ public class HealingMessageServiceImpl implements HealingMessageService{
     public List<HealingMessageThumbNailResponse> getHealingMessageThumbNail() {
 
         /* 힐링 메시지 게시판에서 힐링 메시지 리스트 조회 */
-        List<HealingMessageThumbNailResponse> healingMessageThumbNailResponses = healingMessageMapper.getHealingMessageThumbNail();
-
-        return healingMessageThumbNailResponses;
+        return healingMessageMapper.getHealingMessageThumbNail();
     }
 
     /**
@@ -75,9 +72,7 @@ public class HealingMessageServiceImpl implements HealingMessageService{
     public HealingMessageResponse getHealingMessage(Long messageId) {
 
         /* 힐링 메세지 게시글 상세 보기 */
-        HealingMessageResponse healingMessageResponse = healingMessageMapper.getHealingMessage(messageId);
-
-        return healingMessageResponse;
+        return healingMessageMapper.getHealingMessage(messageId);
     }
 
     /**
@@ -92,9 +87,7 @@ public class HealingMessageServiceImpl implements HealingMessageService{
         Long userNumber = jwtService.extractUserNumberFromRequest(request);
 
         /* 내가 올린 힐링 메시지 리스트 조회 메서드 */
-        List<HealingMessageThumbNailResponse> healingMessageThumbNailResponseList = healingMessageMapper.getMyHealingMessageThumbNail(userNumber);
-
-        return healingMessageThumbNailResponseList ;
+        return healingMessageMapper.getMyHealingMessageThumbNail(userNumber);
     }
 
     /**
@@ -111,8 +104,6 @@ public class HealingMessageServiceImpl implements HealingMessageService{
         Long userNumber = jwtService.extractUserNumberFromRequest(request);
 
         /* 힐링 메세지 게시글 상세 보기 */
-        HealingMessageResponse healingMessageResponse = healingMessageMapper.getMyHealingMessage(userNumber,messageId);
-
-        return healingMessageResponse;
+        return healingMessageMapper.getMyHealingMessage(userNumber,messageId);
     }
 }
