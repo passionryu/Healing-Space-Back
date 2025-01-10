@@ -7,6 +7,7 @@ public enum Role {
      * Admin > user > visitor
      */
     ADMIN("this is admin"),
+    SELLER("this is seller"),
     USER("this is user"),
     VISITOR("this is visitor");
 
