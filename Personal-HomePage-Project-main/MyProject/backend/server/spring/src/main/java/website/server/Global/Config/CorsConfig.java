@@ -20,6 +20,7 @@ public class CorsConfig {
         //리소스를 허용할 URL 지정
         ArrayList<String> allowedOriginPatterns = new ArrayList<>();
         allowedOriginPatterns.add("http://localhost:63342");
+        allowedOriginPatterns.add("http://localhost:5173");
         allowedOriginPatterns.add("http://127.0.0.1:5000");
         configuration.setAllowedOrigins(allowedOriginPatterns);
 

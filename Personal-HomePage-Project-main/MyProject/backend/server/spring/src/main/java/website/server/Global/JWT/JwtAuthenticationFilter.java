@@ -29,6 +29,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     /* 권한이 필요 없는 API Path 선언 */
     private static final List<String> PUBLIC_APIS = List.of(
+            "/swagger-ui/**",
             "/auth/login/email",
             "/auth/login/id",
             "/member/register",
@@ -41,6 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
+        // 로그 미출력
         // OPTIONS 요청은 필터를 건너뜀
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             log.info("OPTIONS request - skipping filter");
@@ -48,32 +50,37 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
+        // 로그 출력
         String authorizationHeader = request.getHeader("Authorization");
-        log.info("authorizationHeader : {}",authorizationHeader);
+        log.info("authorizationHeader check 1: {}",authorizationHeader);
         String nickname = null;
         String jwt = null;
 
+        // 이동해서 로그 출력 완료
         // 권한이 필요 없는 API 경로는 필터를 건너뜀
         if (isPublicApi(request)) {
             filterChain.doFilter(request, response);
             return;
         }
 
+        // 조건 미 충족으로 로그 미 출력
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
             nickname = jwtService.extractUsername(jwt);
-            log.info("authorizationHeader : {}",authorizationHeader);
+            log.info("authorizationHeader check 2: {}",authorizationHeader);
             log.info("jwt : {}" , jwt);
             log.info("nickName : {}",nickname);
         }
 
+        // 로그 출력 nickName : null,member : null
         Member member = (nickname != null) ? memberMapper.findMemberByNickname(nickname) : null;
         log.info("nickName : {}",nickname);
         log.info("member : {}",member);
 
+        // 클라이언트 측에서 출력
         if (nickname == null || member == null) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("User not found or unauthorized");
+            response.getWriter().write("User not found or unauthorized at jwtAuthenticationFilter");
             response.getWriter().flush();
             return;
         }
@@ -102,6 +109,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      */
     private boolean isPublicApi(HttpServletRequest request) {
         String path = request.getRequestURI();
+        //로그 출력 -> path /login/id이렇게 나와서 아마 ....그런건가
         return PUBLIC_APIS.stream().anyMatch(path::startsWith);
     }
 }

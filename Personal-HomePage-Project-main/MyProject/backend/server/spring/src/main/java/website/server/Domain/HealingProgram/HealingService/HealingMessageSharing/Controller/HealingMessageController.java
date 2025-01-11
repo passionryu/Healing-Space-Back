@@ -150,6 +150,6 @@ public class HealingMessageController {
 
     /* 힐링 메시지에 댓글 달기 */
 
-    /* 힐링 메시지 수정하기 */
+    /* 힐링 메시지 수정하기 - 추후 ver 2 업그레이드 */
 
 }

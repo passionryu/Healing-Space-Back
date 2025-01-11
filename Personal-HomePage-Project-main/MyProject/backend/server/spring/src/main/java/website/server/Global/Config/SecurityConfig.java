@@ -43,9 +43,10 @@ public class SecurityConfig {
                         requestMatchers("/member/findID/option2").permitAll().
                         requestMatchers("/auth/logout").permitAll().
                         requestMatchers("/dew/diary").permitAll().
+                        requestMatchers("/error").permitAll().
 
                         /*Swagger 무권한 접근 허용*/
-                        requestMatchers("/swagger-ui/**").permitAll().
+                        requestMatchers("/swagger-ui.html").permitAll().
                         requestMatchers("/v3/api-docs/**").permitAll().
                         anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // 필터 추가

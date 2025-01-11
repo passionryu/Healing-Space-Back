@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class AuthService {
     private final MemberMapper memberMapper;
     private final BCryptPasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    @Qualifier("redisConnectionFactory")
+    @Autowired
+    private LettuceConnectionFactory redisConnectionFactory;
 
     /**
      * 이메일 로그인 메서드
@@ -63,6 +68,7 @@ public class AuthService {
 
         // Find member
         Member member = memberMapper.findMemberByNickname(nickName);
+        log.info("find member {}" ,member);
 
         // validation
         if (member == null) {return new JwtTokenDto("no member","x");}
@@ -71,6 +77,8 @@ public class AuthService {
         // Generate JWt token
         String AccessToken = jwtService.generateAccessToken(member.getEmail(), member.getNickName(),member.getUserNumber());
         String RefreshToken =jwtService.generateRefreshToken(member.getEmail(), member.getNickName(), member.getUserNumber());
+        log.info("at {}",AccessToken);
+        log.info("rt {}",RefreshToken);
 
         // Input AccessToken to Redis
         redisTemplate.opsForValue().set("auth:" + member.getUserNumber(), AccessToken, Duration.ofHours(1));

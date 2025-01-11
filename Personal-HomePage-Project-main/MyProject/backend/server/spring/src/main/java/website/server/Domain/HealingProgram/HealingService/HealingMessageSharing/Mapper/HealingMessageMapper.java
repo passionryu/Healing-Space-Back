@@ -100,7 +100,7 @@ public interface HealingMessageMapper {
     /**
      * 좋아요 누른 힐링 메시지 상세 조회
      * @param userNumber 사용자 고유 번호
-     * @param messageId 조회하고자 하는 메시지 고유번호
+     * @param messageId 조회하고자 하는 메시지 고유번호m
      * @return 힐링 메시지 상세 데이터 반환
      */
     HealingMessageResponse getMyLikeHealingMessage(@Param("userNumber") Long userNumber,

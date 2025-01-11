@@ -1,6 +1,7 @@
 package website.server.Domain.Member.Service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import website.server.Domain.Member.DTO.Request.FindIDRequest_Option1;
@@ -8,6 +9,7 @@ import website.server.Domain.Member.DTO.Request.MemberRequest;
 import website.server.Domain.Member.Entity.Member;
 import website.server.Domain.Member.Mapper.MemberMapper;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService{
@@ -28,6 +30,7 @@ public class MemberServiceImpl implements MemberService{
         String encodedPassword = passwordEncoder.encode(member.getPassword());
         member.setPassword(encodedPassword);
         memberMapper.register(member);
+        log.info("회원가입 성공 {} : " , member);
 
         return member.getUserNumber();
     }

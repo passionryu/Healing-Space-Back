@@ -5,19 +5,19 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import website.server.Domain.Member.DTO.Request.FindIDRequest_Option1;
 import website.server.Domain.Member.DTO.Request.MemberRequest;
 import website.server.Domain.Member.Service.MemberService;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")
 @Tag(name = "Member", description = "회원 시스템 API")
+@CrossOrigin(origins = "http://localhost:5173") // React 앱이 실행되는 주소
 public class MemberController {
 
     private final MemberService memberService;
@@ -29,8 +29,9 @@ public class MemberController {
      */
     @Operation(summary = " 회원가입 ", description = " 회원가입 : username,email,password,birth")
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody @Valid MemberRequest request) {
+    public ResponseEntity<String> register(@RequestBody MemberRequest request) {
 
+        log.info("MemberRequest {} :", request);
         Long createdID = memberService.register(request);
 
         return ResponseEntity.ok().body("회원 가입 성공! userID는" + createdID + "입니다.");
