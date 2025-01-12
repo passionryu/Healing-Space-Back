@@ -52,6 +52,7 @@ public class HealingMessageServiceImpl implements HealingMessageService{
 
     }
 
+    // Connected
     /**
      * 힐링 메시지 게시판에서 힐링 메시지 리스트 조회
      * @return 힐링 메시지 리스트 조회
