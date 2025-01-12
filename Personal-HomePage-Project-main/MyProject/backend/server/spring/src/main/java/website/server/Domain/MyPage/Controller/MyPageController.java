@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import website.server.Domain.MyPage.DTO.Request.mypage.ChangeInformationRequest;
 import website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse;
 import website.server.Domain.MyPage.Service.MypageService.MypageService;
@@ -19,6 +16,7 @@ import website.server.Domain.MyPage.Service.MypageService.MypageService;
 @RequiredArgsConstructor
 @RequestMapping("/mypage")
 @Tag(name = "MyPage", description = "마이페이지 서비스 API")
+@CrossOrigin(origins = "http://localhost:5173") // React 앱이 실행되는 주소
 public class MyPageController {
 
     private final MypageService mypageService;
