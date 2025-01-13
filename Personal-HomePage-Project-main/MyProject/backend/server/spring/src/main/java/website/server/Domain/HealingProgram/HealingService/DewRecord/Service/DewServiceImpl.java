@@ -134,17 +134,17 @@ public class DewServiceImpl implements DewService{
     /**
      * 선택한 날짜의 일기 조회 메서드
      * @param request 사용자 요청
-     * @param date 선택한 날짜
+     * @param diaryNumber 메시지 고유번호
      * @return 일기장 (날짜,제목,본문,감정,힐링 메시지,힐링 뮤직)
      */
     @Override
-    public DiaryResponse getDiary(HttpServletRequest request,LocalDate date) {
+    public DiaryResponse getDiary(HttpServletRequest request,Long diaryNumber) {
 
         /* 사용자 고유번호 조회 */
         Long userNumber = jwtService.extractUserNumberFromRequest(request);
 
         /* 해당 날짜의 일기장 반환 */
-        DiaryResponse diaryResponse = dewMapper.getDiary(userNumber,date);
+        DiaryResponse diaryResponse = dewMapper.getDiary(userNumber,diaryNumber);
 
         return diaryResponse;
     }

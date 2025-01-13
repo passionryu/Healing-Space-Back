@@ -37,7 +37,7 @@
             healingMessage,
             healingMusic
         FROM diary
-        WHERE userNumber= #{userNumber} AND date = #{date}
+        WHERE userNumber= #{userNumber} AND diaryNumber =#{diaryNumber}
     </select>
 
 </mapper>

@@ -49,9 +49,9 @@ public interface DewService {
     /**
      * 선택한 날짜의 일기 조회 메서드
      * @param request 사용자 요청
-     * @param date 선택한 날짜
+     * @param messageId 선택한 일기의 고유번호
      * @return 일기장 (날짜,제목,본문,감정,힐링 메시지,힐링 뮤직)
      */
-    DiaryResponse getDiary(HttpServletRequest request,LocalDate date);
+    DiaryResponse getDiary(HttpServletRequest request,Long diaryNumber);
 
 }

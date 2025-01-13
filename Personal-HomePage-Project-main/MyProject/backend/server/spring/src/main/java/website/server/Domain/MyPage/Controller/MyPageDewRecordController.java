@@ -44,14 +44,13 @@ public class MyPageDewRecordController {
      * @return 일기장 (날짜,제목,본문,감정,힐링 메시지,힐링 뮤직)
      */
     @Operation(summary = " 일기장 조회 API ", description = " ")
-    @GetMapping("/diary/show")
+    @GetMapping("/diary/show/{diaryNumber}")
     public ResponseEntity<DiaryResponse> showDiary(HttpServletRequest request,
-                                                   @RequestParam(name = "date")
-                                                   @DateTimeFormat(pattern = "yyyy-MM-dd")
-                                                   LocalDate date){
+                                                   @PathVariable(name = "diaryNumber")
+                                                   Long diaryNumber){
 
         /* 선택한 날짜의 일기 데이터 반환 */
-        DiaryResponse diaryResponse = dewService.getDiary(request,date);
+        DiaryResponse diaryResponse = dewService.getDiary(request,diaryNumber);
 
         return ResponseEntity.ok(diaryResponse);
     }

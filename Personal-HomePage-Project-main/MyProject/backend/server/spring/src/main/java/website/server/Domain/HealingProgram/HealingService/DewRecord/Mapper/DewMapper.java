@@ -35,9 +35,9 @@ public interface DewMapper {
     /**
      * 선택한 날짜의 일기 조회
      * @param userNumber 사용자 고유 번호
-     * @param date 일기 작성 날짜
+     * @param diaryNumber 고유번호
      * @return 일기장 (날짜,제목,본문,감정,힐링 메시지,힐링 뮤직)
      */
-    DiaryResponse getDiary(@Param("userNumber")Long userNumber, @Param("date") LocalDate date);
+    DiaryResponse getDiary(@Param("userNumber")Long userNumber, @Param("diaryNumber") Long diaryNumber);
 
 }
