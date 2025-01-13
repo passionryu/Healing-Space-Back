@@ -22,6 +22,7 @@ public class HealingMessageController {
 
     private final HealingMessageService healingMessageService;
 
+    // Connected
     /**
      * 힐링 메시지 쉐어링 API
      * @param request 사용자 요청
@@ -54,6 +55,7 @@ public class HealingMessageController {
         return ResponseEntity.ok("힐링 메시지 삭제 완료");
     }
 
+    // Connected
     /**
      * 힐링 메시지 게시판에서 힐링 메시지 리스트 조회 API
      * @return 힐링 메시지 리스트 (messageId,title,nickname,createdDate)
@@ -66,6 +68,7 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getHealingMessageThumbNail());
     }
 
+    // Connected
     /**
      * 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회 API
      * @return 게시물 요소(제목,프로필 사진,닉네임,작성일,게시글 사진,본문)
@@ -105,6 +108,7 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getMyHealingMessage(request,messageId));
     }
 
+    // Connected
     /**
      * 힐링 메시지 좋아요 누르기
       * @param request 사용자 요청

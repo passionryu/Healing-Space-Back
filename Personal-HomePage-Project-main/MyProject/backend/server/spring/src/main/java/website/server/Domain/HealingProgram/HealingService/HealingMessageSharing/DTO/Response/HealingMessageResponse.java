@@ -10,8 +10,8 @@ public record HealingMessageResponse(
         String nickname,
         LocalDateTime createdDate,
         String imagePath,
-        String content
-        //Long like,
+        String content,
+        Long like
         //List<String> comment
 
 ) {

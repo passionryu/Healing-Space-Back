@@ -54,21 +54,32 @@
             m.nickname,
             hm.createdDate,
             hm.imagePath,
-            hm.content
-            # hml.like
+            hm.content,
+            COUNT(hml.likeId) AS likeCount
             # hmc.content
 
         FROM
-            # healing_message_like hml,
-            # healing_message_comment hmc,
             healing_message hm
         JOIN
-
-            member m
-        ON
-            hm.userNumber = m.userNumber
+            member m ON hm.userNumber = m.userNumber
+#         JOIN
+#
+#             member m
+#         ON
+#             hm.userNumber = m.userNumber
+        LEFT JOIN
+            healing_message_like hml ON hm.messageId = hml.messageId
         WHERE
-            messageId=#{messageId}
+            hm.messageId = #{messageId}
+        GROUP BY
+            hm.messageId, m.profile_image_path, m.nickname, hm.createdDate, hm.imagePath, hm.content
+
+#         JOIN
+#             healing_message_like hml
+#         ON
+#             hm.messageId = hml.messageId
+#         WHERE
+#             hm.messageId=#{messageId}
 
     </select>
 
