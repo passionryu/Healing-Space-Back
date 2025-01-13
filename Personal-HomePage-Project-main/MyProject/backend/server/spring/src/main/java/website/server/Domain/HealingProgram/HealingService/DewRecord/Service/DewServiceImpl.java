@@ -59,7 +59,7 @@ public class DewServiceImpl implements DewService{
         /* 감정을 날씨로 매칭 */
         return switch (emotion.toLowerCase()) {
             case "기쁨" -> "맑음";
-            case "설렘&사랑" -> "봄 비";
+            case "설렘&사랑" -> "봄비";
             case "평온" -> "노을";
             case "외로움" -> "구름";
             case "슬픔" -> "비";
