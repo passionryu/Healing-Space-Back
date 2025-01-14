@@ -186,12 +186,11 @@ public class HealingMessageController {
      */
     @Operation(summary = " 힐링 메시지에 댓글 조회 API")
     @GetMapping("/comment/{messageId}")
-    public ResponseEntity<CommentResponse> getComment(HttpServletRequest request,
-                                                      @PathVariable Long messageId){
+    public ResponseEntity<List<CommentResponse>> getComment(HttpServletRequest request,
+                                                            @PathVariable("messageId") Long messageId){
 
         /* 댓글 조회 */
-
-        return null;
+        return ResponseEntity.ok(healingMessageService.getComment(request,messageId));
     }
 
 

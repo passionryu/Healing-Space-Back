@@ -118,6 +118,13 @@ public interface HealingMessageMapper {
                                 @Param("messageId") Long messageId,
                                 @Param("content") String comment);
 
+    /**
+     * 힐링 메시지에서 댓글 조회
+     * @param messageId 댓글을 조회하고자 하는 힐링 메시지 고유 번호
+     * @return CommentResponse DTO
+     * @see CommentResponse
+     */
+    List<CommentResponse> getComment(Long messageId);
 
     /* 힐링 메시지 수정하기 */
 

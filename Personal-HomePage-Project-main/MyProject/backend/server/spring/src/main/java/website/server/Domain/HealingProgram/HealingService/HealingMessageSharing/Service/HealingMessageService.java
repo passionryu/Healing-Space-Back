@@ -89,7 +89,7 @@ public interface HealingMessageService {
      * @return CommentResponse DTO
      * @see CommentResponse 댓글 등록 후 반환 DTO
      */
-    CommentResponse getComment(HttpServletRequest request, Long messageId);
+    List<CommentResponse> getComment(HttpServletRequest request, Long messageId);
 
     /* 힐링 메시지 수정하기 */
 }

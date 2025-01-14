@@ -238,24 +238,23 @@
 
 
     <!-- 힐링 메시지에 댓글 조회 -->
-<!--    <select id="" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.CommentResponse">-->
+    <select id="getComment" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.CommentResponse">
 
-<!--        SELECT-->
-<!--            hmc.messageId,-->
-<!--            m.profile_image_path,-->
-<!--            m.nickname,-->
-<!--            hmc.content,-->
-<!--            hmc.createdDate-->
+        SELECT
+            hmc.commentId,
+            m.profile_image_path AS profileImagePath,
+            m.nickname,
+            hmc.content,
+            hmc.createdDate
+        FROM
+            healing_message_comment hmc
+        JOIN
+            member m ON hmc.userNumber = m.userNumber
+        WHERE
+            hmc.messageId = #{messageId}
+        ORDER BY
+            hmc.createdDate ASC
 
-<!--        FROM-->
-<!--            healing_message_comment hmc-->
-<!--        JOIN-->
-<!--            member m ON m.userNumber = hmc.userNumber-->
-<!--        JOIN-->
-<!--            healing_message hm ON hm.messageId = hmc.messageId-->
-<!--        WHERE-->
-<!--            m.userNumber=#{userNumber} AND hm.messageId =#{messageId} AND hmc.content =#{content}-->
-
-<!--    </select>-->
+    </select>
 
 </mapper>

@@ -185,9 +185,19 @@ public class HealingMessageServiceImpl implements HealingMessageService{
         healingMessageMapper.postComment(userNumber,commentRequest.messageId(),commentRequest.comment());
     }
 
+    /**
+     * 힐링 메시지에서  댓글 조회 API
+     * @param request 사용자 요청
+     * @param messageId 댓글을 조회하고자 하는 힐링 메시지 고유 번호
+     * @return CommentResponse DTO
+     * @see CommentResponse
+     */
     @Override
-    public CommentResponse getComment(HttpServletRequest request, Long messageId) {
-        return null;
+    public List<CommentResponse> getComment(HttpServletRequest request, Long messageId) {
+
+        List<CommentResponse> commentResponsesList = healingMessageMapper.getComment(messageId);
+
+        return commentResponsesList;
     }
 
 
