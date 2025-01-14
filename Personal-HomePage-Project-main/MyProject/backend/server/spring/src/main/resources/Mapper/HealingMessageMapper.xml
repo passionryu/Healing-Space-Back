@@ -216,9 +216,9 @@
 
         FROM
             healing_message hm
-                JOIN
+        JOIN
             member m ON hm.userNumber = m.userNumber
-                LEFT JOIN
+        LEFT JOIN
             healing_message_like hml ON hm.messageId = hml.messageId
         WHERE
             hm.messageId = #{messageId}
@@ -227,5 +227,35 @@
 
 
     </select>
+
+    <!-- 힐링 메시지에 댓글 달기 메서드 -->
+    <insert id="postComment" parameterType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.CommentRequest">
+
+        INSERT INTO healing_message_comment (messageId, userNumber, content, createdDate)
+        VALUES (#{messageId}, #{userNumber}, #{content}, NOW())
+
+    </insert>
+
+
+    <!-- 힐링 메시지에 댓글 조회 -->
+<!--    <select id="" resultType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.CommentResponse">-->
+
+<!--        SELECT-->
+<!--            hmc.messageId,-->
+<!--            m.profile_image_path,-->
+<!--            m.nickname,-->
+<!--            hmc.content,-->
+<!--            hmc.createdDate-->
+
+<!--        FROM-->
+<!--            healing_message_comment hmc-->
+<!--        JOIN-->
+<!--            member m ON m.userNumber = hmc.userNumber-->
+<!--        JOIN-->
+<!--            healing_message hm ON hm.messageId = hmc.messageId-->
+<!--        WHERE-->
+<!--            m.userNumber=#{userNumber} AND hm.messageId =#{messageId} AND hmc.content =#{content}-->
+
+<!--    </select>-->
 
 </mapper>

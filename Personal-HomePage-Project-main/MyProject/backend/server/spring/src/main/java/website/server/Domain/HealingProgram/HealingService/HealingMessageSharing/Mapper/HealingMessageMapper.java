@@ -3,6 +3,7 @@ package website.server.Domain.HealingProgram.HealingService.HealingMessageSharin
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.CommentResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
 
@@ -107,7 +108,16 @@ public interface HealingMessageMapper {
                                                    @Param("messageId") Long messageId);
 
 
-    /* 힐링 메시지에 댓글 달기 */
+    /**
+     * 힐링 메시지에 댓글 달기
+     * @param userNumber 사용자 고유 번호
+     * @param comment 댓글 내용
+     * @return CommentResponse DTO
+     */
+    void postComment(@Param("userNumber") Long userNumber,
+                                @Param("messageId") Long messageId,
+                                @Param("content") String comment);
+
 
     /* 힐링 메시지 수정하기 */
 

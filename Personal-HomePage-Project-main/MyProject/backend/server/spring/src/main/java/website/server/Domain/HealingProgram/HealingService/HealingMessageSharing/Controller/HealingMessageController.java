@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.CommentRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.CommentResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Service.HealingMessageService;
@@ -20,9 +22,10 @@ import java.util.List;
 @Tag(name = "Healing Message ", description = "Healing Message Sharing 서비스 API")
 public class HealingMessageController {
 
+
     private final HealingMessageService healingMessageService;
 
-    // Connected
+    // API connection complete
     /**
      * 힐링 메시지 쉐어링 API
      * @param request 사용자 요청
@@ -39,7 +42,7 @@ public class HealingMessageController {
         return ResponseEntity.ok("힐링 메세지 쉐어링 완료");
     }
 
-    // connected
+    // API connection complete
     /**
      * 힐링 메시지 삭제 API
      * @param request 사용자 요청
@@ -56,7 +59,7 @@ public class HealingMessageController {
         return ResponseEntity.ok("힐링 메시지 삭제 완료");
     }
 
-    // Connected
+    // API connection complete
     /**
      * 힐링 메시지 게시판에서 힐링 메시지 리스트 조회 API
      * @return 힐링 메시지 리스트 (messageId,title,nickname,createdDate)
@@ -69,7 +72,7 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getHealingMessageThumbNail());
     }
 
-    // Connected
+    // API connection complete
     /**
      * 힐링 메시지 게시판에서 선택한 힐링 메시지 상세 조회 API
      * @return 게시물 요소(제목,프로필 사진,닉네임,작성일,게시글 사진,본문)
@@ -82,7 +85,7 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getHealingMessage(messageId));
     }
 
-    // Connected
+    // API connection complete
     /**
      * 내가 올린 힐링 메시지 리스트 조회 API
      * @param request 사용자 요청
@@ -96,7 +99,7 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getMyHealingMessageThumbNail(request));
     }
 
-    // Connected
+    // API connection complete
     /**
      * 내가 올린 힐링 메세지 상세 조회 API
      * @param request 사용자 요청
@@ -111,7 +114,7 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getMyHealingMessage(request,messageId));
     }
 
-    // Connected
+    // API connection complete
     /**
      * 힐링 메시지 좋아요 누르기
       * @param request 사용자 요청
@@ -127,7 +130,7 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.clickLike(request,messageId));
     }
 
-    // Connected
+    // API connection complete
     /**
      * 좋아요 누른 힐링 메시지 리스트 조회 API
      * @param request 사용자 요청
@@ -141,7 +144,7 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getMyLikeMessageList(request));
     }
 
-    // connected
+    // API connection complete
     /**
      * 좋아요 누른 힐링 메시지 상세 조회 API
      * @param request 사용자 요청
@@ -157,7 +160,40 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getMyLikeHealingMessage(request,messageId));
     }
 
-    /* 힐링 메시지에 댓글 달기 */
+    /**
+     * 힐링 메시지에 댓글 달기 API
+     * @param request 사용자 요청
+     * @param commentRequest 댓글 내용
+     * @return 댓글 달기 성공 메시지
+     */
+    @Operation(summary = "힐링 메시지에 댓글 달기 API", description = "")
+    @PostMapping("/comment")
+    public ResponseEntity<String> postComment(HttpServletRequest request,
+                                              @RequestBody CommentRequest commentRequest){
+
+        /* 댓글 달기 */
+        healingMessageService.postComment(request,commentRequest);
+
+        return ResponseEntity.ok("댓글 달기 성공");
+    }
+
+    /**
+     * 힐링 메시지에 댓글 조회 API
+     * @param request 사용자 요청
+     * @param messageId 댓글을 조회하고자 하는 힐링 메시지 고유번호
+     * @return CommentResponse DTO
+     * @see CommentResponse 댓글 등록 후 반환 DTO
+     */
+    @Operation(summary = " 힐링 메시지에 댓글 조회 API")
+    @GetMapping("/comment/{messageId}")
+    public ResponseEntity<CommentResponse> getComment(HttpServletRequest request,
+                                                      @PathVariable Long messageId){
+
+        /* 댓글 조회 */
+
+        return null;
+    }
+
 
 
     /* 힐링 메시지 수정하기 - 추후 ver 2 업그레이드 */

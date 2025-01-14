@@ -4,7 +4,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.CommentRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.CommentResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Mapper.HealingMessageMapper;
@@ -165,6 +167,27 @@ public class HealingMessageServiceImpl implements HealingMessageService{
 
         /* 힐링 메세지 게시글 상세 보기 */
         return healingMessageMapper.getMyLikeHealingMessage(userNumber,messageId);
+    }
+
+    /**
+     * 힐링 메시지에 댓글 달기 메서드
+     * @param request 사용자 요청
+     * @param commentRequest 댓글 내용
+     * @return CommentResponse DTO
+     */
+    @Override
+    public void postComment(HttpServletRequest request, CommentRequest commentRequest) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 댓글 게시 */
+        healingMessageMapper.postComment(userNumber,commentRequest.messageId(),commentRequest.comment());
+    }
+
+    @Override
+    public CommentResponse getComment(HttpServletRequest request, Long messageId) {
+        return null;
     }
 
 

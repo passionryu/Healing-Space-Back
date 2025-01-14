@@ -1,7 +1,9 @@
 package website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.CommentRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.HealingMessageCreateRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.CommentResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Response.HealingMessageThumbNailResponse;
 import java.util.List;
@@ -72,7 +74,22 @@ public interface HealingMessageService {
      */
     HealingMessageResponse getMyLikeHealingMessage(HttpServletRequest request,Long messageId);
 
-    /* 힐링 메시지에 댓글 달기 */
+    /**
+     * 힐링 메시지에 댓글 달기 메서드
+     * @param request 사용자 요청
+     * @param commentRequest 댓글 내용
+     * @return commentRespnose DTO
+     */
+    void postComment(HttpServletRequest request, CommentRequest commentRequest);
+
+    /**
+     * 힐링 메시지에 댓글 조회 메서드
+     * @param request 사용자 요청
+     * @param messageId 댓글을 조회하고자 하는 힐링 메시지 고유 번호
+     * @return CommentResponse DTO
+     * @see CommentResponse 댓글 등록 후 반환 DTO
+     */
+    CommentResponse getComment(HttpServletRequest request, Long messageId);
 
     /* 힐링 메시지 수정하기 */
 }
