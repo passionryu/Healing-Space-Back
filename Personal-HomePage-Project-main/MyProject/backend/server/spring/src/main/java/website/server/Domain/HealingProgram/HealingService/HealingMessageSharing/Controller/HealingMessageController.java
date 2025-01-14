@@ -160,6 +160,8 @@ public class HealingMessageController {
         return ResponseEntity.ok(healingMessageService.getMyLikeHealingMessage(request,messageId));
     }
 
+    // todo : 메시지 아이디를 넣어서 반환값에 바로 댓글이 보이게 해야 함.
+    //  일단은 댓글이 달리면 프론트에서 알아서 새로고침을 하게 임시 조취를 취해놓음
     /**
      * 힐링 메시지에 댓글 달기 API
      * @param request 사용자 요청
