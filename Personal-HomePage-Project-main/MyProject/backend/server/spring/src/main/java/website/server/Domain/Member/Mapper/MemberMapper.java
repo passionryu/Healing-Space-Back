@@ -53,6 +53,9 @@ public interface MemberMapper {
      * 사용자 고유 번호로 프로필 정보 수정
      * @param userNumber 사용자 고유 번호
      */
-    void changeMyInfo(@Param("userNumber") Long userNumber, @Param("profileImagePath") String profileImagePath,@Param("nickname")String nickname,@Param("intro")String intro);
+    void changeMyInfo(@Param("userNumber") Long userNumber,
+                      @Param("profileImagePath") String profileImagePath,
+                      @Param("nickname")String nickname,
+                      @Param("intro")String intro);
 
 }
