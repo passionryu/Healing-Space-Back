@@ -218,11 +218,6 @@
             healing_message hm
                 JOIN
             member m ON hm.userNumber = m.userNumber
-                #         JOIN
-#
-#             member m
-#         ON
-#             hm.userNumber = m.userNumber
                 LEFT JOIN
             healing_message_like hml ON hm.messageId = hml.messageId
         WHERE
@@ -230,12 +225,6 @@
         GROUP BY
             hm.messageId, m.profile_image_path, m.nickname, hm.createdDate, hm.imagePath, hm.content
 
-        #         JOIN
-#             healing_message_like hml
-#         ON
-#             hm.messageId = hml.messageId
-#         WHERE
-#             hm.messageId=#{messageId}
 
     </select>
 
