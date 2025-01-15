@@ -33,7 +33,7 @@ public class OurNewsController {
     @Operation(summary = "", description = "")
     @PostMapping("/")
     public ResponseEntity<String> postNews(HttpServletRequest request,
-                                           @RequestParam("file") MultipartFile file, // 이미지 파일 받기
+                                           @RequestParam(value = "file", required = false) MultipartFile file, // 이미지 파일 받기
                                            @RequestParam("title") String title,
                                            @RequestParam("content") String content){
 
