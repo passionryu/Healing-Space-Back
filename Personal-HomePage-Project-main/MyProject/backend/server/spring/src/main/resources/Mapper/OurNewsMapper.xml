@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="website.server.Domain.Healing_Space_News.Our_News.Mapper.OurNewsMapper">
+
+    <!-- 게시글 업로드 -->
+    <insert id="postNews" parameterType="map">
+        INSERT INTO our_news (userNumber, title, content, img_path, createdDate, watched)
+        VALUES (#{userNumber}, #{title}, #{content}, #{img_path}, CURRENT_TIMESTAMP, 0)
+    </insert>
+
+</mapper>
