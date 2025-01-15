@@ -18,5 +18,10 @@ public interface OurNewsMapper {
                   @Param("content") String content,
                   @Param("img_path") String img_path);
 
+    /**
+     * 게시글 삭제
+     * @param ourNewsNumber 삭제하고자 하는 게시글 고유번호
+     */
+    void deleteNews(Long ourNewsNumber);
 
 }

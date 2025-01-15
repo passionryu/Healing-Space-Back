@@ -10,4 +10,10 @@
         VALUES (#{userNumber}, #{title}, #{content}, #{img_path}, CURRENT_TIMESTAMP, 0)
     </insert>
 
+    <!-- 게시글 삭제 -->
+    <delete id="deleteNews" parameterType="long">
+        DELETE FROM our_news
+        WHERE ourNewsNumber = #{ourNewsNumber}
+    </delete>
+
 </mapper>

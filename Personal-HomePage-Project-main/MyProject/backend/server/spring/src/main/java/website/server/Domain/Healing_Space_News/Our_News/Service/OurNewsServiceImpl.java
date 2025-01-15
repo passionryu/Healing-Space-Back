@@ -51,4 +51,15 @@ public class OurNewsServiceImpl implements OurNewsService{
         ourNewsMapper.postNews(userNumber,title,content,imgPath);
 
     }
+
+    /**
+     * 게시글 삭제 API
+     * @param ourNewsNumber 삭제하고자 하는 게시글의 고유번호
+     */
+    @Override
+    public void deleteNews(Long ourNewsNumber) {
+
+        /* 게시글 삭제 */
+        ourNewsMapper.deleteNews(ourNewsNumber);
+    }
 }

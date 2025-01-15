@@ -46,18 +46,36 @@ public class OurNewsController {
         return ResponseEntity.ok("게시글 업로드 완료");
     }
 
-    // 게시글 삭제
+    /**
+     * 게시글 삭제 API
+     * @param ourNewsNumber 삭제할 게시글의 고유 번호
+     * @return 게시글 삭제 성공 메시지
+     */
+    @Operation(summary = "",description = "")
+    @DeleteMapping("/{ourNewsNumber}")
+    public ResponseEntity<String> deleteNews(@PathVariable("ourNewsNumber") Long ourNewsNumber){
 
-    // 게시글 수정 - Ver2 to be continue
+        /* 게시글 삭제 */
+        ourNewsService.deleteNews(ourNewsNumber);
+
+        return ResponseEntity.ok("게시글 삭제 성공");
+    }
+
+
 
     /* USER FUNCTION  */
 
     // 게시글 조회
-    // 게시글 조회 시 조회수 증가
+
+
     // 게시글에 댓글 달기 기능
-    // 게시글 댓글 수정 기능
+
+
+
     // 게시글 댓글 삭제 기능
 
 
-
+    // 게시글 조회 시 조회수 증가 - Ver2 to be continue
+    // 게시글 수정 - Ver2 to be continue
+    // 게시글 댓글 수정 기능 - Ver2 to be continue
 }

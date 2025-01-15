@@ -12,4 +12,10 @@ public interface OurNewsService {
      */
     void postNews(HttpServletRequest request, PostNewsRequest postNewsRequest);
 
+    /**
+     * 게시글 삭제 메서드
+     * @param ourNewsNumber 삭제하고자 하는 게시글의 고유번호
+     */
+    void deleteNews(Long ourNewsNumber);
+
 }
