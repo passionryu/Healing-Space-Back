@@ -3,6 +3,9 @@ package website.server.Domain.Healing_Space_News.Our_News.Service;
 import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
+
+import java.util.List;
 
 public interface OurNewsService {
 
@@ -20,10 +23,17 @@ public interface OurNewsService {
     void deleteNews(Long ourNewsNumber);
 
     /**
+     * 게시글 리스트 조회 메서드
+     * @return 게시글 썸네일 리스트
+     */
+    List<NewsListResponse> getNewsList();
+
+    /**
      * 게시글 조회 메서드
      * @param ourNewsNumber 조회하고자 하는 게시글의 고유 번호
      * @return 게시글 정보
      */
     GetNewsResponse getNews(Long ourNewsNumber);
+
 
 }

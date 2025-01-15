@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
 import website.server.Domain.Healing_Space_News.Our_News.Service.OurNewsService;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -67,6 +70,20 @@ public class OurNewsController {
     ///////////////////
     /* USER FUNCTION */
     ///////////////////
+
+    /**
+     * 게시글 리스트 조회 API
+     * @return 게시글 썸네일 리스트
+     */
+    @Operation(summary = "", description = "")
+    @GetMapping("/list")
+    public ResponseEntity<List<NewsListResponse>> getNewsList(){
+
+        /* 게시글 썸네일 리스트 조회 */
+        List<NewsListResponse> newsListResponseList = ourNewsService.getNewsList();
+
+        return ResponseEntity.ok(newsListResponseList);
+    }
 
     // todo :  사진 경로는 반환 성공 -> 하지만 이 경로값을 가지고 프론트에서 사진을 조회할 수 있나
     /**

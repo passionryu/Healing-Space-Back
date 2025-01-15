@@ -16,6 +16,21 @@
         WHERE ourNewsNumber = #{ourNewsNumber}
     </delete>
 
+    <!-- 게시글 썸네일 리스트 조회 -->
+    <select id="getNewsList" resultType="website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse">
+        SELECT
+            ournews.title,
+            m.nickname,
+            ournews.createdDate
+        FROM
+            our_news ournews
+        JOIN
+            member m
+        ON
+            ournews.userNumber = m.userNumber
+
+
+    </select>
     <!-- 게시글 조회 -->
     <select id="getNews" resultType="website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse">
         SELECT
@@ -34,4 +49,6 @@
         WHERE
             ournews.ourNewsNumber =#{ourNewsNumber}
     </select>
+
+
 </mapper>

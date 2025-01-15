@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
 import website.server.Domain.Healing_Space_News.Our_News.Mapper.OurNewsMapper;
 import website.server.Domain.Healing_Space_News.Our_News.Util.OurNews_Set_Image_Path;
 import website.server.Global.JWT.JwtService;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -62,6 +64,17 @@ public class OurNewsServiceImpl implements OurNewsService{
 
         /* 게시글 삭제 */
         ourNewsMapper.deleteNews(ourNewsNumber);
+    }
+
+    /**
+     * 게시글 리스트 조회 메서드
+     * @return 게시글 썸네일 리스트
+     */
+    @Override
+    public List<NewsListResponse> getNewsList() {
+
+        /* 게시글 리스트 조회  */
+        return ourNewsMapper.getNewsList();
     }
 
     /**
