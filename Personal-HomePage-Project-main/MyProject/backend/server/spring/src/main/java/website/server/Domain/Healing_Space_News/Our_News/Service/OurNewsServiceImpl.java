@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
 import website.server.Domain.Healing_Space_News.Our_News.Mapper.OurNewsMapper;
 import website.server.Domain.Healing_Space_News.Our_News.Util.OurNews_Set_Image_Path;
 import website.server.Global.JWT.JwtService;
@@ -61,5 +62,17 @@ public class OurNewsServiceImpl implements OurNewsService{
 
         /* 게시글 삭제 */
         ourNewsMapper.deleteNews(ourNewsNumber);
+    }
+
+    /**
+     * 게시글 조회 메서드
+     * @param ourNewsNumber 조회하고자 하는 게시글의 고유 번호
+     * @return 게시글 정보
+     */
+    @Override
+    public GetNewsResponse getNews(Long ourNewsNumber) {
+
+        /* 게시글 조회 */
+        return ourNewsMapper.getNews(ourNewsNumber);
     }
 }

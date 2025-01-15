@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
 import website.server.Domain.Healing_Space_News.Our_News.Service.OurNewsService;
 
 @Slf4j
@@ -20,7 +21,9 @@ public class OurNewsController {
 
     private final OurNewsService ourNewsService;
 
+    ////////////////////
     /* ADMIN FUNCTION */
+    ////////////////////
 
     /**
      * 게시글 업로드 API
@@ -61,11 +64,26 @@ public class OurNewsController {
         return ResponseEntity.ok("게시글 삭제 성공");
     }
 
+    ///////////////////
+    /* USER FUNCTION */
+    ///////////////////
 
+    // todo :  사진 경로는 반환 성공 -> 하지만 이 경로값을 가지고 프론트에서 사진을 조회할 수 있나
+    /**
+     * 게시글 조회
+     * @param ourNewsNumber 조회하고자 하는 게시글 고유번호
+     * @return 게시글 조회 DTO
+     */
+    @Operation(summary = "", description = "")
+    @GetMapping("/{ourNewsNumber}")
+    public ResponseEntity<GetNewsResponse> getNews(@PathVariable("ourNewsNumber") Long ourNewsNumber){
 
-    /* USER FUNCTION  */
+        /* 게시글 조회 */
+        GetNewsResponse getNewsResponse =  ourNewsService.getNews(ourNewsNumber);
 
-    // 게시글 조회
+        return ResponseEntity.ok(getNewsResponse);
+    }
+
 
 
     // 게시글에 댓글 달기 기능
