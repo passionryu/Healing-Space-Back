@@ -22,11 +22,6 @@ import website.server.Global.JWT.JwtService;
 @Tag(name = "DEW Record", description = "Dew 레코드 서비스 API")
 public class DewController {
 
-    /*
-    * 서비스 흐름상 일기 수정은 없음, 일기는 하루에 한번씩만 저장
-    * 다시 한번 일기 작성 요청이 오면, "일기는 하루에 한번만 작성 가능합니다"라는 문구로 안내하기
-    * */
-
     private final DewService dewService;
     private final JwtService jwtService;
 
