@@ -59,5 +59,12 @@ public interface OurNewsMapper {
      */
     List<OurNewsCommentResponse> getComment(Long ourNewsNumber);
 
+    /**
+     * 댓글 삭제
+     * @param userNumber 사용자 고유 번호
+     * @param commentId 삭제하고자 하는 댓글의 고유번호
+     */
+    void deleteComment(@Param("userNumber") Long userNumber,
+                       @Param("commentId")Long commentId);
 
 }

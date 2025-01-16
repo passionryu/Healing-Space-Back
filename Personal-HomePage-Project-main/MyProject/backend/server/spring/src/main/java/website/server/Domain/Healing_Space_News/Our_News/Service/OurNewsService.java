@@ -6,7 +6,6 @@ import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsReq
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.OurNewsCommentResponse;
-
 import java.util.List;
 
 public interface OurNewsService {
@@ -52,6 +51,12 @@ public interface OurNewsService {
      */
     List<OurNewsCommentResponse> getComment(HttpServletRequest request,Long ourNewNumber);
 
+    /**
+     * 댓글 삭제 메서드
+     * @param request 사용자 요청
+     * @param commentId 삭제하고자 하는 댓글의 고유번호
+     */
+    void deleteComment(HttpServletRequest request, Long commentId);
 
 
 }

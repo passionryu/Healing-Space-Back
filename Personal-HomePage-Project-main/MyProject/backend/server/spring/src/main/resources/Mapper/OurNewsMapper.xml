@@ -78,4 +78,14 @@
 
     </select>
 
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment">
+        DELETE
+
+        FROM
+            our_news_comment
+        WHERE
+            userNumber = #{userNumber} AND commentId =#{commentId}
+    </delete>
+
 </mapper>

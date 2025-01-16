@@ -145,13 +145,18 @@ public class OurNewsController {
      * @param commentId 삭제하고자 하는 댓글의 고유번호
      * @return 삭제 성공 메시지
      */
-    @Operation(summary = "",description = "")
-    @DeleteMapping("/ournews/comment/{commentId}")
+    @Operation(summary = "댓글 삭제 API",description = "")
+    @DeleteMapping("/comment/{commentId}")
     public ResponseEntity<String> deleteComment(HttpServletRequest request,
                                                 @PathVariable("commentId") Long commentId){
 
-        return null;
+        /* 댓글 삭제 */
+        ourNewsService.deleteComment(request,commentId);
+
+        return ResponseEntity.ok("댓글 삭제 성공");
     }
+
+
 
     // 게시글 조회 시 조회수 증가 - Ver2 to be continue
     // 게시글 수정 - Ver2 to be continue

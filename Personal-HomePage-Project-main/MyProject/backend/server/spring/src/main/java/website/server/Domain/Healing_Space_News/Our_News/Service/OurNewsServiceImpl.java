@@ -121,4 +121,20 @@ public class OurNewsServiceImpl implements OurNewsService{
         /* 댓글 리스트 반환 */
         return ourNewsMapper.getComment(ourNewNumber);
     }
+
+    /**
+     * 댓글 삭제 메서드
+     * @param request 사용자 요청
+     * @param commentId 삭제하고자 하는 댓글의 고유번호
+     */
+    @Override
+    public void deleteComment(HttpServletRequest request, Long commentId) {
+
+        /* 사용자 고유 번호 추출 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 댓글 삭제 */
+        ourNewsMapper.deleteComment(userNumber,commentId);
+
+    }
 }
