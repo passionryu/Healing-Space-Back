@@ -1,6 +1,7 @@
 package website.server.Domain.Healing_Space_News.Our_News.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostCommentRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
@@ -34,6 +35,13 @@ public interface OurNewsService {
      * @return 게시글 정보
      */
     GetNewsResponse getNews(Long ourNewsNumber);
+
+    /**
+     * 댓글 달기 API
+     * @param request 사용자 요청
+     * @param postCommentRequest 댓글 업로드 요청 데이터
+     */
+    void postComment(HttpServletRequest request, PostCommentRequest postCommentRequest);
 
 
 }

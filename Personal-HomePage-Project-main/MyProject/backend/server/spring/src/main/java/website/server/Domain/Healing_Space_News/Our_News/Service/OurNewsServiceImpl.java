@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostCommentRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
@@ -87,5 +88,23 @@ public class OurNewsServiceImpl implements OurNewsService{
 
         /* 게시글 조회 */
         return ourNewsMapper.getNews(ourNewsNumber);
+    }
+
+    /**
+     * 댓글 달기 API
+     * @param request 사용자 요청
+     * @param postCommentRequest 댓글 업로드 요청 데이터
+     */
+    @Override
+    public void postComment(HttpServletRequest request, PostCommentRequest postCommentRequest) {
+
+        /*  our_news_comment DB테이블에 저장할 정보 추출 */
+         Long userNumber = jwtService.extractUserNumberFromRequest(request);
+         Long ourNewsNumber = postCommentRequest.ourNewsNumber();
+         String content = postCommentRequest.content();
+
+         /* 댓글 저장 */
+         ourNewsMapper.postComment(userNumber,ourNewsNumber,content);
+
     }
 }

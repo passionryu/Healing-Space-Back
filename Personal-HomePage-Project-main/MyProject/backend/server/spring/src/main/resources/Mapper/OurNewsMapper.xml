@@ -50,5 +50,14 @@
             ournews.ourNewsNumber =#{ourNewsNumber}
     </select>
 
+    <!-- 힐링 메시지에 댓글 달기 메서드 -->
+    <insert id="postComment" parameterType="map">
+
+        INSERT INTO our_news_comment (ourNewsNumber, userNumber, content, createdDate)
+        VALUES (#{ourNewsNumber}, #{userNumber}, #{content}, NOW())
+
+    </insert>
+
+
 
 </mapper>

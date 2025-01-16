@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostCommentRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
@@ -85,7 +86,8 @@ public class OurNewsController {
         return ResponseEntity.ok(newsListResponseList);
     }
 
-    // todo :  사진 경로는 반환 성공 -> 하지만 이 경로값을 가지고 프론트에서 사진을 조회할 수 있나
+    // 사진 경로는 반환 성공
+    // 하지만 이 경로값을 가지고 프론트에서 사진을 조회할 수 있는지 확인할 것
     /**
      * 게시글 조회
      * @param ourNewsNumber 조회하고자 하는 게시글 고유번호
@@ -101,14 +103,27 @@ public class OurNewsController {
         return ResponseEntity.ok(getNewsResponse);
     }
 
+    /**
+     * 댓글 달기 API
+     * @param request 사용자 요청
+     * @param postCommentRequest 댓글 업로드 요청 데이터
+     * @return 댓글 업로드 성공 메시지
+     */
+    @Operation(summary = "댓글 달기 API", description = "")
+    @PostMapping("/comment")
+    public ResponseEntity<String> postComment(HttpServletRequest request,
+                                              @RequestBody PostCommentRequest postCommentRequest){
 
+        /* 댓글 달기 */
+        ourNewsService.postComment(request,postCommentRequest);
 
-    // 게시글에 댓글 달기 기능
+        return ResponseEntity.ok("댓글 업로드 성공");
+    }
 
+    // 게시글에 댓글 조회 기능
 
 
     // 게시글 댓글 삭제 기능
-
 
     // 게시글 조회 시 조회수 증가 - Ver2 to be continue
     // 게시글 수정 - Ver2 to be continue

@@ -41,4 +41,14 @@ public interface OurNewsMapper {
      */
     GetNewsResponse getNews(Long ourNewsNumber);
 
+    /**
+     * 댓글 달기
+     * @param userNumber
+     * @param ourNewsNumber
+     * @param content
+     */
+    void postComment(@Param("userNumber")Long userNumber,
+                     @Param("ourNewsNumber") Long ourNewsNumber,
+                     @Param("content") String content);
+
 }
