@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.OurNewsCommentResponse;
 
 import java.util.List;
 
@@ -43,12 +44,20 @@ public interface OurNewsMapper {
 
     /**
      * 댓글 달기
-     * @param userNumber
-     * @param ourNewsNumber
-     * @param content
+     * @param userNumber 사용자 고유 번호
+     * @param ourNewsNumber 댓글을 달고자 하는 게시글 고유번호
+     * @param content 댓글 본문
      */
     void postComment(@Param("userNumber")Long userNumber,
                      @Param("ourNewsNumber") Long ourNewsNumber,
                      @Param("content") String content);
+
+    /**
+     * 댓글 조회
+     * @param ourNewsNumber 댓글을 조회하고자 하는 게시글의 고유번호
+     * @return 댓글 리스트 반환
+     */
+    List<OurNewsCommentResponse> getComment(Long ourNewsNumber);
+
 
 }

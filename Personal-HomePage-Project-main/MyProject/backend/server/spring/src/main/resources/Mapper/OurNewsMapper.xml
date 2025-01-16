@@ -50,7 +50,7 @@
             ournews.ourNewsNumber =#{ourNewsNumber}
     </select>
 
-    <!-- 힐링 메시지에 댓글 달기 메서드 -->
+    <!-- 댓글 달기 -->
     <insert id="postComment" parameterType="map">
 
         INSERT INTO our_news_comment (ourNewsNumber, userNumber, content, createdDate)
@@ -58,6 +58,24 @@
 
     </insert>
 
+    <!-- 댓글 조회 -->
+    <select id="getComment" resultType="website.server.Domain.Healing_Space_News.Our_News.DTO.Response.OurNewsCommentResponse">
 
+        SELECT
+            onc.commentId,
+            m.profile_image_path,
+            m.nickname,
+            onc.content,
+            onc.createdDate
+        FROM
+            our_news_comment onc
+        JOIN
+            member m
+        ON
+            onc.userNumber =m.userNumber
+        WHERE
+            onc.ourNewsNumber=#{ourNewsNumber}
+
+    </select>
 
 </mapper>

@@ -5,6 +5,7 @@ import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostComment
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Request.PostNewsRequest;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.GetNewsResponse;
 import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse;
+import website.server.Domain.Healing_Space_News.Our_News.DTO.Response.OurNewsCommentResponse;
 
 import java.util.List;
 
@@ -37,11 +38,20 @@ public interface OurNewsService {
     GetNewsResponse getNews(Long ourNewsNumber);
 
     /**
-     * 댓글 달기 API
+     * 댓글 달기 메서드
      * @param request 사용자 요청
      * @param postCommentRequest 댓글 업로드 요청 데이터
      */
     void postComment(HttpServletRequest request, PostCommentRequest postCommentRequest);
+
+    /**
+     * 댓글 조회 메서드
+     * @param request 사용자 요청
+     * @param ourNewNumber 댓글을 조회하고자 하는 게시글 고유 번호
+     * @return 댓글 리스트 반환
+     */
+    List<OurNewsCommentResponse> getComment(HttpServletRequest request,Long ourNewNumber);
+
 
 
 }
