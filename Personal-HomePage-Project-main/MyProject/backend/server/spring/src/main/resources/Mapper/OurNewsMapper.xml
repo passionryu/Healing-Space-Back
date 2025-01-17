@@ -19,6 +19,7 @@
     <!-- 게시글 썸네일 리스트 조회 -->
     <select id="getNewsList" resultType="website.server.Domain.Healing_Space_News.Our_News.DTO.Response.NewsListResponse">
         SELECT
+            ournews.ourNewsNumber,
             ournews.title,
             m.nickname,
             ournews.createdDate

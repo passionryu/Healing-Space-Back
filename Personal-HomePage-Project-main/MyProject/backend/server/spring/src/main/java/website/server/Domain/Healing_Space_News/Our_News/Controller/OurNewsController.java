@@ -73,6 +73,7 @@ public class OurNewsController {
     /* USER FUNCTION */
     ///////////////////
 
+    // API Connection Complete
     /**
      * 게시글 리스트 조회 API
      * @return 게시글 썸네일 리스트
@@ -89,6 +90,8 @@ public class OurNewsController {
 
     // 사진 경로는 반환 성공
     // 하지만 이 경로값을 가지고 프론트에서 사진을 조회할 수 있는지 확인할 것
+
+    // API Connection Complete
     /**
      * 게시글 조회
      * @param ourNewsNumber 조회하고자 하는 게시글 고유번호

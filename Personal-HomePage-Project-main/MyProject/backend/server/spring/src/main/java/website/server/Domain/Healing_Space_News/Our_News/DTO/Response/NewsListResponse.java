@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public record NewsListResponse(
 
+        Long ourNewsNumber,
         String title,
         String nickName,
         LocalDateTime createdDate
