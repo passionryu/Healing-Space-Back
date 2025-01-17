@@ -44,6 +44,7 @@ public class SecurityConfig {
                         requestMatchers("/auth/logout").permitAll().
                         requestMatchers("/dew/diary").permitAll().
                         requestMatchers("/error").permitAll().
+                        requestMatchers("/resources/images/**").permitAll().
 
                         /*Swagger 무권한 접근 허용*/
                         requestMatchers("/swagger-ui.html").permitAll().

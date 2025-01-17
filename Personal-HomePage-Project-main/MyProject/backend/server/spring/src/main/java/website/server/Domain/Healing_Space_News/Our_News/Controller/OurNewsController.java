@@ -30,6 +30,7 @@ public class OurNewsController {
     /* ADMIN FUNCTION */
     ////////////////////
 
+    // API Connection Complete
     /**
      * 게시글 업로드 API
      * @param request 사용자 요청
@@ -107,6 +108,7 @@ public class OurNewsController {
         return ResponseEntity.ok(getNewsResponse);
     }
 
+    // API Connection Complete
     /**
      * 댓글 달기 API
      * @param request 사용자 요청
@@ -124,6 +126,7 @@ public class OurNewsController {
         return ResponseEntity.ok("댓글 업로드 성공");
     }
 
+    // API Connection Complete
     /**
      * 댓글 조회 API
      * @param request 사용자 요청
@@ -142,6 +145,7 @@ public class OurNewsController {
     }
 
 
+    // API Connection Complete
     /**
      * 댓글 삭제 API
      * @param request 사용자 요청
