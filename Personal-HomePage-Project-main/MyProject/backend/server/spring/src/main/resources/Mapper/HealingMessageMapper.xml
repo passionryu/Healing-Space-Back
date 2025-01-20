@@ -257,4 +257,10 @@
 
     </select>
 
+    <!-- 힐링 메시지 댓글 삭제 -->
+    <delete id="deleteComment" >
+
+        DELETE FROM healing_message_comment
+        WHERE userNumber =#{userNumber} AND commentId=#{commentId}
+    </delete>
 </mapper>

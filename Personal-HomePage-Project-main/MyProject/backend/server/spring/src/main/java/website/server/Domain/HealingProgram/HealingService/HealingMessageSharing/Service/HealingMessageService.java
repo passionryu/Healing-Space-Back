@@ -91,8 +91,13 @@ public interface HealingMessageService {
      */
     List<CommentResponse> getComment(HttpServletRequest request, Long messageId);
 
+    /**
+     * 힐링 메시지 댓글 삭제 메서드
+     * @param request 사용자 요청
+     * @param commentId 삭제하고자 하는 댓글의 고유번호
+     */
     void deleteCommentId(HttpServletRequest request, Long commentId);
 
-    /* 힐링 메시지 수정하기*/
+    /* 힐링 메시지 수정하기 */
 }
 

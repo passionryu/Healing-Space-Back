@@ -206,9 +206,11 @@ public class HealingMessageController {
     public ResponseEntity<String> deleteComment(HttpServletRequest request,
                                                 @PathVariable("commentId") Long commentId){
 
-        return ResponseEntity.ok("메시지 삭제 성공 ");
-    }
+        /* 힐링 메시지 댓글 삭제 */
+        healingMessageService.deleteCommentId(request,commentId);
 
+        return ResponseEntity.ok("메시지 삭제 성공");
+    }
 
     /* 힐링 메시지 수정하기 - 추후 ver 2 업그레이드 */
 

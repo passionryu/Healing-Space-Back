@@ -126,6 +126,14 @@ public interface HealingMessageMapper {
      */
     List<CommentResponse> getComment(Long messageId);
 
+    /**
+     * 힐링 메시지 댓글 삭제
+     * @param userNumber 사용자 고유번호
+     * @param commentId 삭제하고자 하는 댓글의 고유번호
+     */
+    void deleteComment(@Param("userNumber") Long userNumber,
+                       @Param("commentId") Long commentId);
+
     /* 힐링 메시지 수정하기 */
 
 }

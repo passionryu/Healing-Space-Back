@@ -186,7 +186,7 @@ public class HealingMessageServiceImpl implements HealingMessageService{
     }
 
     /**
-     * 힐링 메시지에서  댓글 조회 API
+     * 힐링 메시지에서  댓글 조회 메서드
      * @param request 사용자 요청
      * @param messageId 댓글을 조회하고자 하는 힐링 메시지 고유 번호
      * @return CommentResponse DTO
@@ -200,5 +200,19 @@ public class HealingMessageServiceImpl implements HealingMessageService{
         return commentResponsesList;
     }
 
+    /**
+     * 힐링 메시지 댓글 삭제 메서드
+     * @param request 사용자 요청
+     * @param commentId 삭제하고자 하는 댓글의 고유번호
+     */
+    @Override
+    public void deleteCommentId(HttpServletRequest request, Long commentId) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 힐링 메시지 댓글 삭제 */
+        healingMessageMapper.deleteComment(userNumber,commentId);
+    }
 
 }
