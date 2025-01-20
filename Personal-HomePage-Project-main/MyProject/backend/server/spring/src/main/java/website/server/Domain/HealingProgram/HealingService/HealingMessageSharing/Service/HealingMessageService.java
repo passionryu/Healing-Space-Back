@@ -91,6 +91,8 @@ public interface HealingMessageService {
      */
     List<CommentResponse> getComment(HttpServletRequest request, Long messageId);
 
+    void deleteCommentId(HttpServletRequest request, Long commentId);
+
     /* 힐링 메시지 수정하기 */
 }
 

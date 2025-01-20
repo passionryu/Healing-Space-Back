@@ -8,5 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("website.server.Domain.HealingProgram.HealingService.DewRecord.Mapper")
 @MapperScan("website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Mapper")
 @MapperScan("website.server.Domain.Healing_Space_News.Our_News.Mapper")
+@MapperScan("website.server.Domain.HealingProgram.HealingStore.Mapper")
 public class Appconfig {
 }
