@@ -93,6 +93,6 @@ public interface HealingMessageService {
 
     void deleteCommentId(HttpServletRequest request, Long commentId);
 
-    /* 힐링 메시지 수정하기 */
+    /* 힐링 메시지 수정하기*/
 }
 

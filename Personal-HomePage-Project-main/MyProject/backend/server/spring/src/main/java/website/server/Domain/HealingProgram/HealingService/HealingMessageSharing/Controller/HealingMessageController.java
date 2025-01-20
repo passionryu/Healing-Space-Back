@@ -206,7 +206,7 @@ public class HealingMessageController {
     public ResponseEntity<String> deleteComment(HttpServletRequest request,
                                                 @PathVariable("commentId") Long commentId){
 
-        return ResponseEntity.ok("메시지 삭제 성공");
+        return ResponseEntity.ok("메시지 삭제 성공 ");
     }
 
 
