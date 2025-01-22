@@ -15,7 +15,7 @@ public class OurNews_Set_Image_Path {
     //private final Path uploadDir = Paths.get(System.getProperty("user.home"), "uploads", "images");
 
     /* 사진 저장 선택지 2 : 서버  */
-    private final Path uploadDir = Paths.get("C:/Users/류성열/Desktop/Personal-HomePage-Project-main/Personal-HomePage-Project-main/MyProject/backend/server/spring/src/main/resources/static/images/OurNews");
+    private final Path uploadDir = Paths.get("C:/Users/rsy/Desktop/Personal-HomePage-Project-main/Personal-HomePage-Project-main/MyProject/backend/server/spring/src/main/resources/static/images/OurNews");
 
     /* 사진 저장 선택지 3 :리엑트에서도 접근 가능하게 설정 */
     //private final Path uploadDir = Paths.get("src", "main", "resources", "static", "images", "OurNews");
@@ -46,7 +46,7 @@ public class OurNews_Set_Image_Path {
             file.transferTo(destinationPath.toFile());
 
             // 저장된 파일 경로 반환
-            return destinationPath.toString();
+            return uniqueFilename;
 
     }
 }

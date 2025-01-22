@@ -50,6 +50,18 @@ public interface MemberMapper {
     MyInformationResponse getMyInfo(Long userNumber);
 
     /**
+     * 프로필 사진 수정
+     * @param userNumber 사용자 고유 번호
+     * @param filePath 프로필 사진 경로
+     */
+    void putProfileImage(@Param("userNumber") Long userNumber ,
+                         @Param("filePath") String filePath);
+
+    //////////////
+    /* Not Used */
+    //////////////
+
+    /**
      * 사용자 고유 번호로 프로필 정보 수정
      * @param userNumber 사용자 고유 번호
      */

@@ -68,6 +68,16 @@
             userNumber = #{userNumber}
     </select>
 
+    <!-- 내 프로필 사진 수정 -->
+    <update id="putProfileImage">
+        UPDATE member
+        SET
+            profile_image_path = #{filePath}
+        WHERE
+            userNumber = #{userNumber}
+
+    </update>
+
     <!-- 내 프로필 수정 -->
     <update id="changeMyInfo">
         UPDATE member
