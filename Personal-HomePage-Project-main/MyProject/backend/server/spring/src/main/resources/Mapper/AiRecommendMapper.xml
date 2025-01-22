@@ -3,4 +3,38 @@
 
 <mapper namespace="website.server.Domain.HealingProgram.AiRecommend.Mapper.AiRecommendMapper">
 
+    <!-- 추천 메시지 저장 -->
+    <insert id="saveAiRecommend">
+        INSERT INTO ai_recommend_message (userNumber, title, content, date)
+        VALUES (#{userNumber}, #{title}, #{content}, CURRENT_TIMESTAMP)
+    </insert>
+
+    <!-- 추천 메시지 리스트 조회 -->
+    <select id="getAiRecommendList" resultType="website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseList">
+        SELECT
+            title AS title,
+            date AS createdDate
+        FROM ai_recommend_message
+        WHERE userNumber = #{userNumber}
+        ORDER BY date DESC
+    </select>
+
+    <!-- 추천 메시지 상세 조회 -->
+    <select id="getAiRecommendDetail" resultType="website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseDetail">
+        SELECT
+            title,
+            content,
+            date AS dateTime
+        FROM
+            ai_recommend_message
+        WHERE
+            AiRecommendMessageId = #{AiRecommendMessageId}
+    </select>
+
+    <!-- 추천 메시지 삭제 -->
+    <delete id="deleteAiRecommend">
+        DELETE FROM ai_recommend_message
+        WHERE AiRecommendMessageId = #{AiRecommendMessageId}
+    </delete>
+
 </mapper>
