@@ -1,9 +1,9 @@
-package website.server.Domain.HealingProgram.AiRecommend.Service;
+package website.server.Domain.HealingProgram.AiService.AiRecommend.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponse;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseDetail;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseList;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseDetail;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseList;
 
 import java.util.List;
 

@@ -1,14 +1,14 @@
-package website.server.Domain.HealingProgram.AiRecommend.Service;
+package website.server.Domain.HealingProgram.AiService.AiRecommend.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.stereotype.Service;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponse;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseDetail;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseList;
-import website.server.Domain.HealingProgram.AiRecommend.Mapper.AiRecommendMapper;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseDetail;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseList;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.Mapper.AiRecommendMapper;
 import website.server.Global.JWT.JwtService;
 import java.util.List;
 

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.Mapper")
 @MapperScan("website.server.Domain.Healing_Space_News.Our_News.Mapper")
 @MapperScan("website.server.Domain.HealingProgram.HealingStore.Mapper")
-@MapperScan("website.server.Domain.HealingProgram.AiRecommend.Mapper")
+@MapperScan("website.server.Domain.HealingProgram.AiService.AiRecommend.Mapper")
+@MapperScan("website.server.Domain.HealingProgram.AiService.AiSnapShot.Mapper")
 public class Appconfig {
 }

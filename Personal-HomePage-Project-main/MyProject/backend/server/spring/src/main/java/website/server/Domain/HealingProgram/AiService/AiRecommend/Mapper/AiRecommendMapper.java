@@ -1,9 +1,9 @@
-package website.server.Domain.HealingProgram.AiRecommend.Mapper;
+package website.server.Domain.HealingProgram.AiService.AiRecommend.Mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseDetail;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseList;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseDetail;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseList;
 import java.util.List;
 
 @Mapper

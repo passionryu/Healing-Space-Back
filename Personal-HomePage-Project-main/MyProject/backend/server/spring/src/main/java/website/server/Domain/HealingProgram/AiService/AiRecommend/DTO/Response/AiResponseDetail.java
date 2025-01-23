@@ -1,4 +1,4 @@
-package website.server.Domain.HealingProgram.AiRecommend.DTO.Response;
+package website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response;
 
 import java.time.LocalDateTime;
 

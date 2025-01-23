@@ -1,4 +1,4 @@
-package website.server.Domain.HealingProgram.AiRecommend.Controller;
+package website.server.Domain.HealingProgram.AiService.AiRecommend.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponse;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseDetail;
-import website.server.Domain.HealingProgram.AiRecommend.DTO.Response.AiResponseList;
-import website.server.Domain.HealingProgram.AiRecommend.Service.AiRecommendService;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseDetail;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseList;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.Service.AiRecommendService;
 
 import java.util.List;
 
