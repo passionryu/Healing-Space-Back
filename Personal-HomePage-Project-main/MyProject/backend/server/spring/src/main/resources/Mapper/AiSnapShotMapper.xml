@@ -21,4 +21,17 @@
             userNumber =#{userNumber}
     </select>
 
+    <!-- 응답 메시지 상세 조회 -->
+    <select id="getAiResponseDetail" resultType="website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseDetail">
+
+        SELECT
+            title,
+            datetime,
+            aiResponse
+        FROM
+            ai_response
+        WHERE
+            aiResponseNumber = #{aiResponseNumber}
+    </select>
+
 </mapper>

@@ -2,6 +2,7 @@ package website.server.Domain.HealingProgram.AiService.AiSnapShot.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseDetail;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseList;
 
 import java.util.List;
@@ -37,7 +38,12 @@ public interface AiSnapShotService {
      */
     List<AiResponseList> getAiResponseList(HttpServletRequest request);
 
-    /* 레포트 상세 조회 메서드 */
+    /**
+     * 레포트 상세 조회 메서드
+     * @param aiResponseNumber 상세 조회하고자 하는 응답 메시지 고유 번호
+     * @return 응답 메시지 상세 데이터 반환
+     */
+    AiResponseDetail getAiResponseDetail(Long aiResponseNumber);
 
     /* 레포트 삭제 메서드 */
 

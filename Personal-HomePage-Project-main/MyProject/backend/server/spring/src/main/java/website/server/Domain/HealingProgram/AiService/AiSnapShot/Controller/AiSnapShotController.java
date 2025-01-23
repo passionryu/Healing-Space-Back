@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Request.AiRequest;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseDetail;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseList;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.Service.AiSnapShotService;
 
@@ -88,8 +89,23 @@ public class AiSnapShotController {
         return ResponseEntity.ok(aiResponseList);
     }
 
-    /* 레포트 상세 조회 API */
+    /**
+     * 응답 메시지 상세 조회 API
+     * @param aiResponseNumber 상세 조회 하고자 하는 응답 메시지 고유번호
+     * @return 응답 메시지 상세 데이터 반환
+     */
+    @Operation(summary = "",description = "")
+    @GetMapping("/{aiResponseNumber}")
+    public ResponseEntity<AiResponseDetail> getAiResponseDetail(@PathVariable("aiResponseNumber") Long aiResponseNumber){
+
+        /* 응답 메시지 상세 데이터 반환 */
+        AiResponseDetail aiResponseDetail = aiSnapShotService.getAiResponseDetail(aiResponseNumber);
+
+        return ResponseEntity.ok(aiResponseDetail);
+    }
+
 
     /* 레포트 삭제 API */
+
 
 }
