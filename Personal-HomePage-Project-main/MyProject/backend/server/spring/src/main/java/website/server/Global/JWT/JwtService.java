@@ -88,6 +88,18 @@ public class JwtService {
     }
 
     /**
+     * 사용자 요청으로부터 유저 닉네임 추출
+     * @param request
+     * @return
+     */
+    public String extractNickNameFromRequest(HttpServletRequest request){
+
+        String AccessToken = extractAccessToken(request);
+
+        return extractUsername(AccessToken);
+    }
+
+    /**
      * jwt 토큰에서 유저 네임 추출
      * @param token JWT 토큰
      * @return 사용자의 이름
