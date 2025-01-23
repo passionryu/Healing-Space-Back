@@ -21,7 +21,7 @@ public class AiSnapShotController {
     private final AiSnapShotService aiSnapShotService;
 
     /**
-     * 사용자 답변 저장 API
+     * 사용자 답변을 Redis에 임시 저장하는 API
      * @param request 사용자 요청
      * @param aiRequest 질문 번호 + 답변 내용
      * @return Redis에 답변 저장 완료 메시지
@@ -39,7 +39,7 @@ public class AiSnapShotController {
     }
 
     /**
-     * 답변 최종 회수 후 AI 연산 API
+     * Redis에서 사용자 답변 전원 회수 후 AI 작업 API
      * @param request 사용자 요청
      * @return AI 응답 메시지 반환
      */
@@ -71,6 +71,7 @@ public class AiSnapShotController {
     }
 
     /* 레포트 리스트 조회 API */
+
 
     /* 레포트 상세 조회 API */
 
