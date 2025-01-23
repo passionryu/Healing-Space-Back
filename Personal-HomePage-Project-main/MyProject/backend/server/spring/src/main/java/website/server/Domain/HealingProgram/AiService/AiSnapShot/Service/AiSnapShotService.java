@@ -2,6 +2,9 @@ package website.server.Domain.HealingProgram.AiService.AiSnapShot.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseList;
+
+import java.util.List;
 
 public interface AiSnapShotService {
 
@@ -27,7 +30,12 @@ public interface AiSnapShotService {
      */
     void saveAiReport(HttpServletRequest request,AiResponse aiResponse);
 
-    /* 레포트 리스트 조회 메서드 */
+    /**
+     * 응답 메시지 리스트 조회 메서드
+     * @param request 사용자 요청
+     * @return 응답 메시지 리스트 반환
+     */
+    List<AiResponseList> getAiResponseList(HttpServletRequest request);
 
     /* 레포트 상세 조회 메서드 */
 

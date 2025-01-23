@@ -6,10 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.stereotype.Service;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseList;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.Mapper.AiSnapShotMapper;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.Util.MessageUtil;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.Util.RedisUtil;
 import website.server.Global.JWT.JwtService;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -83,11 +86,27 @@ public class AiSnapShotServiceImpl implements AiSnapShotService {
         /* aiResponse에서 불필요한 문자열 정제 작업 */
         String purifiedAiResponse = messageUtil.aiResponsePurifier(aiResponseToString);
 
+        /* 응답 메시지의 제목 생성 */
+        String title = chatClient.call(purifiedAiResponse) + " -> 이 메시지에 어울리는 제목만 한줄로 출력하라.";
+
         /* aiResponse를 DB에 저장 */
-        aiSnapShotMapper.saveAiReport(userNumber,purifiedAiResponse);
+        aiSnapShotMapper.saveAiReport(userNumber,title,purifiedAiResponse);
     }
 
-    /* 레포트 리스트 조회 메서드 */
+    /**
+     * 응답 메시지 리스트 조회 메서드
+     * @param request 사용자 요청
+     * @return 응답 메시지 리스트 반환
+     */
+    @Override
+    public List<AiResponseList> getAiResponseList(HttpServletRequest request) {
+
+        /* 사용자 고유번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 응답 메시지 리스트 반환 */
+        return aiSnapShotMapper.getAiResponseList(userNumber);
+    }
 
     /* 레포트 상세 조회 메서드 */
 

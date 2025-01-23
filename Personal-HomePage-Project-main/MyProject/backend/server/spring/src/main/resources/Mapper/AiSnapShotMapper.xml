@@ -3,10 +3,22 @@
 
 <mapper namespace="website.server.Domain.HealingProgram.AiService.AiSnapShot.Mapper.AiSnapShotMapper">
 
+    <!-- 레포트 저장 -->
     <insert id="saveAiReport" parameterType="map">
-        INSERT INTO ai_response (userNumber, aiResponse, datetime)
-        VALUES (#{userNumber}, #{aiResponse}, NOW())
+        INSERT INTO ai_response (userNumber,title, aiResponse, datetime)
+        VALUES (#{userNumber}, #{title},#{aiResponse}, NOW())
     </insert>
 
+    <!-- 응답 메시지 리스트 조회 -->
+    <select id="getAiResponseList" resultType="website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseList">
+        SELECT
+            aiResponseNumber,
+            title,
+            datetime
+        FROM
+            ai_response
+        WHERE
+            userNumber =#{userNumber}
+    </select>
 
 </mapper>

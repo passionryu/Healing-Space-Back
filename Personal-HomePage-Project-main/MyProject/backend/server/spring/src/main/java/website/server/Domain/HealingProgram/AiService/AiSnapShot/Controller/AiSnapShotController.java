@@ -9,7 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Request.AiRequest;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponse;
+import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseList;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.Service.AiSnapShotService;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -70,8 +73,20 @@ public class AiSnapShotController {
         return ResponseEntity.ok("저장 완료");
     }
 
-    /* 레포트 리스트 조회 API */
+    /**
+     * 응답 메시지 리스트 조회 API
+     * @param request 사용자 요청
+     * @return 응답 메시지 리스트
+     */
+    @Operation(summary = "",description = "")
+    @GetMapping("/list")
+    public ResponseEntity<List<AiResponseList>> getAiResponseList(HttpServletRequest request){
 
+        /* 응답 메시지 리스트 반환 */
+        List<AiResponseList> aiResponseList = aiSnapShotService.getAiResponseList(request);
+
+        return ResponseEntity.ok(aiResponseList);
+    }
 
     /* 레포트 상세 조회 API */
 
