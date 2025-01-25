@@ -45,7 +45,7 @@ public interface MemberMapper {
     /**
      * 사용자 고유 번호로 프로필 정보 조회
      * @param userNumber 사용자 고유 번호
-     * @return 프로필 정보 DTO(이미지 경로,사용자 ID, 인트로 )
+     * @return 프로필 정보 DTO(이미지 경로,사용자 ID, 유저 네임 )
      */
     MyInformationResponse getMyInfo(Long userNumber);
 

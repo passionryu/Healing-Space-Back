@@ -4,6 +4,6 @@ public record MyInformationResponse(
 
         String ProfileImagePath,
         String nickName,
-        String intro
+        String username
 ) {
 }
