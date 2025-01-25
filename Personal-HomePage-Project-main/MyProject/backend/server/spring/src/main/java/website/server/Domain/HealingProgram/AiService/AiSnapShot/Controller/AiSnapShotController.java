@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Request.AiRequest;
@@ -79,7 +80,7 @@ public class AiSnapShotController {
      * @param request 사용자 요청
      * @return 응답 메시지 리스트
      */
-    @Operation(summary = "",description = "")
+    @Operation(summary = "응답 메시지 리스트 조회 API",description = "")
     @GetMapping("/list")
     public ResponseEntity<List<AiResponseList>> getAiResponseList(HttpServletRequest request){
 
@@ -94,7 +95,7 @@ public class AiSnapShotController {
      * @param aiResponseNumber 상세 조회 하고자 하는 응답 메시지 고유번호
      * @return 응답 메시지 상세 데이터 반환
      */
-    @Operation(summary = "",description = "")
+    @Operation(summary = "응답 메시지 상세 조회 API",description = "")
     @GetMapping("/{aiResponseNumber}")
     public ResponseEntity<AiResponseDetail> getAiResponseDetail(@PathVariable("aiResponseNumber") Long aiResponseNumber){
 
@@ -104,8 +105,20 @@ public class AiSnapShotController {
         return ResponseEntity.ok(aiResponseDetail);
     }
 
+    /**
+     * AI 응답 메시지 삭제 API
+     * @param aiResponseNumber 삭제하고자 하는 응답 메시지
+     * @return 응답 메시지 삭제 완료 메시지
+     */
+    @Operation(summary = "AI 응답 메시지 삭제 API",description = "")
+    @DeleteMapping("/{aiResponseNumber}")
+    public ResponseEntity<String> deleteAiResponseMessage(@PathVariable("aiResponseNumber") Long aiResponseNumber){
 
-    /* 레포트 삭제 API */
+        /* AI 응답 메시지 삭제 */
+        aiSnapShotService.deleteAiResponse(aiResponseNumber);
+
+        return ResponseEntity.ok(aiResponseNumber + "번 AI응답 메시지 삭제 완료");
+    }
 
 
 }

@@ -45,6 +45,10 @@ public interface AiSnapShotService {
      */
     AiResponseDetail getAiResponseDetail(Long aiResponseNumber);
 
-    /* 레포트 삭제 메서드 */
+    /**
+     * AI 응답 메시지 삭제 메서드
+     * @param aiResponseNumber 삭제하고자 하는 응답 메시지
+     */
+    void deleteAiResponse(Long aiResponseNumber);
 
 }

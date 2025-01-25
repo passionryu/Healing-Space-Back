@@ -34,4 +34,14 @@
             aiResponseNumber = #{aiResponseNumber}
     </select>
 
+    <delete id="deleteAiResponse">
+
+        DELETE
+        FROM
+            ai_response
+        WHERE
+            aiResponseNumber =#{aiResponseNumber}
+
+    </delete>
+
 </mapper>

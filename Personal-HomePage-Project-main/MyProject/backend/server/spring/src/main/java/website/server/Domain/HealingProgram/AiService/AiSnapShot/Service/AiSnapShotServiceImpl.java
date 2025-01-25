@@ -121,6 +121,16 @@ public class AiSnapShotServiceImpl implements AiSnapShotService {
         return aiSnapShotMapper.getAiResponseDetail(aiResponseNumber);
     }
 
-    /* 레포트 삭제 메서드 */
+    /**
+     * AI응답 메시지 삭제 메서드
+     * @param aiResponseNumber 삭제하고자 하는 응답 메시지
+     */
+    @Override
+    public void deleteAiResponse(Long aiResponseNumber) {
+
+        /* AI응답 메시지 삭제 */
+        aiSnapShotMapper.deleteAiResponse(aiResponseNumber);
+
+    }
 
 }

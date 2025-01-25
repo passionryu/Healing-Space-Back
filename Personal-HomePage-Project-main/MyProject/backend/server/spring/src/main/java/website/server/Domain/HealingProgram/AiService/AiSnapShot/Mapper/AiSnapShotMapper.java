@@ -32,4 +32,10 @@ public interface AiSnapShotMapper {
      * @return 응답 메시지 상세 데이터 반환
      */
     AiResponseDetail getAiResponseDetail(Long aiResponseNumber);
+
+    /**
+     * AI 응답 메시지 삭제
+     * @param aiResponseNumber
+     */
+    void deleteAiResponse(Long aiResponseNumber);
 }
