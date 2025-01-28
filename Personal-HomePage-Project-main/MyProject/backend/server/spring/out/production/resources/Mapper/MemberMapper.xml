@@ -61,7 +61,7 @@
         SELECT
             profile_image_path,
             nickname,
-            intro
+            username
         FROM
             member
         WHERE

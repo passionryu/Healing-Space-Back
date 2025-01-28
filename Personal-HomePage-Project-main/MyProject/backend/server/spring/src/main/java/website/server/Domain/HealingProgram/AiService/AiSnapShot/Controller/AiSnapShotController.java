@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Request.AiRequest;
@@ -13,7 +12,6 @@ import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.Ai
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseDetail;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.DTO.Response.AiResponseList;
 import website.server.Domain.HealingProgram.AiService.AiSnapShot.Service.AiSnapShotService;
-
 import java.util.List;
 
 @Slf4j
