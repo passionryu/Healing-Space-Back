@@ -2,6 +2,9 @@ package website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
+
+import java.util.List;
 
 @Mapper
 public interface HealingMusicSharingMapper {
@@ -20,4 +23,9 @@ public interface HealingMusicSharingMapper {
                              @Param("imagePath")String thumbnailUrl,
                              @Param("videoLink")String videoLink);
 
+    /**
+     * 게시판에서 힐링 뮤직 리스트 조회
+     * @return
+     */
+    List<HealingMusicListResponse> getHealingMusicList();
 }

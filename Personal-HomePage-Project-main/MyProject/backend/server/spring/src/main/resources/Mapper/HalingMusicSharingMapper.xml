@@ -17,4 +17,20 @@
         )
     </insert>
 
+    <!-- 게시판에서 힐링 뮤직 리스트 조회 -->
+    <select id="getHealingMusicList" resultType="website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse">
+
+        SELECT
+            hm.musicId,
+            hm.imagePath,
+            hm.title,
+            m.nickname,
+            hm.createdDate
+        FROM
+            healing_music hm
+        JOIN
+            member m
+        ON hm.userNumber = m.userNumber
+    </select>
+
 </mapper>

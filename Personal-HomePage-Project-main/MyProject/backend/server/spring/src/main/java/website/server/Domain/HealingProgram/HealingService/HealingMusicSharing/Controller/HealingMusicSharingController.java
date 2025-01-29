@@ -6,12 +6,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Service.HealingMusicSharingService;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -43,7 +43,21 @@ public class HealingMusicSharingController {
         return ResponseEntity.ok("힐링 뮤직 포스팅 성공");
     }
 
-    /* 게시판에서 힐링 뮤직 리스트 조회 API */
+    /**
+     * 게시판에서 힐링 뮤직 리스트 조회 API
+     * @return
+     */
+    @Operation(summary = "게시판에서 힐링 뮤직 리스트 조회 API",description = "")
+    @GetMapping("/list")
+    public ResponseEntity<List<HealingMusicListResponse>> getHealingMusicList(){
+
+        /* 힐링 뮤직 리스트 조회 */
+        List<HealingMusicListResponse> healingMusicListResponse = healingMusicSharingService.getHealingMusicList();
+
+        return ResponseEntity.ok(healingMusicListResponse);
+    }
+
+
     /* 게시판에서 힐링 뮤직 상세 조회 API */
     /* 힐링 뮤직 좋아요 누르기 */
 
