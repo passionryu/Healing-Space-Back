@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Mapper.HealingMusicSharingMapper;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Util.HealingMusicVideoLinkUtil;
 import website.server.Global.JWT.JwtService;
-
 import java.util.List;
 
 @Slf4j
@@ -17,8 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HealingMusicSharingServiceImpl implements  HealingMusicSharingService{
 
-    private final HealingMusicSharingMapper healingMusicSharingMapper;
     private final JwtService jwtService;
+    private final HealingMusicSharingMapper healingMusicSharingMapper;
     private final HealingMusicVideoLinkUtil healingMusicVideoLinkUtil;
 
     /**
@@ -57,4 +57,22 @@ public class HealingMusicSharingServiceImpl implements  HealingMusicSharingServi
         /* DB에서 힐링 뮤직 리스트 조회 */
         return healingMusicSharingMapper.getHealingMusicList();
     }
+
+    /**
+     * 게시판에서 힐링 뮤직 상세 조회 메서드
+     * @param musicId
+     * @return
+     */
+    @Override
+    public HealingMusicResponse getHealingMusic(String musicId) {
+
+        /* 힐링 뮤직 상세 조회 */
+        return healingMusicSharingMapper.getHealingMusic(musicId);
+    }
+
+
+
+
+
+
 }

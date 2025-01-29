@@ -3,6 +3,7 @@ package website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
 
 import java.util.List;
 
@@ -28,4 +29,11 @@ public interface HealingMusicSharingMapper {
      * @return
      */
     List<HealingMusicListResponse> getHealingMusicList();
+
+    /**
+     * 게시판에서 힐링 뮤직 상세 조회
+     * @param musicId
+     * @return
+     */
+    HealingMusicResponse getHealingMusic(String musicId);
 }

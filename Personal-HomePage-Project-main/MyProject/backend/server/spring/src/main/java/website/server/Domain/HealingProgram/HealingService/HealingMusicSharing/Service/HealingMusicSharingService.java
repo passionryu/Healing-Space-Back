@@ -3,6 +3,7 @@ package website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.
 import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
 
 import java.util.List;
 
@@ -21,8 +22,13 @@ public interface HealingMusicSharingService {
      */
     List<HealingMusicListResponse> getHealingMusicList();
 
+    /**
+     * 게시판에서 힐링 뮤직 상세 조회 메서드
+     * @param musicId
+     * @return
+     */
+    HealingMusicResponse getHealingMusic(String musicId);
 
-    /* 게시판에서 힐링 뮤직 상세 조회 API */
     /* 힐링 뮤직 좋아요 누르기 */
 
     /* 내가 올린 힐링 뮤직 리스트 조회 API */

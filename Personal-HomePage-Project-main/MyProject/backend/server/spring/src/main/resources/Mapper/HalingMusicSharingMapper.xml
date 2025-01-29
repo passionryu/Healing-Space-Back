@@ -33,4 +33,28 @@
         ON hm.userNumber = m.userNumber
     </select>
 
+    <!-- 게시판에서 힐링 뮤직 상세 조회 -->
+    <!-- 이거 hml을 그냥 join 할때랑 Left 조인할때 결과가 다르게 나옴 !!! 블로그 정리할 것 -->
+    <select id="getHealingMusic" resultType="website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse">
+
+    SELECT
+        hm.musicId,
+        hm.title,
+        m.nickname,
+        hm.createdDate,
+        hm.content,
+        hm.videoLink,
+        COUNT(hml.likeId)
+    FROM
+        healing_music hm
+    JOIN
+        member m
+    ON
+        hm.userNumber = m.userNumber
+    LEFT JOIN
+        healing_music_like hml
+    ON
+        hm.musicId = hml.musicId
+    </select>
+
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Service.HealingMusicSharingService;
 
 import java.util.List;
@@ -33,11 +34,7 @@ public class HealingMusicSharingController {
     public ResponseEntity<String> postHealingMusic(HttpServletRequest request,
                                                    @RequestBody PostRequest postRequest){
 
-        /* 힐링 뮤직 포스팅
-            * 1. title
-            * 2. videoLink
-            * 3. content
-        */
+        /* 힐링 뮤직 포스팅 */
         healingMusicSharingService.postHealingMusic(request,postRequest);
 
         return ResponseEntity.ok("힐링 뮤직 포스팅 성공");
@@ -57,8 +54,22 @@ public class HealingMusicSharingController {
         return ResponseEntity.ok(healingMusicListResponse);
     }
 
+    /**
+     * 게시판에서 힐링 뮤직 상세 조회 API
+     * @param musicId
+     * @return
+     */
+    @Operation(summary = "게시판에서 힐링 뮤직 상세 조회 API",description = "")
+    @GetMapping("/{musicId}")
+    public ResponseEntity<HealingMusicResponse> getHealingMusic(@PathVariable("musicId") String musicId){
 
-    /* 게시판에서 힐링 뮤직 상세 조회 API */
+        /* 힐링 뮤직 상세 조회 */
+        HealingMusicResponse healingMusicResponse = healingMusicSharingService.getHealingMusic(musicId);
+
+        return ResponseEntity.ok(healingMusicResponse);
+    }
+
+
     /* 힐링 뮤직 좋아요 누르기 */
 
     /* 내가 올린 힐링 뮤직 리스트 조회 API */
