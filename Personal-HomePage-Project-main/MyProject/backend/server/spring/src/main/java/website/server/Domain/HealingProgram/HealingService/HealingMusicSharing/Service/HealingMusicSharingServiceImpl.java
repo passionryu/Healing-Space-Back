@@ -4,7 +4,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostCommentRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostRequest;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicCommentResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Mapper.HealingMusicSharingMapper;
@@ -96,9 +98,54 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
 
         /* 좋아요 총량 합산 반환*/
         return healingMusicSharingMapper.getLikeCount(musicId);
-
     }
 
+    /**
+     * 힐링 뮤직 댓글 달기 메서드
+     * @param request
+     * @param postCommentRequest
+     * @return
+     */
+    @Override
+    public String postComment(HttpServletRequest request, PostCommentRequest postCommentRequest) {
+
+        /* 사용자 고유 번호 추출 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* DB에 댓글 저장 */
+        healingMusicSharingMapper.postComment(postCommentRequest.musicId(),userNumber,postCommentRequest.content());
+
+        return postCommentRequest.content();
+    }
+
+    /**
+     * 힐링 뮤직 댓글 조회 메서드
+     * @param request
+     * @param musicId
+     * @return
+     */
+    @Override
+    public List<HealingMusicCommentResponse> getComment(HttpServletRequest request, Long musicId) {
+
+        /* 댓글 리스트 조회 */
+        return healingMusicSharingMapper.getComment(musicId);
+    }
+
+    /**
+     * 힐링 뮤직 댓글 삭제 메서드
+     * @param request
+     * @param commentId
+     */
+    @Override
+    public void deleteComment(HttpServletRequest request, Long commentId) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* DB에서 댓글 데이터 삭제 */
+        healingMusicSharingMapper.deleteComment(userNumber,commentId);
+
+    }
 
 
 }

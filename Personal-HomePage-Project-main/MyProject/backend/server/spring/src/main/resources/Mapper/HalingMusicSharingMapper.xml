@@ -95,5 +95,45 @@
             musicId = #{musicId}
     </select>
 
+    <!-- 댓글 달기 -->
+    <insert id="postComment" parameterType="map">
+        INSERT INTO healing_music_comment (musicId, userNumber, content, createdDate)
+        VALUES (
+                #{musicId},
+                #{userNumber},
+                #{content},
+                CURRENT_TIMESTAMP
+               )
+    </insert>
+
+    <!-- 힐링 뮤직 댓글 조회 -->
+    <select id="getComment" resultType="website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicCommentResponse">
+
+        SELECT
+            hmc.commentId,
+            m.profile_image_path,
+            m.nickname,
+            hmc.createdDate,
+            hmc.content
+        FROM
+            healing_music hm
+        LEFT JOIN
+            member m
+        ON
+            hm.userNumber = m.userNumber
+        LEFT JOIN
+            healing_music_comment hmc
+        ON
+            hmc.musicId = hm.musicId
+        WHERE
+            hm.musicId =#{musicId}
+    </select>
+
+    <!-- 힐링 뮤직 댓글 삭제 -->
+    <delete id="deleteComment">
+        DELETE FROM healing_music_comment
+        WHERE userNumber =#{userNumber} AND commentId = #{commentId}
+    </delete>
+
 
 </mapper>

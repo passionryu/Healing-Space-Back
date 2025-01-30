@@ -2,6 +2,7 @@ package website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicCommentResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
 
@@ -69,5 +70,28 @@ public interface HealingMusicSharingMapper {
      */
     Integer getLikeCount(Long musicId);
 
+    /**
+     * 힐링 뮤직 댓글 달기
+     * @param musicId
+     * @param userNumber
+     * @param content
+     */
+    void postComment(@Param("musicId") Long musicId,
+                     @Param("userNumber") Long userNumber,
+                     @Param("content") String content);
 
+    /**
+     * 힐링 뮤직 댓글 조회
+     * @param musicId
+     * @return
+     */
+    List<HealingMusicCommentResponse> getComment(Long musicId);
+
+    /**
+     * 힐링 뮤직 댓글 삭제
+     * @param userNumber
+     * @param commentId
+     */
+    void deleteComment( @Param("userNumber") Long userNumber,
+                        @Param("commentId") Long commentId);
 }
