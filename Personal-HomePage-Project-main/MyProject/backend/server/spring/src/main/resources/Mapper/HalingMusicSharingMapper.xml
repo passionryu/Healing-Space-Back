@@ -57,4 +57,43 @@
         hm.musicId = hml.musicId
     </select>
 
+    <!-- 이전에 해당 게시글에 좋아요를 눌렀는지 확인 -->
+    <select id="checkAlreadyCliked" resultType="boolean">
+
+        SELECT
+            IF(COUNT(*) > 0, TRUE, FALSE)
+        FROM
+            healing_music_like
+        WHERE
+            musicId = #{musicId} AND userNumber = #{userNumber}
+
+    </select>
+
+    <!-- 좋아요 취소 -->
+    <delete id="deleteLike">
+        DELETE
+
+        FROM
+            healing_music_like
+        WHERE
+            musicId = #{musicId} AND userNumber = #{userNumber}
+    </delete>
+
+    <!-- 좋아요 승인 -->
+    <insert id="permitLike">
+        INSERT INTO healing_music_like (musicId,userNumber)
+        VALUES (#{musicId}, #{userNumber})
+    </insert>
+
+    <!-- DB에서 좋아요 총량 조회 -->
+    <select id="getLikeCount" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM
+            healing_music_like
+        WHERE
+            musicId = #{musicId}
+    </select>
+
+
 </mapper>

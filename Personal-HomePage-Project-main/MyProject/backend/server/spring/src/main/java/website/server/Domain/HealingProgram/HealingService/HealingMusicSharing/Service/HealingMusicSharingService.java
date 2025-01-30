@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
-
 import java.util.List;
 
 public interface HealingMusicSharingService {
@@ -29,7 +28,13 @@ public interface HealingMusicSharingService {
      */
     HealingMusicResponse getHealingMusic(String musicId);
 
-    /* 힐링 뮤직 좋아요 누르기 */
+    /**
+     * 힐링 뮤직 좋아요 누르기 메서드
+     * @param request
+     * @param musicId
+     * @return
+     */
+    Integer likeHealingMusic(HttpServletRequest request, Long musicId);
 
     /* 내가 올린 힐링 뮤직 리스트 조회 API */
     /* 내가 올린 힐링 뮤직 상세 조회 API */

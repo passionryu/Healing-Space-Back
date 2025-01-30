@@ -92,7 +92,7 @@ public interface HealingMessageMapper {
     Long getLikeCount(Long messageId);
 
     /**
-     *  좋아요 누른 힐링 메시지 리스트 조회
+     *  좋아요 누른 힐링 메시지 리스트 조회x
      * @param userNumber 사용자 고유 번호
      * @return  좋아요 누른 힐링 메시지 리스트
      */

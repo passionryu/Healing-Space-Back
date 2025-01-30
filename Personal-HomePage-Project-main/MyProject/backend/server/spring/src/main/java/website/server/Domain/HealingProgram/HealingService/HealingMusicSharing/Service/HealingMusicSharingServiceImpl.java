@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class HealingMusicSharingServiceImpl implements  HealingMusicSharingService{
+public class HealingMusicSharingServiceImpl implements HealingMusicSharingService{
 
     private final JwtService jwtService;
     private final HealingMusicSharingMapper healingMusicSharingMapper;
@@ -70,8 +70,34 @@ public class HealingMusicSharingServiceImpl implements  HealingMusicSharingServi
         return healingMusicSharingMapper.getHealingMusic(musicId);
     }
 
+    /**
+     * 힐링 뮤직 좋아요 누르기 메서드
+     * @param request
+     * @param musicId
+     * @return 해당 게시글에 있는 총 좋아요 수
+     */
+    @Override
+    public Integer likeHealingMusic(HttpServletRequest request, Long musicId) {
 
+        /* 사용자 고유 번호 추출 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
 
+        /* 좋아요 클릭 여부 판단 */
+        boolean clickStatus =healingMusicSharingMapper.checkAlreadyCliked(userNumber,musicId);
+
+        /*
+         * 1. 이미 좋아요를 눌렀으면 , Like count -1
+         * 2. 좋아요가 기록이 없으면 , Like count +1
+         * */
+        if(clickStatus)
+            healingMusicSharingMapper.deleteLike(musicId,userNumber);
+        else
+            healingMusicSharingMapper.permitLike(musicId,userNumber);
+
+        /* 좋아요 총량 합산 반환*/
+        return healingMusicSharingMapper.getLikeCount(musicId);
+
+    }
 
 
 

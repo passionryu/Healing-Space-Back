@@ -36,4 +36,38 @@ public interface HealingMusicSharingMapper {
      * @return
      */
     HealingMusicResponse getHealingMusic(String musicId);
+
+    /**
+     * 동일한 messageId,userNumber 데이터가 있는지 확인
+     * @param musicId 음악 게시글 고유번호
+     * @param userNumber 사용자 고유 번호
+     * @return
+     */
+    Boolean checkAlreadyCliked(@Param("musicId") Long musicId,
+                               @Param("userNumber") Long userNumber);
+
+    /**
+     * 좋아요 취소
+     * @param musicId 메시지 아이디
+     * @param userNumber 사용자 고유 번호
+     */
+    void deleteLike(@Param("musicId") Long musicId,
+                    @Param("userNumber") Long userNumber);
+
+    /**
+     * 좋아요 승인
+     * @param musicId 메시지 아이디
+     * @param userNumber 사용자 고유 번호
+     */
+    void permitLike(@Param("musicId") Long musicId,
+                    @Param("userNumber") Long userNumber);
+
+    /**
+     * DB에서 좋아요 총량 조회
+     * @param musicId 메시지 아이디
+     * @return 총량 반환
+     */
+    Integer getLikeCount(Long musicId);
+
+
 }

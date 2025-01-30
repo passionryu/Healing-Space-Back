@@ -11,7 +11,6 @@ import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.D
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Service.HealingMusicSharingService;
-
 import java.util.List;
 
 @Slf4j
@@ -69,8 +68,22 @@ public class HealingMusicSharingController {
         return ResponseEntity.ok(healingMusicResponse);
     }
 
+    /**
+     * 힐링 뮤직 좋아요 누르기
+     * @param request
+     * @param musicId
+     * @return
+     */
+    @Operation(summary = "힐링 뮤직 좋아요 누르기 API ", description = "")
+    @PostMapping("/like/{musicId}")
+    public ResponseEntity<Integer> likeHealingMusic(HttpServletRequest request,
+                                                    @PathVariable("musicId") Long musicId){
 
-    /* 힐링 뮤직 좋아요 누르기 */
+        /* 좋아요 누르기 & 좋아요 Total value 반환하기 */
+        Integer likeCount = healingMusicSharingService.likeHealingMusic(request,musicId);
+
+        return ResponseEntity.ok(likeCount);
+    }
 
     /* 내가 올린 힐링 뮤직 리스트 조회 API */
     /* 내가 올린 힐링 뮤직 상세 조회 API */
