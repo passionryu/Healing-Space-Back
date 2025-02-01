@@ -201,4 +201,30 @@
             hm.userNumber = #{userNumber}
     </select>
 
+    <!-- 내가 좋아요 누른 힐링 뮤직 상세 조회 -->
+    <select id="getLikeHealingMusic" resultType="website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse">
+        SELECT
+            hm.musicId,
+            hm.title,
+            m.nickname,
+            hm.createdDate,
+            hm.content,
+            hm.videoLink,
+            COUNT(hml.likeId),
+            m.profile_image_path,
+            hm.imagePath
+        FROM
+            healing_music hm
+        JOIN
+            member m
+        ON
+            hm.userNumber = m.userNumber
+        LEFT JOIN
+            healing_music_like hml
+        ON
+            hm.musicId = hml.musicId
+        WHERE
+            hm.musicId = #{musicId}
+    </select>
+
 </mapper>

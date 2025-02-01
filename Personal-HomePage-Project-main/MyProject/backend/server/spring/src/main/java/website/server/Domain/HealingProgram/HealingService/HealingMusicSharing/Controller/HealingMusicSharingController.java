@@ -185,6 +185,21 @@ public class HealingMusicSharingController {
         return ResponseEntity.ok(healingMusicListResponses);
     }
 
-    /* 내가 좋아요 누른 힐링 뮤직 상세 조회 API */
+    /**
+     * 내가 좋아요 누른 힐링 뮤직 상세 조회 API
+     * @param request 사용자 요청
+     * @param musicId 조회하고자 하는 힐링 뮤직 고유 번호
+     * @return 선택한 힐링 뮤직 게시물
+     */
+    @Operation(summary = "내가 좋아요 누른 힐링 뮤직 상세 조회 API", description = "")
+    @GetMapping("/like/{musicId}")
+    public ResponseEntity<HealingMusicResponse> getLikeHealingMusic(HttpServletRequest request,
+                                                                    @PathVariable("musicId") Long musicId){
+
+        /* 좋아요 누른 힐링 뮤직 상세 조회 */
+        HealingMusicResponse healingMusicResponse = healingMusicSharingService.getLikeHealingMusic(request,musicId);
+
+        return ResponseEntity.ok(healingMusicResponse);
+    }
 
 }

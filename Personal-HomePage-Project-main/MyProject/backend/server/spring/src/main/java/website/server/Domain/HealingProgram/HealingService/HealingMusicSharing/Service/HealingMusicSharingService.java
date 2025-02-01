@@ -1,13 +1,11 @@
 package website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.PathVariable;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostCommentRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Request.PostRequest;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicCommentResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicResponse;
-
 import java.util.List;
 
 public interface HealingMusicSharingService {
@@ -85,10 +83,11 @@ public interface HealingMusicSharingService {
      */
     List<HealingMusicListResponse> getLikeHealingMusicList(HttpServletRequest request);
 
-    /* 내가 좋아요 누른 힐링 뮤직 상세 조회 메서드 */
-
-
-
-
-
+    /**
+     * 내가 좋아요 누른 힐링 뮤직 상세 조회 메서드
+     * @param request 사용자 요청
+     * @param musicId 조회하고자 하는 힐링 뮤직 고유 번호
+     * @return 힐링 뮤직 게시판 데이터
+     */
+    HealingMusicResponse getLikeHealingMusic(HttpServletRequest request, Long musicId);
 }

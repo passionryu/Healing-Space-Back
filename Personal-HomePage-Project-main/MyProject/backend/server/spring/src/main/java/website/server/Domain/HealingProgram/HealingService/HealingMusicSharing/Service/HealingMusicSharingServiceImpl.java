@@ -192,6 +192,17 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
         return healingMusicSharingMapper.getLikeHealingMusicList(userNumber);
     }
 
-    /* 내가 좋아요 누른 히링 뮤직 상세 조회 메서드 */
+    /**
+     * 내가 좋아요 누른 힐링 뮤직 상세 조회 메서드
+     * @param request 사용자 요청
+     * @param musicId 조회하고자 하는 힐링 뮤직 고유 번호
+     * @return 유저가 선택한 힐링 뮤직 게시글
+     */
+    @Override
+    public HealingMusicResponse getLikeHealingMusic(HttpServletRequest request, Long musicId) {
+
+        /* DB에서 내가 선택한 힐링 뮤직 게시글 반환 */
+        return healingMusicSharingMapper.getLikeHealingMusic(musicId);
+    }
 
 }

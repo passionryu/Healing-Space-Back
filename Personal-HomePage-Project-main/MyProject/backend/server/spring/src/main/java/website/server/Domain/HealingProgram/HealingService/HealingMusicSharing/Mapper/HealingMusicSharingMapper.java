@@ -119,7 +119,11 @@ public interface HealingMusicSharingMapper {
      */
     List<HealingMusicListResponse> getLikeHealingMusicList(Long userNumber);
 
-
-    /* 내가 좋아요 누른 힐링 뮤직 상세 조회 */
+    /**
+     * 내가 좋아요 누른 힐링 뮤직 상세 조회
+     * @param musicId 힐링 뮤직 게시글 고유 번호
+     * @return 힐링 뮤직 게시글
+     */
+    HealingMusicResponse getLikeHealingMusic(Long musicId);
 
 }
