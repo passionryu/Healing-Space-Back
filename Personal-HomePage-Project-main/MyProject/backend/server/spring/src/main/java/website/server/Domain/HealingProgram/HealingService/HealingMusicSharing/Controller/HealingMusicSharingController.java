@@ -44,7 +44,7 @@ public class HealingMusicSharingController {
 
     /**
      * 게시판에서 힐링 뮤직 리스트 조회 API
-     * @return
+     * @return 힐링 뮤직 레스트
      */
     @Operation(summary = "게시판에서 힐링 뮤직 리스트 조회 API",description = "")
     @GetMapping("/list")
@@ -58,8 +58,8 @@ public class HealingMusicSharingController {
 
     /**
      * 게시판에서 힐링 뮤직 상세 조회 API
-     * @param musicId
-     * @return
+     * @param musicId 힐링 뮤직 게시글 고유 번호
+     * @return 힐링 뮤직 상세 데이터
      */
     @Operation(summary = "게시판에서 힐링 뮤직 상세 조회 API",description = "")
     @GetMapping("/{musicId}")
@@ -73,9 +73,9 @@ public class HealingMusicSharingController {
 
     /**
      * 힐링 뮤직 좋아요 누르기
-     * @param request
-     * @param musicId
-     * @return
+     * @param request 사용자 요청
+     * @param musicId 힐링 뮤직 게시글 고유 번호
+     * @return 좋아요 Total 수
      */
     @Operation(summary = "힐링 뮤직 좋아요 누르기 API ", description = "")
     @PostMapping("/like/{musicId}")
@@ -90,8 +90,8 @@ public class HealingMusicSharingController {
 
     /**
      * 힐링 뮤직 댓글 달기 API
-     * @param request
-     * @param postCommentRequest
+     * @param request 사용자 요청
+     * @param postCommentRequest 댓글 요청 데이터
      * @return 댓글 내용 반환
      */
     @Operation(summary = "힐링 뮤직 댓글 달기 API", description = "")
@@ -124,9 +124,9 @@ public class HealingMusicSharingController {
 
     /**
      * 힐링 뮤직 댓글 삭제 API
-     * @param request
-     * @param commentId
-     * @return
+     * @param request 사용자 요청
+     * @param commentId 댓글 고유 번호
+     * @return 댓글 삭제 완료 메시지
      */
     @Operation(summary = "힐링 뮤직 댓글 삭제 API", description = "")
     @DeleteMapping("/comment/{commentId}")
@@ -170,7 +170,20 @@ public class HealingMusicSharingController {
         return ResponseEntity.ok(healingMusicResponse);
     }
 
-    /* 내가 좋아요 누른 힐링 뮤직 리스트 조회 API */
+    /**
+     * 내가 좋아요 누른 힐링 뮤직 리스트 조회 API
+     * @param request 사용자 요청
+     * @return 좋아요 누른 힐링 뮤직 리스트
+     */
+    @Operation( summary = "내가 좋아요 누른 힐링 뮤직 리스트 조회 API", description = "")
+    @GetMapping("/like/list")
+    public ResponseEntity<List<HealingMusicListResponse>> getLikeHealingMusicList(HttpServletRequest request){
+
+        /* 좋아요 누른 힐링 뮤직 리스트 반환 */
+        List<HealingMusicListResponse> healingMusicListResponses = healingMusicSharingService.getLikeHealingMusicList(request);
+
+        return ResponseEntity.ok(healingMusicListResponses);
+    }
 
     /* 내가 좋아요 누른 힐링 뮤직 상세 조회 API */
 

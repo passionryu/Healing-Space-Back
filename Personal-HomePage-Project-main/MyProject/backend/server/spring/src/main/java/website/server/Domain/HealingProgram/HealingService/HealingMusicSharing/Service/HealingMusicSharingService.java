@@ -78,9 +78,12 @@ public interface HealingMusicSharingService {
      */
     HealingMusicResponse getMyHealingMusic(HttpServletRequest request, Long musicId);
 
-
-    /* 내가 좋아요 누른 힐링 뮤직 리스트 조회 메서드 */
-
+    /**
+     * 내가 좋아요 누른 힐링 뮤직 리스트 조회 메서드
+     * @param request 사용자 요청
+     * @return 내가 좋아요 누른 힐링 뮤직 리스트
+     */
+    List<HealingMusicListResponse> getLikeHealingMusicList(HttpServletRequest request);
 
     /* 내가 좋아요 누른 힐링 뮤직 상세 조회 메서드 */
 

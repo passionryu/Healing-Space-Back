@@ -182,4 +182,23 @@
             hm.userNumber = #{userNumber} AND hm.musicId = #{musicId}
     </select>
 
+    <!-- 내가 좋아요 누른 힐링 뮤직 리스트 조회 -->
+    <select id="getLikeHealingMusicList" resultType="website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicListResponse">
+
+        SELECT
+            hm.musicId,
+            hm.imagePath,
+            hm.title,
+            m.nickname,
+            hm.createdDate
+        FROM
+            healing_music hm
+        JOIN
+            member m
+        ON
+            hm.userNumber = m.userNumber
+        WHERE
+            hm.userNumber = #{userNumber}
+    </select>
+
 </mapper>

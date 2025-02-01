@@ -144,7 +144,6 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
 
         /* DB에서 댓글 데이터 삭제 */
         healingMusicSharingMapper.deleteComment(userNumber,commentId);
-
     }
 
     /**
@@ -178,5 +177,21 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
         return healingMusicSharingMapper.getMyHealingMusic(userNumber,musicId);
     }
 
+    /**
+     * 내가 좋아요 누른 힐링 뮤직 리스트 조회 메서드
+     * @param request 사용자 요청
+     * @return 내가 좋아요 누른 힐링 뮤직 리스트
+     */
+    @Override
+    public List<HealingMusicListResponse> getLikeHealingMusicList(HttpServletRequest request) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* DB에서 내가 좋아요 누른 힐링 뮤직 리스트 데이터 반환 */
+        return healingMusicSharingMapper.getLikeHealingMusicList(userNumber);
+    }
+
+    /* 내가 좋아요 누른 히링 뮤직 상세 조회 메서드 */
 
 }

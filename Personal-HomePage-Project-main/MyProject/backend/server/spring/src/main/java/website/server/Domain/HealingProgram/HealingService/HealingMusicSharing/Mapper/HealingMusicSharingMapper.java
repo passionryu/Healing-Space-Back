@@ -1,5 +1,6 @@
 package website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Mapper;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.DTO.Response.HealingMusicCommentResponse;
@@ -111,10 +112,14 @@ public interface HealingMusicSharingMapper {
     HealingMusicResponse getMyHealingMusic(@Param("userNumber") Long userNumber,
                                            @Param("musicId") Long musicId);
 
+    /**
+     * 내가 좋아요 누른 힐링 뮤직 리스트 조회
+     * @param userNumber 사용자 고유 번호
+     * @return 좋아요 누른 힐링 뮤직 리스트
+     */
+    List<HealingMusicListResponse> getLikeHealingMusicList(Long userNumber);
 
-    /* 내가 좋아요 누른 힐링 뮤직 리스트 조회 메서드 */
 
-
-    /* 내가 좋아요 누른 힐링 뮤직 상세 조회 메서드 */
+    /* 내가 좋아요 누른 힐링 뮤직 상세 조회 */
 
 }
