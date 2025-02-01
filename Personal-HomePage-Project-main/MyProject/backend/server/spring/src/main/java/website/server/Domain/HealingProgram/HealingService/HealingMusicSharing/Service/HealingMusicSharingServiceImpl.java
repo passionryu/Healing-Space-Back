@@ -148,7 +148,7 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
     }
 
     /**
-     * 내가 올린 힐링 뮤직 리스트 조회
+     * 내가 올린 힐링 뮤직 리스트 조회 메서도
      * @param request 사용자 요청
      * @return 힐링 뮤직 리스트
      */
@@ -160,6 +160,22 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
 
         /* DB에서 힐링 뮤직 리스트 반환 */
         return healingMusicSharingMapper.getMyHealingMusicList(userNumber);
+    }
+
+    /**
+     * 내가 올린 힐링 뮤직 상세 조회 메서드
+     * @param request 사용자 요청
+     * @param musicId 음악 게시물 고유번호
+     * @return 힐링 뮤직 게시판 상세 데이터
+     */
+    @Override
+    public HealingMusicResponse getMyHealingMusic(HttpServletRequest request, Long musicId) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* DB에서 선택한 힐링 뮤직 게시글 상세 데이터 반환 */
+        return healingMusicSharingMapper.getMyHealingMusic(userNumber,musicId);
     }
 
 

@@ -10,6 +10,10 @@ public record HealingMusicResponse(
         LocalDateTime dateTime,
         String content,
         String videoLink,
-        int likes
+        int likes,
+
+        String profileImgPath,
+        String image
+
 ) {
 }

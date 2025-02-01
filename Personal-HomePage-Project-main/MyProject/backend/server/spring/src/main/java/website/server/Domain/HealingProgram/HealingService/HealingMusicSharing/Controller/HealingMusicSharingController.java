@@ -107,9 +107,9 @@ public class HealingMusicSharingController {
 
     /**
      * 힐링 뮤직 댓글 조회 API
-     * @param request
-     * @param musicId
-     * @return
+     * @param request 사용자 요청
+     * @param musicId 음악 게시물 고유 번호
+     * @return 댓글 리스트
      */
     @Operation(summary = "힐링 뮤직 댓글 조회 API",description = "")
     @GetMapping("/comment/{musicId}")
@@ -154,14 +154,24 @@ public class HealingMusicSharingController {
         return ResponseEntity.ok(healingMusicListResponses);
     }
 
+    /**
+     * 내가 올린 힐링 뮤직 상세 조회 API
+     * @param request 사용자 요청
+     * @param musicId 힐링 뮤직 고유 번호
+     * @return 힐링 뮤직 게시물
+     */
+    @Operation(summary = "내가 올린 힐링 뮤직 상세 조회 API", description = "")
+    @GetMapping("my/{musicId}")
+    public ResponseEntity<HealingMusicResponse> getMyHealingMusic(HttpServletRequest request,
+                                                    @PathVariable("musicId") Long musicId){
+        /* 요청한 힐링 뮤직 상세 조회 */
+        HealingMusicResponse healingMusicResponse = healingMusicSharingService.getMyHealingMusic(request,musicId);
 
-    /* 내가 올린 힐링 뮤직 상세 조회 API */
-
+        return ResponseEntity.ok(healingMusicResponse);
+    }
 
     /* 내가 좋아요 누른 힐링 뮤직 리스트 조회 API */
 
-
     /* 내가 좋아요 누른 힐링 뮤직 상세 조회 API */
-
 
 }
