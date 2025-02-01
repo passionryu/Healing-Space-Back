@@ -57,7 +57,7 @@ public interface HealingMusicSharingMapper {
 
     /**
      * 좋아요 승인
-     * @param musicId 메시지 아이디
+     * @param musicId 음악 게시물 고유 번호
      * @param userNumber 사용자 고유 번호
      */
     void permitLike(@Param("musicId") Long musicId,
@@ -65,14 +65,14 @@ public interface HealingMusicSharingMapper {
 
     /**
      * DB에서 좋아요 총량 조회
-     * @param musicId 메시지 아이디
+     * @param musicId 음악 게시물 고유 번호
      * @return 총량 반환
      */
     Integer getLikeCount(Long musicId);
 
     /**
      * 힐링 뮤직 댓글 달기
-     * @param musicId
+     * @param musicId 음악 게시물 고유 번호
      * @param userNumber
      * @param content
      */
@@ -82,16 +82,32 @@ public interface HealingMusicSharingMapper {
 
     /**
      * 힐링 뮤직 댓글 조회
-     * @param musicId
-     * @return
+     * @param musicId 게시물 고유 번호
+     * @return 댓글 리스트 반환
      */
     List<HealingMusicCommentResponse> getComment(Long musicId);
 
     /**
      * 힐링 뮤직 댓글 삭제
-     * @param userNumber
-     * @param commentId
+     * @param userNumber 사용자 고유 번호
+     * @param commentId 댓글 고유 번호
      */
     void deleteComment( @Param("userNumber") Long userNumber,
                         @Param("commentId") Long commentId);
+
+    /**
+     * 내가 올린 힐링 뮤직 리스트 조회
+     * @param userNumber 사용자 고유 번호
+     * @return 힐링 뮤직 리스트
+     */
+    List<HealingMusicListResponse> getMyHealingMusicList(Long userNumber);
+
+    /* 내가 올린 힐링 뮤직 상세 조회 메서드 */
+
+
+    /* 내가 좋아요 누른 힐링 뮤직 리스트 조회 메서드 */
+
+
+    /* 내가 좋아요 누른 힐링 뮤직 상세 조회 메서드 */
+
 }

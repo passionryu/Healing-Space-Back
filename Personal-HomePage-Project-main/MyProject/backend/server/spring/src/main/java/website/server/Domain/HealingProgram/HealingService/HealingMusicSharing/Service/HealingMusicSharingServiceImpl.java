@@ -147,5 +147,20 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
 
     }
 
+    /**
+     * 내가 올린 힐링 뮤직 리스트 조회
+     * @param request 사용자 요청
+     * @return 힐링 뮤직 리스트
+     */
+    @Override
+    public List<HealingMusicListResponse> getMyHealingMusicList(HttpServletRequest request) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* DB에서 힐링 뮤직 리스트 반환 */
+        return healingMusicSharingMapper.getMyHealingMusicList(userNumber);
+    }
+
 
 }

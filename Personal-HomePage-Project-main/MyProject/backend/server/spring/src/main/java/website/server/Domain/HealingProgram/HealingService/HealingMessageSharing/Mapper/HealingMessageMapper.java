@@ -115,8 +115,8 @@ public interface HealingMessageMapper {
      * @return CommentResponse DTO
      */
     void postComment(@Param("userNumber") Long userNumber,
-                                @Param("messageId") Long messageId,
-                                @Param("content") String comment);
+                     @Param("messageId") Long messageId,
+                     @Param("content") String comment);
 
     /**
      * 힐링 메시지에서 댓글 조회

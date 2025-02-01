@@ -62,9 +62,12 @@ public interface HealingMusicSharingService {
      */
     void deleteComment(HttpServletRequest request, Long commentId);
 
-
-    /* 내가 올린 힐링 뮤직 리스트 조회 메서드 */
-
+    /**
+     * 내가 올린 힐링 뮤직 리스트 조회 메서드
+     * @param request
+     * @return
+     */
+    List<HealingMusicListResponse> getMyHealingMusicList(HttpServletRequest request);
 
     /* 내가 올린 힐링 뮤직 상세 조회 메서드 */
 

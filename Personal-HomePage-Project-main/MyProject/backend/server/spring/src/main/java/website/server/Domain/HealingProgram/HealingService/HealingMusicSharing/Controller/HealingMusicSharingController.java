@@ -139,7 +139,20 @@ public class HealingMusicSharingController {
         return ResponseEntity.ok(commentId + "번 댓글 삭제 완료");
     }
 
-    /* 내가 올린 힐링 뮤직 리스트 조회 API */
+    /**
+     * 내가 올린 힐링 뮤직 리스트 조회 API
+     * @param request 사용자 요청
+     * @return 힐링 뮤직 리스트
+     */
+    @Operation(summary = "내가 올린 힐링 뮤직 리스트 조회 API",description = "")
+    @GetMapping("/list/my")
+    public ResponseEntity<List<HealingMusicListResponse>> getMyHealingMusicList(HttpServletRequest request){
+
+        /* 힐링 뮤직 리스트 조회 */
+        List<HealingMusicListResponse> healingMusicListResponses = healingMusicSharingService.getMyHealingMusicList(request);
+
+        return ResponseEntity.ok(healingMusicListResponses);
+    }
 
 
     /* 내가 올린 힐링 뮤직 상세 조회 API */
