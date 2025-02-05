@@ -12,5 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("website.server.Domain.HealingProgram.AiService.AiRecommend.Mapper")
 @MapperScan("website.server.Domain.HealingProgram.AiService.AiSnapShot.Mapper")
 @MapperScan("website.server.Domain.HealingProgram.HealingService.HealingMusicSharing.Mapper")
+@MapperScan("website.server.Domain.Healing_Space_News.Healing_Blog.Mapper")
 public class Appconfig {
 }

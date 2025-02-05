@@ -57,6 +57,8 @@
         healing_music_like hml
     ON
         hm.musicId = hml.musicId
+    WHERE
+        hm.musicId = #{musicId}
     </select>
 
     <!-- 이전에 해당 게시글에 좋아요를 눌렀는지 확인 -->

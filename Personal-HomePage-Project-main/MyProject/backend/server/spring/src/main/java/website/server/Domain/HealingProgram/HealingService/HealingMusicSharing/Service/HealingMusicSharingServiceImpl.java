@@ -86,15 +86,19 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
 
         /* 좋아요 클릭 여부 판단 */
         boolean clickStatus =healingMusicSharingMapper.checkAlreadyCliked(userNumber,musicId);
+        log.info("clickStatus : {}", clickStatus);
 
         /*
          * 1. 이미 좋아요를 눌렀으면 , Like count -1
          * 2. 좋아요가 기록이 없으면 , Like count +1
          * */
-        if(clickStatus)
+        if(clickStatus){
             healingMusicSharingMapper.deleteLike(musicId,userNumber);
-        else
-            healingMusicSharingMapper.permitLike(musicId,userNumber);
+            log.info("delete like"); }
+        else {
+            healingMusicSharingMapper.permitLike(musicId, userNumber);
+            log.info("add like");
+        }
 
         /* 좋아요 총량 합산 반환*/
         return healingMusicSharingMapper.getLikeCount(musicId);
