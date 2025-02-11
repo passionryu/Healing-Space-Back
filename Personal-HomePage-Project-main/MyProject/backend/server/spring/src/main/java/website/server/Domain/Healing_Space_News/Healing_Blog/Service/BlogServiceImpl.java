@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponse;
+import website.server.Domain.Healing_Space_News.Healing_Blog.Entity.Blog;
 import website.server.Domain.Healing_Space_News.Healing_Blog.Mapper.BlogMapper;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,7 +82,11 @@ public class BlogServiceImpl implements BlogService{
                     thumbNailUrl
             );
 
-            blogResponses.add(blogResponse); // 리스트에 추가
+            /* DB 저장 */
+            blogMapper.insertBlog(title,author,ProfileUrl,blogUrl,thumbNailUrl);
+
+            /* 리스트에 추가 */
+            blogResponses.add(blogResponse);
 
         }
 

@@ -6,17 +6,11 @@
 
 
     <!-- 블로그 데이터를 DB에 저장하는 쿼리 -->
-    <insert id="insertBlog" parameterType="website.server.Domain.Healing_Space_News.Healing_Blog.Entity.Blog">
-        INSERT INTO blog (title, author, profile_img, date, link, thumbnail)
-        VALUES (#{title}, #{author}, #{profileImg}, #{date}, #{link}, #{thumbnail})
+    <insert id="insertBlog" >
+        INSERT INTO blog (title, author, profile_img, link, thumbnail)
+        VALUES (#{title}, #{author}, #{profileImg}, #{url}, #{thumbNail})
     </insert>
 
-    <!-- 블로그 데이터를 가져오는 쿼리 (예시) -->
-<!--    <select id="selectAllBlogs" resultType="website.server.Domain.Healing_Space_News.Healing_Blog.Entity.Blog">-->
-<!--        SELECT blogId, title, author, profile_img, date, link, thumbnail-->
-<!--        FROM blog-->
-<!--        ORDER BY date DESC-->
-<!--        LIMIT 6-->
-<!--    </select>-->
+
 
 </mapper>

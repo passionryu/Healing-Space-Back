@@ -7,8 +7,6 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Setter
@@ -21,7 +19,6 @@ public class Blog {
     private String title;
     private String author;
     private String profileImg;
-    private LocalDate date;
     private String link;
     private String thumbnail;
 
