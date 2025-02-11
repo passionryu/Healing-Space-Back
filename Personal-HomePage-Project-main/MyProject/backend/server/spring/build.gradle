@@ -60,6 +60,9 @@ dependencies {
 	//implementation 'org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter:1.0.0-SNAPSHOT'
 	/* JSoup */
 	implementation 'org.jsoup:jsoup:1.15.4'
+	/* selenium */
+	implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
+	implementation 'org.jsoup:jsoup:1.16.1'
 
 }
 

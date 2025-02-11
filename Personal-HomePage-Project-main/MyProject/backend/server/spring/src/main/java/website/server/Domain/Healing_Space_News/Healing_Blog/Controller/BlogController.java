@@ -5,12 +5,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponse;
 import website.server.Domain.Healing_Space_News.Healing_Blog.Service.BlogService;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -23,20 +24,29 @@ public class BlogController {
 
     private final BlogService blogService;
 
+    /* 자정마다 자동으로 실행되는 API */
+    @Scheduled(cron = "0 0 0 * * *")  // ⏰ 매일 자정(00:00:00) 실행
+    public void crawlHealingBlogs() throws IOException {
+
+        String query = "힐링+블로그";
+        int limit = 6;
+
+        List<BlogResponse> blogs = blogService.crawlAndSaveBlogs(query, limit);
+    }
+
     /**
-     * 힐링 블로그 크롤링 후 DB에 저장 API
-     * @param query 검색 키워드
-     * @param limit 가져올 개수
-     * @return 크롤링 결과
+     * 힐링 블로그 크롤링 후 DB 저장 API
      */
     @Operation(summary = "힐링 블로그 크롤링 후 DB 저장 API", description = "네이버에서 '힐링 블로그' 관련 게시글을 6개 크롤링하여 DB에 저장")
     @PostMapping("/crawl")
-    public ResponseEntity<List<BlogResponse>> crawlHealingBlogs(
-            @RequestParam(value = "query" ,defaultValue = "힐링+블로그") String query, // 검색 키워드 (기본값: '힐링 블로그')
-            @RequestParam(value = "limit" ,defaultValue = "6") int limit // 가져올 개수 (기본값: 6개)
-    ) throws IOException {
+    public ResponseEntity<List<BlogResponse>> crawlingTest() throws IOException {
+
+        String query = "힐링+블로그";
+        int limit = 6;
+
         List<BlogResponse> blogs = blogService.crawlAndSaveBlogs(query, limit);
         return ResponseEntity.ok(blogs);
+
     }
 
     /* DB에서 크롤링한 힐링 블로그 정보 조회 API */
