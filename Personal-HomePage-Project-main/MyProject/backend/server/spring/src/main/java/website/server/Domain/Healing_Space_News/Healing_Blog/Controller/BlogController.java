@@ -26,12 +26,14 @@ public class BlogController {
 
     /* 자정마다 자동으로 실행되는 API */
     @Scheduled(cron = "0 0 0 * * *")  // ⏰ 매일 자정(00:00:00) 실행
-    public void crawlHealingBlogs() throws IOException {
+    public ResponseEntity<List<BlogResponse>>  crawlHealingBlogs() throws IOException {
 
         String query = "힐링+블로그";
         int limit = 6;
 
+        blogService.deleteBlogDB();
         List<BlogResponse> blogs = blogService.crawlAndSaveBlogs(query, limit);
+        return ResponseEntity.ok(blogs);
     }
 
     /**
@@ -44,6 +46,7 @@ public class BlogController {
         String query = "힐링+블로그";
         int limit = 6;
 
+        blogService.deleteBlogDB();
         List<BlogResponse> blogs = blogService.crawlAndSaveBlogs(query, limit);
         return ResponseEntity.ok(blogs);
 

@@ -15,5 +15,6 @@ public interface BlogService {
      */
     List<BlogResponse>  crawlAndSaveBlogs(String query, int limit) throws IOException;
 
+    void deleteBlogDB();
 
 }

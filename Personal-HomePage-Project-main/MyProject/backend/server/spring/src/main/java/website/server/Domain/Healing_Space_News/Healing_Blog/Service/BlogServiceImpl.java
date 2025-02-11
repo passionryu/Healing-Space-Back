@@ -8,7 +8,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponse;
-import website.server.Domain.Healing_Space_News.Healing_Blog.Entity.Blog;
 import website.server.Domain.Healing_Space_News.Healing_Blog.Mapper.BlogMapper;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +19,14 @@ import java.util.List;
 public class BlogServiceImpl implements BlogService{
 
     private final BlogMapper blogMapper;
+
+    /**
+     * DB 삭제 메서드
+     */
+    @Override
+    public void deleteBlogDB() {
+        blogMapper.deleteBlog();
+    }
 
     /**
      * 크롤링 후 DB에 저장 메서드
@@ -93,6 +100,7 @@ public class BlogServiceImpl implements BlogService{
         return blogResponses;
 
     }
+
 
     /**
      * 블로그에서 제목 추출 - 블로그 직접 입장 후 제목 추출

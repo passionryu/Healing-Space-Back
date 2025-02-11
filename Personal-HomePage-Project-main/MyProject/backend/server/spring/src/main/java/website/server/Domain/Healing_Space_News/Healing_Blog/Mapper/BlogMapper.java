@@ -6,7 +6,19 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface BlogMapper {
 
-    // 블로그 데이터를 DB에 저장하는 메소드
+    /**
+     * 블로그 데이터를 모두 삭제하는 메서드
+     */
+    void deleteBlog();
+
+    /**
+     * 블로그 데이터를 DB에 저장하는 메서드
+     * @param title
+     * @param author
+     * @param profileImg
+     * @param url
+     * @param thumbNail
+     */
     void insertBlog(@Param("title") String title,
                     @Param("author") String author,
                     @Param("profileImg") String profileImg,
