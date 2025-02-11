@@ -6,12 +6,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponse;
+import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponseWithId;
 import website.server.Domain.Healing_Space_News.Healing_Blog.Service.BlogService;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -52,7 +53,20 @@ public class BlogController {
 
     }
 
-    /* DB에서 크롤링한 힐링 블로그 정보 조회 API */
+    /**
+     * DB에서 크롤링한 힐링 블로그 정보 조회 API
+     * @return
+     * @throws IOException
+     */
+    @Operation(summary = " DB에서 크롤링한 힐링 블로그 정보 조회 API ", description = "")
+    @GetMapping("")
+    public ResponseEntity<List<BlogResponseWithId>> getBlogs() throws IOException {
+
+        /* 블로그 데이터 반환 */
+        List<BlogResponseWithId> blogs = blogService.getBlogs();
+
+        return ResponseEntity.ok(blogs);
+    }
 
     /* 블로그 클릭 시 링크로 이동 API */
 }

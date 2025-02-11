@@ -2,6 +2,10 @@ package website.server.Domain.Healing_Space_News.Healing_Blog.Mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponse;
+import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponseWithId;
+
+import java.util.List;
 
 @Mapper
 public interface BlogMapper {
@@ -26,7 +30,10 @@ public interface BlogMapper {
                     @Param("thumbNail") String thumbNail
                     );
 
-    // 블로그 데이터를 조회하는 메소드 (예시)
-    //List<Blog> selectAllBlogs();
+    /**
+     * 블로그의 모든 데이터를 조회하는 인터페이스
+     * @return 모든 데이터 반환
+     */
+    List<BlogResponseWithId> selectAllBlogs();
 
 }

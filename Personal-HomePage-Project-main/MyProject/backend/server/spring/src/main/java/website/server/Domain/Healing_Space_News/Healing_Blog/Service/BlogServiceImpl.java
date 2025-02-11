@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponse;
+import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponseWithId;
 import website.server.Domain.Healing_Space_News.Healing_Blog.Mapper.BlogMapper;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,18 +38,6 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public List<BlogResponse> crawlAndSaveBlogs(String query, int limit) throws IOException {
 
-        /* Date 값은 필요 없을 수도 있으니, 검토할 것 */
-
-        /**
-         * [추출할 데이터]
-         * 1. title
-         * 2. author
-         * 3. profile_img
-         * 4. date
-         * 5. link
-         * 6. thumbNail
-         */
-
         String url = "https://search.naver.com/search.naver?query=" + query;
         Document doc = Jsoup.connect(url)
                 .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
@@ -61,8 +50,6 @@ public class BlogServiceImpl implements BlogService{
         }
         List<BlogResponse> blogResponses = new ArrayList<>(); // 블로그 응답 리스트 초기화
 
-
-        // 4. link: 블로그 글 링크 추출 (최대 6개)
         Elements linkElems = doc.select("a.dsc_link"); // 모든 블로그 링크를 가져옴
         for (int i = 0; i < Math.min(6, linkElems.size()); i++) { // 최대 6개까지 반복
             String blogUrl = linkElems.get(i).attr("href"); // 각 링크의 href 속성 추출
@@ -80,7 +67,7 @@ public class BlogServiceImpl implements BlogService{
             String thumbNailUrl = extractThumbnailFromBlog(blogUrl);
             log.info("{}번 thumbNail url: {}", i + 1, thumbNailUrl);
 
-            // BlogResponse 객체 생성 후 리스트에 추가
+            /* BlogResponse 객체 생성 후 리스트에 추가 */
             BlogResponse blogResponse = new BlogResponse(
                     title,
                     author,
@@ -88,19 +75,23 @@ public class BlogServiceImpl implements BlogService{
                     ProfileUrl,
                     thumbNailUrl
             );
-
-            /* DB 저장 */
-            blogMapper.insertBlog(title,author,ProfileUrl,blogUrl,thumbNailUrl);
-
             /* 리스트에 추가 */
             blogResponses.add(blogResponse);
 
+            /* DB 저장 */
+            blogMapper.insertBlog(title,author,ProfileUrl,blogUrl,thumbNailUrl);
         }
-
         return blogResponses;
-
     }
 
+    /**
+     * 블로그 조회 메서드
+     * @return 모든 블로그 반환
+     */
+    @Override
+    public List<BlogResponseWithId> getBlogs() {
+        return blogMapper.selectAllBlogs();
+    }
 
     /**
      * 블로그에서 제목 추출 - 블로그 직접 입장 후 제목 추출
