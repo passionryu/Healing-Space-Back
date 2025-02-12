@@ -16,7 +16,6 @@ public record MemberRequest(
 
         String nickName,
         String phoneNumber,
-        String gender,
 
         @NotBlank(message = "Password is required")
         @Size(min = 6, message = "Password must be at least 6 characters long")
@@ -35,7 +34,6 @@ public record MemberRequest(
                 .username(this.username)
                 .nickName(this.nickName)
                 .phoneNumber(this.phoneNumber)
-                .gender(this.gender)
                 .password(this.password)
                 .email(this.email)
                 .birth(this.birth)

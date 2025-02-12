@@ -5,8 +5,8 @@ public record BlogResponseWithId(
         Long id,
         String title,
         String author,
-        String link,
         String profile_img,
+        String link,
         String thumbnail
 ) {
 }

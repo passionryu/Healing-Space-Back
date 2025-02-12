@@ -68,5 +68,4 @@ public class BlogController {
         return ResponseEntity.ok(blogs);
     }
 
-    /* 블로그 클릭 시 링크로 이동 API */
 }

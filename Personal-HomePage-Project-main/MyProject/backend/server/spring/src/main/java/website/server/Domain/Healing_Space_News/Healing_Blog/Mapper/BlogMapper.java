@@ -2,7 +2,6 @@ package website.server.Domain.Healing_Space_News.Healing_Blog.Mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponse;
 import website.server.Domain.Healing_Space_News.Healing_Blog.DTO.Response.BlogResponseWithId;
 
 import java.util.List;
