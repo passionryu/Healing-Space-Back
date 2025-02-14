@@ -85,8 +85,10 @@ public class HealingMusicSharingServiceImpl implements HealingMusicSharingServic
         Long userNumber = jwtService.extractUserNumberFromRequest(request);
 
         /* 좋아요 클릭 여부 판단 */
-        boolean clickStatus =healingMusicSharingMapper.checkAlreadyCliked(userNumber,musicId);
-        log.info("clickStatus : {}", clickStatus);
+        boolean clickStatus =healingMusicSharingMapper.checkAlreadyCliked(musicId,userNumber);
+        log.info("clickStatus : {}", clickStatus); // 문제 포인트 -> 계속 status가 false로 반환됨
+        log.info("musicId: {}, userNumber: {}", musicId, userNumber);
+
 
         /*
          * 1. 이미 좋아요를 눌렀으면 , Like count -1

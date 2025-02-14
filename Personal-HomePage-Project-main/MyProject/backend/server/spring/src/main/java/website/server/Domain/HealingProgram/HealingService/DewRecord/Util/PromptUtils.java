@@ -29,8 +29,16 @@ public class PromptUtils {
                         "5.슬픔\n" +
                         "6.화남\n";
 
-
         return emotion;
+    }
+
+    public static String createHealingMessagePrompt(String diary){
+
+        String promptMessage =
+                "너는 존댓말을 사용하는 친근하고 따뜻한 친구이다. 다음은 사용자의 일기이다." +
+                "이 일기를 보고 사용자에게 위로와 격려의 메시지를 5줄 써줘라 -> " + diary;
+
+        return promptMessage;
     }
 
 

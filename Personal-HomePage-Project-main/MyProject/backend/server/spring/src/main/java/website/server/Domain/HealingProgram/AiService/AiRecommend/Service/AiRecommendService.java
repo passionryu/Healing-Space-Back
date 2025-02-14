@@ -10,10 +10,10 @@ import java.util.List;
 public interface AiRecommendService {
 
     /**
-     * AI 추천 메서드
+     * AI Letter 메서드
      * @param request 사용자 요청
      * @param content 사용자 메시지
-     * @return AI 추천 메시지
+     * @return AI 메시지
      */
     AiResponse postAiRecommend(HttpServletRequest request, String content);
 

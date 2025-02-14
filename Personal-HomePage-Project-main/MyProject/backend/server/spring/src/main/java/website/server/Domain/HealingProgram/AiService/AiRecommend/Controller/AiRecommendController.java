@@ -24,12 +24,12 @@ public class AiRecommendController {
     private final AiRecommendService aiRecommendService;
 
     /**
-     * AI 추천 API
+     * AI Letter API
      * @param request 사용자 요청
      * @param content 사용자 메시지
-     * @return AI 추천 메시지 + 사용자 고유번호
+     * @return AI 상담사의 위로 메시지 + 사용자 고유번호
      */
-    @Operation(summary = " AI 추천 API ", description = "")
+    @Operation(summary = " AI Letter API ", description = "")
     @PostMapping("")
     public ResponseEntity<AiResponse> postAiRecommend(HttpServletRequest request,
                                                       @RequestBody String content) {

@@ -22,7 +22,7 @@ public class AiRecommendServiceImpl implements AiRecommendService{
     private final AiRecommendMapper aiRecommendMapper;;
 
     /**
-     * AI 추천 메서드
+     * AI Letter 메서드
      * @param request 사용자 요청
      * @param content 사용자 메시지
      * @return AI 추천 메시지
@@ -35,8 +35,8 @@ public class AiRecommendServiceImpl implements AiRecommendService{
 
         /* 프롬프트 메시지 작성 */
         String prompt = "너는 AI 상담사다.\n" +
-                        "현재 사용자의 스토리를 듣고, 그 사용자의 마음을 분석해서 그 사람에게 현재 어떠한 활동이 어울리며 도움이 될지를 추천해주는 상담사다.\n" +
-                        "사용자에게 어떠한 것이 어울리는지 말을 해주고, 이모티콘을 섞어서 그에 대한 이유를 12줄 ~15줄 가량 친절하고 사용자가 평안함을 느끼는 말투로 설명해줘라.\n" +
+                        "현재 사용자의 사연&고민을 듣고 사용자에게 현재 어떠한 행동이 어울리며 도움이 될지를 조언해주는 것이 너의 역할이다.\n" +
+                        "사용자를 존중하는 마음으로 12줄 ~15줄 가량 친절하고 평안한 느낌의 존댓말로 답변하라.\n" +
                         "\n" +
                         "사용자의 스토리는 다음과 같다. => ";
 

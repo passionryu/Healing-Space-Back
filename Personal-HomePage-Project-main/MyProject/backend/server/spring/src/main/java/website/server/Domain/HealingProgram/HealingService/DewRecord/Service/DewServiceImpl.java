@@ -36,10 +36,15 @@ public class DewServiceImpl implements DewService{
 
         /* 일기 감정 분석 */
         String rawEmotion = chatClient.call(PromptUtils.writeDiaryRequest(diaryRequest.title(),diaryRequest.diary()));
+        /* 문자열 정제 */
         String emotion = TextPurificationUtil.emotionPurify(rawEmotion);
 
-        /* 감정에 맞는 힐링 메시지 & 힐링 뮤직 추천 */
-        String healingMessage = HealingMessageList.getMessageByEmotion(emotion);
+        /* 감정에 맞는 힐링 메시지 추천 */
+        //String healingMessage = HealingMessageList.getMessageByEmotion(emotion);
+        String healingMessagePrompt = PromptUtils.createHealingMessagePrompt(diaryRequest.diary());
+        String healingMessage = chatClient.call(healingMessagePrompt);
+
+        /* 감정에 맞는 힐링 뮤직 추천 */
         String healingMusic = HealingMusicList.getMusicByEmotion(emotion);
 
         /* 사용자 감정을 날씨에 매칭 */

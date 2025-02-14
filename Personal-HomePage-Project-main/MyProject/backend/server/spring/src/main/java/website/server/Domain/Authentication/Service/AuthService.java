@@ -40,21 +40,20 @@ public class AuthService {
      */
     public JwtTokenDto email_Login(String email, String password) {
 
-        // Find member
+        /* 사용자 조회 */
         Member member = memberMapper.findMemberByEmail(email);
 
-        // validation
+        /* 사용자 인증 */
         if (member == null) {return new JwtTokenDto("no member","x");}
         if (!passwordEncoder.matches(password, member.getPassword())) {return new JwtTokenDto("PW not match","x");}
 
-        // Generate JWT token
+        /* JWT 생성 */
         String AccessToken = jwtService.generateAccessToken(email,member.getNickName(),member.getUserNumber());
         String RefreshToken =jwtService.generateRefreshToken(email, member.getNickName(), member.getUserNumber());
 
-        // Input AccessToken to Redis
+        /* 로그인과 동시에 엑세스 토큰 레디스 DB에 업로드 */
         redisTemplate.opsForValue().set("auth:" + member.getUserNumber(), AccessToken, Duration.ofHours(1));
 
-        // return JWT
         return new JwtTokenDto(AccessToken,RefreshToken);
     }
 
@@ -66,24 +65,20 @@ public class AuthService {
      */
     public JwtTokenDto id_Login(String nickName, String password) {
 
-        // Find member
+        /* 사용자 조회 */
         Member member = memberMapper.findMemberByNickname(nickName);
-        log.info("find member {}" ,member);
 
-        // validation
+        /* 사용자 인증 */
         if (member == null) {return new JwtTokenDto("no member","x");}
         if (!passwordEncoder.matches(password, member.getPassword())) {return new JwtTokenDto("PW not match","x");}
 
-        // Generate JWt token
+        /* JWT 생성 */
         String AccessToken = jwtService.generateAccessToken(member.getEmail(), member.getNickName(),member.getUserNumber());
         String RefreshToken =jwtService.generateRefreshToken(member.getEmail(), member.getNickName(), member.getUserNumber());
-        log.info("at {}",AccessToken);
-        log.info("rt {}",RefreshToken);
 
-        // Input AccessToken to Redis
+        /* 로그인과 동시에 엑세스 토큰 레디스 DB에 업로드 */
         redisTemplate.opsForValue().set("auth:" + member.getUserNumber(), AccessToken, Duration.ofHours(1));
 
-        // return JWT
         return new JwtTokenDto(AccessToken,RefreshToken);
     }
 
