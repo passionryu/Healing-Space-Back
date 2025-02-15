@@ -70,12 +70,19 @@ public class AuthController {
         return ResponseEntity.ok("Logout Success ! Your AccessToken is updated at blacklist ");
     }
 
-    // TODO : work later ...
+
+    /**
+     * 회원 탈퇴 API
+     * @param request 사용자 요청
+     * @return 회원 탈퇴 메시지
+     */
     @Operation(summary = "회원 탈퇴 API",description = "회원 탈퇴")
     @PostMapping("/delete")
-    public ResponseEntity<String> delete(){
+    public ResponseEntity<String> delete(HttpServletRequest request){
 
-        return ResponseEntity.ok("Delete Success");
+        authService.delete(request);
+
+        return ResponseEntity.ok("Member Delete Success");
     }
 
     // TODO : work later ...

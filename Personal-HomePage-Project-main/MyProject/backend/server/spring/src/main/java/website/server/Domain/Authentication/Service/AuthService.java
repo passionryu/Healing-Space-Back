@@ -106,4 +106,19 @@ public class AuthService {
 
     }
 
+    /**
+     * 회원 탈퇴 메서드
+     * @param request 사용자 요청
+     * @return 탈퇴 된 사용자의 고유 번호
+     */
+    public void delete(HttpServletRequest request){
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* DB에서 해당 유저 삭제(회원 탈퇴) */
+        memberMapper.delete(userNumber);
+        log.info("{}'s member deleted",userNumber);
+    }
+
 }

@@ -89,4 +89,9 @@
             userNumber = #{userNumber}
     </update>
 
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM member
+        WHERE userNumber = #{userNumber}
+    </delete>
+
 </mapper>

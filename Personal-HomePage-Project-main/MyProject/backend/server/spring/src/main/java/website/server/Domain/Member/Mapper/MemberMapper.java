@@ -57,6 +57,12 @@ public interface MemberMapper {
     void putProfileImage(@Param("userNumber") Long userNumber ,
                          @Param("filePath") String filePath);
 
+    /**
+     * 회원 탈퇴
+     * @param userNumber 사용자 고유 번호
+     */
+    void delete(Long userNumber);
+
     //////////////
     /* Not Used */
     //////////////
