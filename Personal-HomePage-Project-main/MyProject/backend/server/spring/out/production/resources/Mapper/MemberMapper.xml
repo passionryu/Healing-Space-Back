@@ -89,9 +89,24 @@
             userNumber = #{userNumber}
     </update>
 
+    <!-- 회원 탈퇴 -->
     <delete id="delete" parameterType="java.lang.Long">
         DELETE FROM member
         WHERE userNumber = #{userNumber}
     </delete>
+
+    <!-- 마이페이지에서 내 모든 정보 조회 -->
+    <select id="getMyInfoAll" resultType="website.server.Domain.MyPage.DTO.Response.mypage.MyAllInformationResponse">
+        SELECT
+            profile_image_path,
+            nickname,
+            username,
+            phoneNumber,
+            birth,
+            email,
+            registerDate
+        FROM member
+        WHERE userNumber = #{userNumber}
+    </select>
 
 </mapper>
