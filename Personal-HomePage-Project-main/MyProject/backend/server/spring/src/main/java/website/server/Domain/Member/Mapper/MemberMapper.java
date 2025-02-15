@@ -1,8 +1,10 @@
 package website.server.Domain.Member.Mapper;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import website.server.Domain.Member.Entity.Member;
+import website.server.Domain.MyPage.DTO.Response.mypage.MyAllInformationResponse;
 import website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse;
 
 @Mapper
@@ -48,6 +50,13 @@ public interface MemberMapper {
      * @return 프로필 정보 DTO(이미지 경로,사용자 ID, 유저 네임 )
      */
     MyInformationResponse getMyInfo(Long userNumber);
+
+    /**
+     * 사용자 고유 번호로 모든 정보 조회
+     * @param userNumber 사용자 고유 번호
+     * @return 사용자의 모든 정보 DTO
+     */
+    MyAllInformationResponse getMyInfoAll(Long userNumber);
 
     /**
      * 프로필 사진 수정

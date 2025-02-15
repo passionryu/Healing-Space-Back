@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import website.server.Domain.Member.Mapper.MemberMapper;
 import website.server.Domain.MyPage.DTO.Request.mypage.ChangeInformationRequest;
+import website.server.Domain.MyPage.DTO.Response.mypage.MyAllInformationResponse;
 import website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse;
 import website.server.Global.JWT.JwtService;
 
@@ -25,8 +26,6 @@ public class MypageServiceImpl implements MypageService{
     private final MemberMapper memberMapper;
     private final JwtService jwtService;
 
-    //    @Value("${profile.file.storage.path}")
-    //    private String storagePath;
     private final Path storagePath = Paths.get("C:/Users/rsy/Desktop/Personal-HomePage-Project-main/Personal-HomePage-Project-main/MyProject/backend/server/spring/src/main/resources/static/images/Profile");
     /**
      * 내 프로필 조회 메서드
@@ -43,6 +42,21 @@ public class MypageServiceImpl implements MypageService{
         MyInformationResponse myInformationResponse = memberMapper.getMyInfo(userNumber);
 
         return myInformationResponse;
+    }
+
+    /**
+     * 내 모든 정보 조회 메서드
+     * @param request 사용자 요청
+     * @return 모든 정보 DTO
+     */
+    @Override
+    public MyAllInformationResponse getMyInfoAll(HttpServletRequest request) {
+
+        /* 사용자 고유 번호 조회 */
+        Long userNumber = jwtService.extractUserNumberFromRequest(request);
+
+        /* 사용자의 모든 정보 조회 */
+        return memberMapper.getMyInfoAll(userNumber);
     }
 
     /**

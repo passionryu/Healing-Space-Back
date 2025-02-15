@@ -3,6 +3,7 @@ package website.server.Domain.MyPage.Service.MypageService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 import website.server.Domain.MyPage.DTO.Request.mypage.ChangeInformationRequest;
+import website.server.Domain.MyPage.DTO.Response.mypage.MyAllInformationResponse;
 import website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse;
 
 import java.io.IOException;
@@ -15,6 +16,13 @@ public interface MypageService {
      * @return 프로필 정보 DTO
      */
     MyInformationResponse getMyInfo(HttpServletRequest request);
+
+    /**
+     * 내 모든 정보 조회 메서드
+     * @param request 사용자 요청
+     * @return 모든 정보 DTO
+     */
+    MyAllInformationResponse getMyInfoAll(HttpServletRequest request);
 
     /**
      * 프로필 이미지 수정 메서드

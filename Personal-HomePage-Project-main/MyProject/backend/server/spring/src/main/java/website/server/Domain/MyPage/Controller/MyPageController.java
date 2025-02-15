@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import website.server.Domain.MyPage.DTO.Request.mypage.ChangeInformationRequest;
+import website.server.Domain.MyPage.DTO.Response.mypage.MyAllInformationResponse;
 import website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse;
 import website.server.Domain.MyPage.Service.MypageService.MypageService;
 import java.io.IOException;
@@ -38,6 +39,20 @@ public class MyPageController {
         log.info("profile path : {}", myInformationResponse.ProfileImagePath());
 
         return ResponseEntity.ok(myInformationResponse);
+    }
+
+    /**
+     * 내 모든 정보 조회 API
+     * @param request 사용자 요청
+     * @return 모든 정보 조회
+     */
+    @Operation(summary = "내 모든 정보 조회 API", description = "")
+    @GetMapping("/myinfo/all")
+    private ResponseEntity<MyAllInformationResponse> getMyInfoAll(HttpServletRequest request){
+
+        MyAllInformationResponse myAllInformationResponse = mypageService.getMyInfoAll(request);
+
+        return ResponseEntity.ok(myAllInformationResponse);
     }
 
     /**
