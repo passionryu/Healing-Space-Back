@@ -5,8 +5,8 @@
 
     <!-- 추천 메시지 저장 -->
     <insert id="saveAiRecommend">
-        INSERT INTO ai_recommend_message (userNumber, title, content, date)
-        VALUES (#{userNumber}, #{title}, #{content}, CURRENT_TIMESTAMP)
+        INSERT INTO ai_recommend_message (userNumber, title, content, aiResponse, date)
+        VALUES (#{userNumber}, #{title}, #{content}, #{response}, CURRENT_TIMESTAMP)
     </insert>
 
     <!-- 추천 메시지 리스트 조회 -->

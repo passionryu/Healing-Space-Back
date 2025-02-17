@@ -16,7 +16,8 @@ public interface AiRecommendMapper {
      */
     void saveAiRecommend(@Param("userNumber") Long userNumber,
                          @Param("title")String title,
-                         @Param("content") String content
+                         @Param("content") String content,
+                         @Param("response") String response
                          );
 
     /**

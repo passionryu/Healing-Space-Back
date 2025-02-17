@@ -39,20 +39,6 @@ public class AiRecommendController {
         return ResponseEntity.ok(aiResponse);
     }
 
-    /**
-     * 추천 메시지 저장 API
-     * @param aiResponse AI 추천 메시지 + 사용자 고유 번호
-     * @return 추천 메시지 저장 성공 메시지
-     */
-    @Operation(summary = "추천 메시지 저장 API", description = "")
-    @PostMapping("/save")
-    public ResponseEntity<String> saveAiRecommend(@RequestBody AiResponse aiResponse) {
-
-        /* 추천 메세지 저장 */
-        aiRecommendService.saveAiRecommend(aiResponse);
-
-        return ResponseEntity.ok("추천 메시지 저장 성공");
-    }
 
     /**
      * 추천 메시지 리스트 조회 API
@@ -98,6 +84,26 @@ public class AiRecommendController {
 
         return ResponseEntity.ok("삭제 완료");
     }
+
+
+    ///////////////////
+    /*  NOT USED API */
+    ///////////////////
+
+    /**
+     * 추천 메시지 저장 API
+     * @param aiResponse AI 추천 메시지 + 사용자 고유 번호
+     * @return 추천 메시지 저장 성공 메시지
+     */
+//    @Operation(summary = "추천 메시지 저장 API", description = "")
+//    @PostMapping("/save")
+//    public ResponseEntity<String> saveAiRecommend(@RequestBody AiResponse aiResponse) {
+//
+//        /* 추천 메세지 저장 */
+//        aiRecommendService.saveAiRecommend(aiResponse);
+//
+//        return ResponseEntity.ok("추천 메시지 저장 성공");
+//    }
 
 
 

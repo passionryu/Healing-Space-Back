@@ -43,23 +43,13 @@ public class AiRecommendServiceImpl implements AiRecommendService{
         /* AI 연산 */
         String response = chatClient.call(prompt + content);
 
+        /* 제목 추출 */
         String title = chatClient.call(response + " -> 이 상담 내용의 제목을 한줄로 짧게 요약하라. ");
 
-        return new AiResponse(userNumber,title, response);
-    }
-
-    /**
-     * 추천 메시지 저장 메서드
-     * @param response AI 추천 메시지 + 사용자 고유 번호
-     */
-    @Override
-    public void saveAiRecommend(AiResponse response) {
-
         /* 사용자 고유번호 + AI 추천 메시지 DB에 저장 */
-        aiRecommendMapper.saveAiRecommend(response.userNumber(),
-                                          response.title(),
-                                          response.content());
+        aiRecommendMapper.saveAiRecommend(userNumber,title,content,response);
 
+        return new AiResponse(userNumber,title,response);
     }
 
     /**
@@ -100,4 +90,24 @@ public class AiRecommendServiceImpl implements AiRecommendService{
         aiRecommendMapper.deleteAiRecommend(AiRecommendMessageId);
 
     }
+
+
+    ////////////////
+    /* DUPLICATED */
+    ////////////////
+
+    /**
+     * 추천 메시지 저장 메서드
+     * @param response AI 추천 메시지 + 사용자 고유 번호
+     */
+//    @Override
+//    public void saveAiRecommend(AiResponse response) {
+//
+//        /* 사용자 고유번호 + AI 추천 메시지 DB에 저장 */
+//        aiRecommendMapper.saveAiRecommend(response.userNumber(),
+//                                          response.title(),
+//                                          response.content());
+//
+//    }
+
 }

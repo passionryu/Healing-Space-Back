@@ -18,12 +18,6 @@ public interface AiRecommendService {
     AiResponse postAiRecommend(HttpServletRequest request, String content);
 
     /**
-     * 추천 메시지 저장 메서드
-      * @param response AI 추천 메시지 + 사용자 고유 번호
-     */
-    void saveAiRecommend(AiResponse response);
-
-    /**
      * 추천 메시지 리스트 조회 메서드
      * @param request 사용자 요청
      * @return AI 답변 썸네일 리스트
@@ -42,6 +36,19 @@ public interface AiRecommendService {
      * @param AiRecommendMessageId 삭제하고자 하는 추천 메시지 고유번호
      */
     void deleteAiRecommend(Long AiRecommendMessageId);
+
+
+
+    ////////////////
+    /* DUPLICATED */
+    ////////////////
+
+    /**
+     * 추천 메시지 저장 메서드
+     * @param response AI 추천 메시지 + 사용자 고유 번호
+     */
+    //void saveAiRecommend(AiResponse response);
+
 
 
 }
