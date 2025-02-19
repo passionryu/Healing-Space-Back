@@ -46,7 +46,7 @@ public class AiRecommendServiceImpl implements AiRecommendService{
         /* 제목 추출 */
         String title = chatClient.call(response + " -> 이 상담 내용의 제목을 한줄로 짧게 요약하라. ");
 
-        /* 사용자 고유번호 + AI 추천 메시지 DB에 저장 */
+        /* 사용자 고유번호 + AI 추천 메시지 DB에 저장  + 메시지 고유 번호 조회*/
         aiRecommendMapper.saveAiRecommend(userNumber,title,content,response);
 
         return new AiResponse(userNumber,title,response);

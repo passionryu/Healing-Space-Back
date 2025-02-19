@@ -85,7 +85,6 @@ public class AiRecommendController {
         return ResponseEntity.ok("삭제 완료");
     }
 
-
     ///////////////////
     /*  NOT USED API */
     ///////////////////
@@ -104,8 +103,5 @@ public class AiRecommendController {
 //
 //        return ResponseEntity.ok("추천 메시지 저장 성공");
 //    }
-
-
-
 
 }

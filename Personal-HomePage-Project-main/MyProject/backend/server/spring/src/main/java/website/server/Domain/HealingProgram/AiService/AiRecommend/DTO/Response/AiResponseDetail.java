@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public record AiResponseDetail(
         String title,
         String content,
-        LocalDateTime dateTime
+        LocalDateTime dateTime,
+        String response
 ) {
 }
