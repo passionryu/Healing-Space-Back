@@ -5,7 +5,7 @@
 
     <!-- 일기 결과 저장 -->
     <insert id="saveDiary" useGeneratedKeys="true" keyProperty="diaryNumber">
-        INSERT INTO diary (date,userNumber,title,diary,emotion,weather,healingMessage,healingMusic)
+        INSERT INTO diary (date,user_number,title,diary,emotion,weather,healing_message,healling_music)
         VALUES (NOW(), #{userNumber}, #{title}, #{diary},
                 #{emotion}, #{weather}, #{healingMessage}, #{healingMusic})
     </insert>
@@ -13,18 +13,18 @@
     <!-- 일기 삭제 -->
     <delete id="deleteDiary">
         DELETE FROM diary
-        WHERE userNumber = #{userNumber} AND date = #{date}
+        WHERE user_number = #{userNumber} AND date = #{date}
     </delete>
 
     <!-- 일기 썸네일 리스트 반환 -->
     <select id="getDiaryThumbnails" resultType="website.server.Domain.HealingProgram.HealingService.DewRecord.DTO.Response.DiaryThumbnailResponse">
         SELECT
-            diaryNumber,
+            diary_number,
             weather,
             date,
             title
         FROM diary
-        WHERE userNumber= #{userNumber}
+        WHERE user_number= #{userNumber}
     </select>
 
     <!-- 해당 날짜의 일기장 반환 -->
@@ -34,10 +34,10 @@
             title,
             diary,
             emotion,
-            healingMessage,
-            healingMusic
+            healing_message,
+            healing_message
         FROM diary
-        WHERE userNumber= #{userNumber} AND diaryNumber =#{diaryNumber}
+        WHERE user_number= #{userNumber} AND diary_number =#{diaryNumber}
     </select>
 
 </mapper>

@@ -28,7 +28,7 @@
         JOIN
             member m
         ON
-            ournews.userNumber = m.userNumber
+            ournews.userNumber = m.user_number
 
 
     </select>
@@ -37,7 +37,7 @@
         SELECT
             ournews.title,
             m.nickname,
-            m.profile_image_path,
+            m.profileImagePath,
             ournews.createdDate,
             ournews.img_path,
             ournews.content
@@ -46,7 +46,7 @@
         JOIN
             member m
         ON
-            ournews.userNumber = m.userNumber
+            ournews.userNumber = m.user_number
         WHERE
             ournews.ourNewsNumber =#{ourNewsNumber}
     </select>
@@ -64,7 +64,7 @@
 
         SELECT
             onc.commentId,
-            m.profile_image_path,
+            m.profileImagePath,
             m.nickname,
             onc.content,
             onc.createdDate
