@@ -5,19 +5,19 @@
 
     <!-- 회원가입 -->
     <insert id="register" useGeneratedKeys="true" keyProperty="userNumber">
-        INSERT INTO member (role, registerDate, username, nickname,phoneNumber,email, password, birth)
+        INSERT INTO member (role, register_date, username, nickname,phone_number,email, password, birth)
         VALUES ('USER', NOW(), #{username},#{nickName},#{phoneNumber},#{email}, #{password}, #{birth})
     </insert>
 
     <!-- 이메일로 사용자 찾기 -->
     <select id="findMemberByEmail" resultType="website.server.Domain.Member.Entity.Member">
         SELECT
-               userNumber,
+               user_number,
                role,
-               registerDate,
+               register_date,
                username,
                nickname,
-               phoneNumber,
+               phone_number,
                gender,
                email,
                password,
@@ -30,12 +30,12 @@
     <!-- 아이디로 사용자 찾기 -->
     <select id="findMemberByNickname" resultType="website.server.Domain.Member.Entity.Member" parameterType="String">
         SELECT
-            userNumber,
+            user_number,
             role,
-            registerDate,
+            register_date,
             username,
             nickname,
-            phoneNumber,
+            phone_number,
             gender,
             email,
             password,
@@ -59,22 +59,22 @@
     <!-- 내 프로필 조회 -->
     <select id="getMyInfo" resultType="website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse">
         SELECT
-            profile_image_path,
+            profileImagePath,
             nickname,
             username
         FROM
             member
         WHERE
-            userNumber = #{userNumber}
+            user_number = #{userNumber}
     </select>
 
     <!-- 내 프로필 사진 수정 -->
     <update id="putProfileImage">
         UPDATE member
         SET
-            profile_image_path = #{filePath}
+            profileImagePath = #{filePath}
         WHERE
-            userNumber = #{userNumber}
+            user_number = #{userNumber}
 
     </update>
 
@@ -82,31 +82,31 @@
     <update id="changeMyInfo">
         UPDATE member
         SET
-            profile_image_path = #{profileImagePath},
+            profileImagePath = #{profileImagePath},
             nickname = #{nickname},
             intro = #{intro}
         WHERE
-            userNumber = #{userNumber}
+            user_number = #{userNumber}
     </update>
 
     <!-- 회원 탈퇴 -->
     <delete id="delete" parameterType="java.lang.Long">
         DELETE FROM member
-        WHERE userNumber = #{userNumber}
+        WHERE user_number = #{userNumber}
     </delete>
 
     <!-- 마이페이지에서 내 모든 정보 조회 -->
     <select id="getMyInfoAll" resultType="website.server.Domain.MyPage.DTO.Response.mypage.MyAllInformationResponse">
         SELECT
-            profile_image_path,
+            profileImagePath,
             nickname,
             username,
-            phoneNumber,
+            phone_number,
             birth,
             email,
-            registerDate
+            register_date
         FROM member
-        WHERE userNumber = #{userNumber}
+        WHERE user_number = #{userNumber}
     </select>
 
 </mapper>
