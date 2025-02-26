@@ -5,7 +5,7 @@
 
     <!-- 힐링 뮤직 쉐어링 -->
     <insert id="HealingMusicSharing" parameterType="map">
-        INSERT INTO healing_music (userNumber, title, content, imagePath, videoLink, createdDate, likes)
+        INSERT INTO healingmusic (userNumber, title, content, imagePath, videoLink, createdDate, likes)
         VALUES (
         #{userNumber},
         #{title},
@@ -27,10 +27,10 @@
             m.nickname,
             hm.createdDate
         FROM
-            healing_music hm
+            healingmusic hm
         JOIN
             member m
-        ON hm.userNumber = m.userNumber
+        ON hm.userNumber = m.user_number
     </select>
 
     <!-- 게시판에서 힐링 뮤직 상세 조회 -->
@@ -45,16 +45,16 @@
         hm.content,
         hm.videoLink,
         COUNT(hml.likeId),
-        m.profile_image_path,
+        m.profileImagePath,
         hm.imagePath
     FROM
-        healing_music hm
+        healingmusic hm
     JOIN
         member m
     ON
-        hm.userNumber = m.userNumber
+        hm.userNumber = m.user_number
     LEFT JOIN
-        healing_music_like hml
+        healingmusic_like hml
     ON
         hm.musicId = hml.musicId
     WHERE
@@ -67,7 +67,7 @@
         SELECT
             IF(COUNT(*) > 0, TRUE, FALSE)
         FROM
-            healing_music_like
+            healingmusic_like
         WHERE
             musicId = #{musicId} AND userNumber = #{userNumber}
 
@@ -78,14 +78,14 @@
         DELETE
 
         FROM
-            healing_music_like
+            healingmusic_like
         WHERE
             musicId = #{musicId} AND userNumber = #{userNumber}
     </delete>
 
     <!-- 좋아요 승인 -->
     <insert id="permitLike">
-        INSERT INTO healing_music_like (musicId,userNumber)
+        INSERT INTO healingmusic_like (musicId,userNumber)
         VALUES (#{musicId}, #{userNumber})
     </insert>
 
@@ -94,14 +94,14 @@
         SELECT
             COUNT(*)
         FROM
-            healing_music_like
+            healingmusic_like
         WHERE
             musicId = #{musicId}
     </select>
 
     <!-- 댓글 달기 -->
     <insert id="postComment" parameterType="map">
-        INSERT INTO healing_music_comment (musicId, userNumber, content, createdDate)
+        INSERT INTO healingmusic_comment (musicId, userNumber, content, createdDate)
         VALUES (
                 #{musicId},
                 #{userNumber},
@@ -115,18 +115,18 @@
 
         SELECT
             hmc.commentId,
-            m.profile_image_path,
+            m.profileImagePath,
             m.nickname,
             hmc.createdDate,
             hmc.content
         FROM
-            healing_music hm
+            healingmusic hm
         LEFT JOIN
             member m
         ON
-            hm.userNumber = m.userNumber
+            hm.userNumber = m.user_number
         LEFT JOIN
-            healing_music_comment hmc
+            healingmusic_comment hmc
         ON
             hmc.musicId = hm.musicId
         WHERE
@@ -135,7 +135,7 @@
 
     <!-- 힐링 뮤직 댓글 삭제 -->
     <delete id="deleteComment">
-        DELETE FROM healing_music_comment
+        DELETE FROM healingmusic_comment
         WHERE userNumber =#{userNumber} AND commentId = #{commentId}
     </delete>
 
@@ -148,11 +148,11 @@
             m.nickname,
             hm.createdDate
         FROM
-            healing_music hm
+            healingmusic hm
         JOIN
             member m
         ON
-            hm.userNumber = m.userNumber
+            hm.userNumber = m.user_number
         WHERE
             hm.userNumber = #{userNumber}
     </select>
@@ -168,16 +168,16 @@
             hm.content,
             hm.videoLink,
             COUNT(hml.likeId),
-            m.profile_image_path,
+            m.profileImagePath,
             hm.imagePath
         FROM
-            healing_music hm
+            healingmusic hm
         JOIN
             member m
         ON
-            hm.userNumber = m.userNumber
+            hm.userNumber = m.user_number
         LEFT JOIN
-            healing_music_like hml
+            healingmusic_like hml
         ON
             hm.musicId = hml.musicId
         WHERE
@@ -194,11 +194,11 @@
             m.nickname,
             hm.createdDate
         FROM
-            healing_music hm
+            healingmusic hm
         JOIN
             member m
         ON
-            hm.userNumber = m.userNumber
+            hm.userNumber = m.user_number
         WHERE
             hm.userNumber = #{userNumber}
     </select>
@@ -213,16 +213,16 @@
             hm.content,
             hm.videoLink,
             COUNT(hml.likeId),
-            m.profile_image_path,
+            m.profileImagePath,
             hm.imagePath
         FROM
-            healing_music hm
+            healingmusic hm
         JOIN
             member m
         ON
-            hm.userNumber = m.userNumber
+            hm.userNumber = m.user_number
         LEFT JOIN
-            healing_music_like hml
+            healingmusic_like hml
         ON
             hm.musicId = hml.musicId
         WHERE
