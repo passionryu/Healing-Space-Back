@@ -48,11 +48,11 @@ public class AuthService {
         if (!passwordEncoder.matches(password, member.getPassword())) {return new JwtTokenDto("PW not match","x");}
 
         /* JWT 생성 */
-        String AccessToken = jwtService.generateAccessToken(email,member.getNickName(),member.getUserNumber());
-        String RefreshToken =jwtService.generateRefreshToken(email, member.getNickName(), member.getUserNumber());
+        String AccessToken = jwtService.generateAccessToken(email,member.getNickName(),member.getUser_number());
+        String RefreshToken =jwtService.generateRefreshToken(email, member.getNickName(), member.getUser_number());
 
         /* 로그인과 동시에 엑세스 토큰 레디스 DB에 업로드 */
-        redisTemplate.opsForValue().set("auth:" + member.getUserNumber(), AccessToken, Duration.ofHours(1));
+        redisTemplate.opsForValue().set("auth:" + member.getUser_number(), AccessToken, Duration.ofHours(1));
 
         return new JwtTokenDto(AccessToken,RefreshToken);
     }
@@ -73,11 +73,12 @@ public class AuthService {
         if (!passwordEncoder.matches(password, member.getPassword())) {return new JwtTokenDto("PW not match","x");}
 
         /* JWT 생성 */
-        String AccessToken = jwtService.generateAccessToken(member.getEmail(), member.getNickName(),member.getUserNumber());
-        String RefreshToken =jwtService.generateRefreshToken(member.getEmail(), member.getNickName(), member.getUserNumber());
+        String AccessToken = jwtService.generateAccessToken(member.getEmail(), member.getNickName(),member.getUser_number());
+
+        String RefreshToken =jwtService.generateRefreshToken(member.getEmail(), member.getNickName(), member.getUser_number());
 
         /* 로그인과 동시에 엑세스 토큰 레디스 DB에 업로드 */
-        redisTemplate.opsForValue().set("auth:" + member.getUserNumber(), AccessToken, Duration.ofHours(1));
+        redisTemplate.opsForValue().set("auth:" + member.getUser_number(), AccessToken, Duration.ofHours(1));
 
         return new JwtTokenDto(AccessToken,RefreshToken);
     }

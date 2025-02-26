@@ -53,7 +53,7 @@ public class JwtService {
     public String generateRefreshToken(String email,String nickname,Long userNumber) {
         return Jwts.builder()
                 .setSubject(email)
-                .claim("userNumber",userNumber)
+                .claim("userNuumber",userNumber)
                 .claim("nickName", nickname)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRATION_TIME))

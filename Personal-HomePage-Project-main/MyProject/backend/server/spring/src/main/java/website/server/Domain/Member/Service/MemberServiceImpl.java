@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
         memberMapper.register(member);
         log.info("회원가입 성공 {} : " , member);
 
-        return member.getUserNumber();
+        return member.getUser_number();
     }
 
     /**

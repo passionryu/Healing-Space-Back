@@ -33,7 +33,7 @@ public record MemberRequest(
         return Member.builder()
                 .username(this.username)
                 .nickName(this.nickName)
-                .phoneNumber(this.phoneNumber)
+                .phone_number(this.phoneNumber)
                 .password(this.password)
                 .email(this.email)
                 .birth(this.birth)

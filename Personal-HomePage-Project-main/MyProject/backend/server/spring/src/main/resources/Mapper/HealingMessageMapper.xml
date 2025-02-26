@@ -5,7 +5,7 @@
 
     <!-- 힐링 메시지 생성 -->
     <insert id="create" parameterType="map">
-        INSERT INTO healing_message (
+        INSERT INTO healingmessage (
             userNumber,
             title,
             imagePath,
@@ -25,7 +25,7 @@
 
     <!-- 선택한 힐링 메시지 삭제 -->
     <delete id="delete">
-        DELETE FROM healing_message
+        DELETE FROM healingmessage
         WHERE messageId = #{messageId}
     </delete>
 
@@ -37,11 +37,11 @@
             m.nickname AS nickname,
             hm.createdDate AS createdDate
         FROM
-            healing_message hm
+            healingmessage hm
         JOIN
             member m
         ON
-            hm.userNumber = m.userNumber
+            hm.userNumber = m.user_number
     </select>
 
 
@@ -50,7 +50,7 @@
 
         SELECT
             hm.title,
-            m.profile_image_path,
+            m.profileImagePath,
             m.nickname,
             hm.createdDate,
             hm.imagePath,
@@ -59,20 +59,20 @@
             # hmc.content
 
         FROM
-            healing_message hm
+            healingmessage hm
         JOIN
-            member m ON hm.userNumber = m.userNumber
+            member m ON hm.userNumber = m.user_number
 #         JOIN
 #
 #             member m
 #         ON
 #             hm.userNumber = m.userNumber
         LEFT JOIN
-            healing_message_like hml ON hm.messageId = hml.messageId
+            healingmessage_like hml ON hm.messageId = hml.messageId
         WHERE
             hm.messageId = #{messageId}
         GROUP BY
-            hm.messageId, m.profile_image_path, m.nickname, hm.createdDate, hm.imagePath, hm.content
+            hm.messageId, m.profileImagePath, hm.title, m.nickname, hm.createdDate, hm.imagePath, hm.content, m.nickname, hm.createdDate, hm.imagePath, hm.content
 
 #         JOIN
 #             healing_message_like hml
@@ -92,13 +92,13 @@
             m.nickname,
             hm.createdDate
         FROM
-            healing_message hm
+            healingmessage hm
         JOIN
             member m
         ON
-                hm.userNumber = m.userNumber
+                hm.userNumber = m.user_number
         WHERE
-            m.userNumber = #{userNumber}
+            m.user_number = #{userNumber}
 
     </select>
 
@@ -107,7 +107,7 @@
 
         SELECT
             hm.title,
-            m.profile_image_path,
+            m.profileImagePath,
             m.nickname,
             hm.createdDate,
             hm.imagePath,
@@ -116,20 +116,20 @@
         # hmc.content
 
         FROM
-            healing_message hm
+            healingmessage hm
                 JOIN
-            member m ON hm.userNumber = m.userNumber
+            member m ON hm.userNumber = m.user_number
                 #         JOIN
 #
 #             member m
 #         ON
 #             hm.userNumber = m.userNumber
                 LEFT JOIN
-            healing_message_like hml ON hm.messageId = hml.messageId
+            healingmessage_like hml ON hm.messageId = hml.messageId
         WHERE
             hm.messageId = #{messageId}
         GROUP BY
-            hm.messageId, m.profile_image_path, m.nickname, hm.createdDate, hm.imagePath, hm.content
+            hm.messageId, m.profileImagePath, hm.title, m.nickname, hm.createdDate, hm.imagePath, hm.content, m.nickname, hm.createdDate, hm.imagePath, hm.content
 
         #         JOIN
 #             healing_message_like hml
@@ -146,7 +146,7 @@
         SELECT
             IF(COUNT(*) > 0, TRUE, FALSE)
         FROM
-            healing_message_like
+            healingmessage_like
         WHERE
             messageId = #{messageId} AND userNumber = #{userNumber}
 
@@ -157,14 +157,14 @@
         DELETE
 
         FROM
-            healing_message_like
+            healingmessage_like
         WHERE
             messageId = #{messageId} AND userNumber = #{userNumber}
     </delete>
 
     <!-- 좋아요 승인 -->
     <insert id="permitLike">
-        INSERT INTO healing_message_like (messageId,userNumber)
+        INSERT INTO healingmessage_like (messageId,userNumber)
         VALUES (#{messageId}, #{userNumber})
     </insert>
 
@@ -173,7 +173,7 @@
         SELECT
             COUNT(*)
         FROM
-            healing_message_like
+            healingmessage_like
         WHERE
             messageId = #{messageId}
     </select>
@@ -187,13 +187,13 @@
             m.nickname,
             hm.createdDate
         FROM
-            healing_message hm
+            healingmessage hm
         JOIN
             member m
         ON
-            hm.userNumber = m.userNumber
+            hm.userNumber = m.user_number
         JOIN
-            healing_message_like hml
+            healingmessage_like hml
         ON
             hm.messageId = hml.messageId
         WHERE
@@ -206,7 +206,7 @@
 
         SELECT
             hm.title,
-            m.profile_image_path,
+            m.profileImagePath,
             m.nickname,
             hm.createdDate,
             hm.imagePath,
@@ -215,15 +215,15 @@
         # hmc.content
 
         FROM
-            healing_message hm
+            healingmessage hm
         JOIN
-            member m ON hm.userNumber = m.userNumber
+            member m ON hm.userNumber = m.user_number
         LEFT JOIN
-            healing_message_like hml ON hm.messageId = hml.messageId
+            healingmessage_like hml ON hm.messageId = hml.messageId
         WHERE
             hm.messageId = #{messageId}
         GROUP BY
-            hm.messageId, m.profile_image_path, m.nickname, hm.createdDate, hm.imagePath, hm.content
+            hm.messageId, m.profileImagePath, hm.title, m.nickname, hm.createdDate, hm.imagePath, hm.content, m.nickname, hm.createdDate, hm.imagePath, hm.content
 
 
     </select>
@@ -231,7 +231,7 @@
     <!-- 힐링 메시지에 댓글 달기 메서드 -->
     <insert id="postComment" parameterType="website.server.Domain.HealingProgram.HealingService.HealingMessageSharing.DTO.Request.CommentRequest">
 
-        INSERT INTO healing_message_comment (messageId, userNumber, content, createdDate)
+        INSERT INTO healingmessage_comment (messageId, userNumber, content, createdDate)
         VALUES (#{messageId}, #{userNumber}, #{content}, NOW())
 
     </insert>
@@ -242,14 +242,14 @@
 
         SELECT
             hmc.commentId,
-            m.profile_image_path AS profileImagePath,
+            m.profileImagePath AS profileImagePath,
             m.nickname,
             hmc.content,
             hmc.createdDate
         FROM
-            healing_message_comment hmc
+            healingmessage_comment hmc
         JOIN
-            member m ON hmc.userNumber = m.userNumber
+            member m ON hmc.userNumber = m.user_number
         WHERE
             hmc.messageId = #{messageId}
         ORDER BY
@@ -260,7 +260,7 @@
     <!-- 힐링 메시지 댓글 삭제 -->
     <delete id="deleteComment" >
 
-        DELETE FROM healing_message_comment
+        DELETE FROM healingmessage_comment
         WHERE userNumber =#{userNumber} AND commentId=#{commentId}
     </delete>
 </mapper>
