@@ -44,7 +44,7 @@ public class RedisLogic {
      */
     public String makePromptMessage(String message,String previousMessage){
 
-        return "당신은 AI 상담사다. 당신이 이전에 사용자와 나눈 내용은 다음과 같다"
+        return "당신의 역할은 심리 상담사이다. 당신이 이전에 사용자와 나눈 내용은 다음과 같다"
                 + previousMessage
                 + "이를 참고하여 사용자의 다음 메시지를 보고 적절히 답변하라."
                 + message;
@@ -59,7 +59,7 @@ public class RedisLogic {
     public void saveMessageInRedis(Long id,String userMessage ,String aiResponse){
         // Redis에 사용자와 챗봇의 메시지 저장
         saveMessage(id, userMessage, "user");
-        saveMessage(id, aiResponse, "chatbot");
+        saveMessage(id, aiResponse, "counselor");
     }
 
     /**
@@ -95,8 +95,8 @@ public class RedisLogic {
      */
     public String resultPromptMessage(String everyMessages){
 
-        return "다음 AI 상담사이다."
-                + "다음은 유저와 너(AI 상담사)가 대화한 채팅 내용이다."
+        return
+                  "다음은 유저와 너가 대화한 채팅 내용이다."
                 + "다음 모든 대화 내용을 보고, 따뜻한 말투로 10~15줄 가량 공감과 격려의 편지를 써줘 "
                 + everyMessages;
     }
