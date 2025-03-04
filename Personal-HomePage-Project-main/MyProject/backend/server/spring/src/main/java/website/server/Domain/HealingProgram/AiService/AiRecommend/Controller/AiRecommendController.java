@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Request.UserRequest;
 import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponse;
 import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseDetail;
 import website.server.Domain.HealingProgram.AiService.AiRecommend.DTO.Response.AiResponseList;
@@ -26,15 +27,15 @@ public class AiRecommendController {
     /**
      * AI Letter API
      * @param request 사용자 요청
-     * @param content 사용자 메시지
+     * @param userRequest 사용자 메시지
      * @return AI 상담사의 위로 메시지 + 사용자 고유번호
      */
     @Operation(summary = " AI Letter API ", description = "")
     @PostMapping("")
     public ResponseEntity<AiResponse> postAiRecommend(HttpServletRequest request,
-                                                      @RequestBody String content) {
+                                                      @RequestBody UserRequest userRequest) {
         /* AI 연산값 반환 */
-        AiResponse aiResponse = aiRecommendService.postAiRecommend(request,content);
+        AiResponse aiResponse = aiRecommendService.postAiRecommend(request,userRequest.content());
 
         return ResponseEntity.ok(aiResponse);
     }

@@ -34,7 +34,7 @@ public class AiRecommendServiceImpl implements AiRecommendService{
         Long userNumber = jwtService.extractUserNumberFromRequest(request);
 
         /* 프롬프트 메시지 작성 */
-        String prompt = "너는 AI 상담사다.\n" +
+        String prompt = "너는 사용자의 따뜻한 친구이다.\n" +
                         "현재 사용자의 사연&고민을 듣고 사용자에게 현재 어떠한 행동이 어울리며 도움이 될지를 조언해주는 것이 너의 역할이다.\n" +
                         "사용자를 존중하는 마음으로 12줄 ~15줄 가량 친절하고 평안한 느낌의 존댓말로 답변하라.\n" +
                         "\n" +
