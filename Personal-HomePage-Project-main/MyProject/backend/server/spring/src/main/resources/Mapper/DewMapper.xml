@@ -5,7 +5,7 @@
 
     <!-- 일기 결과 저장 -->
     <insert id="saveDiary" useGeneratedKeys="true" keyProperty="diaryNumber">
-        INSERT INTO diary (date,user_number,title,diary,emotion,weather,healing_message,healling_music)
+        INSERT INTO diary (date,user_number,title,diary,emotion,weather,healing_message,healing_music)
         VALUES (NOW(), #{userNumber}, #{title}, #{diary},
                 #{emotion}, #{weather}, #{healingMessage}, #{healingMusic})
     </insert>
@@ -35,7 +35,7 @@
             diary,
             emotion,
             healing_message,
-            healing_message
+            healing_music
         FROM diary
         WHERE user_number= #{userNumber} AND diary_number =#{diaryNumber}
     </select>
