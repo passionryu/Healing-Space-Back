@@ -41,11 +41,14 @@ public class ChatBotServiceImpl implements ChatBotService {
         /* AI 상담사 챗봇 답변 반환 */
         String aiResponse = chatClient.call(promptMessage);
 
+        /* 문자열 정제 */
+        String cleanAiResponse = aiResponse.replaceAll("(?i)^counselor:\\s*", "");
+
         /* 유저 메시지,챗봇 답변 Redis에 업로드 */
-        redisLogic.saveMessageInRedis(userNumber,message,aiResponse);
+        redisLogic.saveMessageInRedis(userNumber,message,cleanAiResponse);
 
         /* 최종적으로 AI 챗봇의 답변을 반환 */
-        return aiResponse;
+        return cleanAiResponse;
     }
 
     /**
