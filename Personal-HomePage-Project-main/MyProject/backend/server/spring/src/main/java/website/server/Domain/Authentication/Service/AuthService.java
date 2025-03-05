@@ -9,6 +9,8 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import website.server.Global.Exception.ErrorCode;
+import website.server.Global.Exception.MemberException;
 import website.server.Global.JWT.JwtTokenDto;
 import website.server.Global.JWT.JwtService;
 import website.server.Domain.Member.Entity.Member;
@@ -69,12 +71,15 @@ public class AuthService {
         Member member = memberMapper.findMemberByNickname(nickName);
 
         /* 사용자 인증 */
-        if (member == null) {return new JwtTokenDto("no member","x");}
-        if (!passwordEncoder.matches(password, member.getPassword())) {return new JwtTokenDto("PW not match","x");}
+        if (member == null) {
+            throw new MemberException(ErrorCode.NOT_FOUND_MEMBER);
+        }
+        if (!passwordEncoder.matches(password, member.getPassword())) {
+           throw new MemberException(ErrorCode.PW_NOT_MATCH);
+        }
 
         /* JWT 생성 */
         String AccessToken = jwtService.generateAccessToken(member.getEmail(), member.getNickName(),member.getUser_number());
-
         String RefreshToken =jwtService.generateRefreshToken(member.getEmail(), member.getNickName(), member.getUser_number());
 
         /* 로그인과 동시에 엑세스 토큰 레디스 DB에 업로드 */
