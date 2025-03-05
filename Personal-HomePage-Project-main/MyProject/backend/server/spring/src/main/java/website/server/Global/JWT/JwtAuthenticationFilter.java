@@ -29,6 +29,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     /* 권한이 필요 없는 API Path 선언 */
     private static final List<String> PUBLIC_APIS = List.of(
+
+            "/healingmessage/list",
+            "/healingmusic/list",
+            "/healingmessage/**",
+            "/blog",
             "/swagger-ui/**",
             "/auth/login/email",
             "/auth/login/id",

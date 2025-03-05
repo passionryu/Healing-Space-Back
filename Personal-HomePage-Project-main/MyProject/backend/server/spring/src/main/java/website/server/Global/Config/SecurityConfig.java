@@ -46,6 +46,10 @@ public class SecurityConfig {
                         requestMatchers("/error").permitAll().
                         requestMatchers("/images/Profile/**").permitAll().
                         requestMatchers("/images/OurNews/**").permitAll().
+                        requestMatchers("/blog").permitAll().
+                        requestMatchers("/healingmessage/list").permitAll().
+                        requestMatchers("/healingmusic/list").permitAll().
+                        requestMatchers("/healingmessage/**").permitAll().
 
                         /*Swagger 무권한 접근 허용*/
                         requestMatchers("/swagger-ui.html").permitAll().
