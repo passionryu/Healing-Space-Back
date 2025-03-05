@@ -119,18 +119,17 @@
             m.nickname,
             hmc.createdDate,
             hmc.content
+
         FROM
-            healingmusic hm
-        LEFT JOIN
-            member m
-        ON
-            hm.userNumber = m.user_number
-        LEFT JOIN
             healingmusic_comment hmc
-        ON
-            hmc.musicId = hm.musicId
+                JOIN
+            member m ON hmc.userNumber = m.user_number
         WHERE
-            hm.musicId =#{musicId}
+            hmc.musicId = #{musicId}
+        ORDER BY
+            hmc.createdDate ASC
+
+
     </select>
 
     <!-- 힐링 뮤직 댓글 삭제 -->
