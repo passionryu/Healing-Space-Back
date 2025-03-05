@@ -199,8 +199,12 @@
             member m
         ON
             hm.userNumber = m.user_number
+        JOIN
+            healingmusic_like hml
+        ON
+            hm.musicId = hml.musicId
         WHERE
-            hm.userNumber = #{userNumber}
+            hml.userNumber = #{userNumber}
     </select>
 
     <!-- 내가 좋아요 누른 힐링 뮤직 상세 조회 -->
