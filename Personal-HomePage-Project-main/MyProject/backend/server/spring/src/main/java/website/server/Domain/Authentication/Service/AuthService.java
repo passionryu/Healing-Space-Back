@@ -46,8 +46,12 @@ public class AuthService {
         Member member = memberMapper.findMemberByEmail(email);
 
         /* 사용자 인증 */
-        if (member == null) {return new JwtTokenDto("no member","x");}
-        if (!passwordEncoder.matches(password, member.getPassword())) {return new JwtTokenDto("PW not match","x");}
+        if (member == null) {
+            throw new MemberException(ErrorCode.NOT_FOUND_MEMBER);
+        }
+        if (!passwordEncoder.matches(password, member.getPassword())) {
+            throw new MemberException(ErrorCode.PW_NOT_MATCH);
+        }
 
         /* JWT 생성 */
         String AccessToken = jwtService.generateAccessToken(email,member.getNickName(),member.getUser_number());
