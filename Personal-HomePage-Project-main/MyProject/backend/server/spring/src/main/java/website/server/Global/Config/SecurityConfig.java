@@ -47,6 +47,7 @@ public class SecurityConfig {
                         requestMatchers("/images/Profile/**").permitAll().
                         requestMatchers("/images/OurNews/**").permitAll().
                         requestMatchers("/blog").permitAll().
+                        requestMatchers("/blog/crawl").permitAll().
                         requestMatchers("/healingmessage/list").permitAll().
                         requestMatchers("/healingmusic/list").permitAll().
                         requestMatchers("/healingmessage/**").permitAll().

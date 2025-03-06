@@ -17,7 +17,6 @@ import website.server.Domain.Member.Service.MemberService;
 @RequiredArgsConstructor
 @RequestMapping("/member")
 @Tag(name = "Member", description = "회원 시스템 API")
-@CrossOrigin(origins = "http://healing-space-front.s3-website.ap-northeast-2.amazonaws.com")
 public class MemberController {
 
     private final MemberService memberService;
