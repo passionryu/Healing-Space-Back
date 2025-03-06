@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import website.server.Domain.Authentication.DTO.Request.AuthRequest_email;
 import website.server.Domain.Authentication.DTO.Request.AuthRequest_id;
 import website.server.Global.JWT.JwtTokenDto;
@@ -20,6 +17,7 @@ import website.server.Domain.Authentication.Service.AuthService;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 @Tag(name = "Auth", description = "인증 서비스 API")
+@CrossOrigin(origins = "http://healing-space-front.s3-website.ap-northeast-2.amazonaws.com")
 public class AuthController {
 
     private final AuthService authService;
