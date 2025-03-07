@@ -17,7 +17,6 @@ import website.server.Domain.Authentication.Service.AuthService;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 @Tag(name = "Auth", description = "인증 서비스 API")
-//@CrossOrigin(origins = "http://healing-space-front.s3-website.ap-northeast-2.amazonaws.com")
 public class AuthController {
 
     private final AuthService authService;
