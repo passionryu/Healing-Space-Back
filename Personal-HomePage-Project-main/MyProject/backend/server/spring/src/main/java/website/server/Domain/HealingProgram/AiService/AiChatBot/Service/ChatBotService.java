@@ -1,6 +1,9 @@
 package website.server.Domain.HealingProgram.AiService.AiChatBot.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
+import website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatbotListResponse;
+
+import java.util.List;
 
 public interface ChatBotService {
 
@@ -18,5 +21,14 @@ public interface ChatBotService {
      * @return AI 최종 답변
      */
     String chatResult(HttpServletRequest request);
+
+    /**
+     * 내 챗봇 기록 리스트 반환 메서드
+     * @param request 사용자 요청
+     * @return 챗봇 기록 리스트 반환
+     */
+    List<ChatbotListResponse> getList(HttpServletRequest request);
+
+    /* 내 챗봇 기록 상세 조회 메서드 */
 
 }

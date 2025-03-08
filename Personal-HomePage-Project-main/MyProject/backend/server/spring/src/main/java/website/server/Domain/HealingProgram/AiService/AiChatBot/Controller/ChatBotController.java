@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatbotListResponse;
 import website.server.Domain.HealingProgram.AiService.AiChatBot.Service.ChatBotService;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -48,5 +51,22 @@ public class ChatBotController {
         String letter = chatBotService.chatResult(request);
         return ResponseEntity.ok(letter);
     }
+
+    /**
+     * 내 챗봇 기록 리스트 조회 API
+     * @param request 사용자 요청
+     * @return 챗봇 기록 리스트 반환
+     */
+    @Operation(summary = "내 챗봇 기록 리스트 조회 API", description = "")
+    @GetMapping("/list")
+    public ResponseEntity<List<ChatbotListResponse>> getList(HttpServletRequest request){
+
+        /* 챗봇 기록 리스트 반환 */
+        List<ChatbotListResponse> list = chatBotService.getList(request);
+
+        return ResponseEntity.ok(list);
+    }
+
+    /* 내 챗봇 상세 조회 API */
 
 }

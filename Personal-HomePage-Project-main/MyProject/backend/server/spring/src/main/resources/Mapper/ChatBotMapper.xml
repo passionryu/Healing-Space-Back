@@ -5,8 +5,18 @@
 
     <!-- AI Letter 저장 -->
     <insert id="saveLetter">
-        INSERT INTO chatting (user_number, letter)
-        VALUES (#{userNumber}, #{letter})
+        INSERT INTO chatting (user_number, letter, writtenDate)
+        VALUES (#{userNumber}, #{letter}, NOW())
     </insert>
+
+    <!-- 챗봇 기록 리스트 조회 -->
+    <select id="getList" resultType="website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatbotListResponse">
+        SELECT
+            chat_id,
+            writtenDate
+        FROM chatting
+        WHERE user_number = #{userNumber}
+        ORDER BY writtenDate DESC
+    </select>
 
 </mapper>
