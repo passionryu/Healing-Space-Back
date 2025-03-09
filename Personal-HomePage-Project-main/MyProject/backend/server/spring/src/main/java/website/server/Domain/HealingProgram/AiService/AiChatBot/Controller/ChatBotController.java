@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatBotDetaillResponse;
@@ -69,7 +68,6 @@ public class ChatBotController {
         return ResponseEntity.ok(list);
     }
 
-    // TODO : 테스팅 진행하기
     /**
      * 내 채팅 결과 상세 조회 API
      * @param chat_id 채팅 ID

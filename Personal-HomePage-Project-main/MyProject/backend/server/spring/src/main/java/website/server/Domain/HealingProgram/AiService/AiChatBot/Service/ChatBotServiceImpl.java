@@ -112,5 +112,4 @@ public class ChatBotServiceImpl implements ChatBotService {
         return chatBotMapper.getChatDetail(chat_id);
     }
 
-
 }
