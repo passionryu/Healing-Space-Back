@@ -19,4 +19,13 @@
         ORDER BY writtenDate DESC
     </select>
 
+    <!-- 내 채팅 결과 상세 조회 -->
+    <select id="getChatDetail" parameterType="java.lang.Long" resultType="website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatBotDetaillResponse">
+        SELECT
+            writtenDate,
+            letter
+        FROM chatting
+        WHERE chat_id = #{chat_id}
+    </select>
+
 </mapper>

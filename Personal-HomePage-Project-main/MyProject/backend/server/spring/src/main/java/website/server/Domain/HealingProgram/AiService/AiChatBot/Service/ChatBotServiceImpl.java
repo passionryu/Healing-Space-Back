@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.stereotype.Service;
+import website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatBotDetaillResponse;
 import website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatbotListResponse;
 import website.server.Domain.HealingProgram.AiService.AiChatBot.Logic.RedisLogic;
 import website.server.Domain.HealingProgram.AiService.AiChatBot.Mapper.ChatBotMapper;
@@ -97,6 +98,18 @@ public class ChatBotServiceImpl implements ChatBotService {
 
         /* DB에서 리스트 반환 */
         return chatBotMapper.getList(userNumber);
+    }
+
+    /**
+     * 내 채팅 결과 기록 상세 조회 메서드
+     * @param chat_id 채팅 ID
+     * @return 채팅 Letter 상세 조회
+     */
+    @Override
+    public ChatBotDetaillResponse getChatDetail(Long chat_id) {
+
+        /* chat_id를 통한 DB 에서 Letter 조회 */
+        return chatBotMapper.getChatDetail(chat_id);
     }
 
 

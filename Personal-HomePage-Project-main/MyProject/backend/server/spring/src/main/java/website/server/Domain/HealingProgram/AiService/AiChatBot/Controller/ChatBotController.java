@@ -6,8 +6,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatBotDetaillResponse;
 import website.server.Domain.HealingProgram.AiService.AiChatBot.DTO.Response.ChatbotListResponse;
 import website.server.Domain.HealingProgram.AiService.AiChatBot.Service.ChatBotService;
 
@@ -67,6 +69,20 @@ public class ChatBotController {
         return ResponseEntity.ok(list);
     }
 
-    /* 내 챗봇 상세 조회 API */
+    // TODO : 테스팅 진행하기
+    /**
+     * 내 채팅 결과 상세 조회 API
+     * @param chat_id 채팅 ID
+     * @return 채팅 Letter 상세 조회
+     */
+    @Operation(summary = "내 채팅 결과 상세 조회 API",description = "")
+    @GetMapping("/list/{chat_id}")
+    public ResponseEntity<ChatBotDetaillResponse> getChatDetail(@PathVariable("chat_id") Long chat_id){
+
+        /* 체팅 결과값 반환*/
+        ChatBotDetaillResponse chatBotDetaillResponse = chatBotService.getChatDetail(chat_id);
+
+        return ResponseEntity.ok(chatBotDetaillResponse);
+    }
 
 }
