@@ -26,7 +26,8 @@ public class MemberController {
      * @param request 회원가입 정보 객체
      * @return 회원가입 성공 메시지 + 회원가입 후 생성된 ID
      */
-    @Operation(summary = " 회원가입 ", description = " 회원가입 : username,email,password,birth")
+    @Operation(summary = " 회원가입 ",
+            description = " 회원가입 : username,email,password,birth")
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody MemberRequest request) {
 
@@ -41,7 +42,8 @@ public class MemberController {
      * @param request (username,email,password)가 들어있는 DTO
      * @return nickName 반환
      */
-    @Operation(summary = "정보 조회로 아이디 찾기", description = "아이디 찾기 : 이메일,이름,비밀번호 입력")
+    @Operation(summary = "정보 조회로 아이디 찾기",
+            description = "아이디 찾기 : 이메일,이름,비밀번호 입력")
     @PostMapping("/findID/option1")
     public ResponseEntity<String> findID_Option1(@RequestBody @Valid FindIDRequest_Option1 request){
 
@@ -52,14 +54,16 @@ public class MemberController {
 
     // TODO : Work Later....
     /* 전화번호 인증으로 아이디 찾기 */
-    @Operation(summary = "전화번호 인증으로 아이디 찾기", description = "아이디 찾기 : 전화번호,이름 입력")
+    @Operation(summary = "전화번호 인증으로 아이디 찾기",
+            description = "아이디 찾기 : 전화번호,이름 입력")
     @PostMapping("/findID/option2")
     public ResponseEntity<String> findID_Option2(){
         return null;
     }
 
     // TODO : Work Later....
-    @Operation(summary = "비밀번호 분실 시 비밀번호 변경", description = "비밀번호 변경")
+    @Operation(summary = "비밀번호 분실 시 비밀번호 변경",
+            description = "비밀번호 변경")
     @PostMapping("/changePW")
     public ResponseEntity<String> changePW(HttpServletRequest request){
 
