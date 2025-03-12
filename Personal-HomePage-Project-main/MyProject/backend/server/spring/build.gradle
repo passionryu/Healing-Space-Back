@@ -13,6 +13,10 @@ java {
 	}
 }
 
+jar {
+	base.archivesName = 'myapp'
+}
+
 
 configurations {
 	compileOnly {
