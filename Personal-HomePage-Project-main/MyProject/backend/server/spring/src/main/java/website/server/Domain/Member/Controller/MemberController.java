@@ -34,7 +34,7 @@ public class MemberController {
         log.info("MemberRequest {} :", request);
         Long createdID = memberService.register(request);
 
-        return ResponseEntity.ok().body("회원 가입 성공! userID :" + createdID);
+        return ResponseEntity.ok().body("회원 가입에 성공했습니다. userID :" + createdID);
     }
 
     /**
