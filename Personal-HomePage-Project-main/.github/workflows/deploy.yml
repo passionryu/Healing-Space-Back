@@ -3,7 +3,7 @@ name: Deploy to AWS EC2
 on:
   push:
     branches:
-      - master  # main 브랜치에 push 시 배포 실행
+      - master
 
 jobs:
   deploy:
@@ -14,28 +14,30 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build with Gradle
-        run: ./gradlew build -x test # 테스트 제외, 클린 빌드 추가 고려
+        run: ./gradlew build -x test
 
-      - name: Rename and move jar
+      - name: Package Deployment Files
         run: |
           mkdir -p deploy
           cp build/libs/*.jar deploy/myapp.jar
+          cp appspec.yml deploy/appspec.yml
+          cp scripts/start.sh deploy/start.sh
+          cd deploy && zip -r myapp.zip ./* && cd ..
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
 
       - name: Upload to S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp deploy/myapp.jar s3://healing-space-codedeploy-bucket/myapp.jar
-          aws s3 cp appspec.yml s3://healing-space-codedeploy-bucket/appspec.yml
-          aws s3 cp scripts/start.sh s3://healing-space-codedeploy-bucket/start.sh
+          aws s3 cp deploy/myapp.zip s3://healing-space-codedeploy-bucket/myapp.zip
 
       - name: Deploy with CodeDeploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws deploy create-deployment \
-            --application-name healing-space-codedeploy \   # AWS CodeDeploy에서 설정한 애플리케이션 이름
-            --deployment-group-name healing-space-deploy-group \  # 배포 그룹 이름 (EC2 인스턴스들이 속한 그룹)
-            --s3-location bucket=healing-space-codedeploy-bucket,key=myapp.jar,bundleType=zip
+            --application-name healing-space-codedeploy \
+            --deployment-group-name healing-space-deploy-group \
+            --s3-location bucket=healing-space-codedeploy-bucket,key=myapp.zip,bundleType=zip
