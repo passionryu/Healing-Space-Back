@@ -13,15 +13,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Give gradlew execute permission
+        run: chmod +x Personal-HomePage-Project-main/MyProject/backend/server/spring/gradlew
+
       - name: Build with Gradle
-        run: ./gradlew build -x test
+        run: |
+          cd Personal-HomePage-Project-main/MyProject/backend/server/spring
+          ./gradlew build -x test
 
       - name: Package Deployment Files
         run: |
           mkdir -p deploy
-          cp build/libs/*.jar deploy/myapp.jar
-          cp appspec.yml deploy/appspec.yml
-          cp scripts/start.sh deploy/start.sh
+          cp Personal-HomePage-Project-main/MyProject/backend/server/spring/build/libs/*.jar deploy/myapp.jar
+          cp Personal-HomePage-Project-main/MyProject/backend/server/spring/appspec.yml deploy/appspec.yml
+          cp Personal-HomePage-Project-main/MyProject/backend/server/spring/scripts/start.sh deploy/start.sh
           cd deploy && zip -r myapp.zip ./* && cd ..
 
       - name: Configure AWS Credentials
@@ -32,8 +43,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Upload to S3
-        run: |
-          aws s3 cp deploy/myapp.zip s3://healing-space-codedeploy-bucket/myapp.zip
+        run: aws s3 cp deploy/myapp.zip s3://healing-space-codedeploy-bucket/myapp.zip
 
       - name: Deploy with CodeDeploy
         run: |
