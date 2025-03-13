@@ -27,6 +27,10 @@ jobs:
           cd Personal-HomePage-Project-main/MyProject/backend/server/spring
           ./gradlew build -x test
 
+      - name: Check build output
+        run: |
+          ls Personal-HomePage-Project-main/MyProject/backend/server/spring/build/libs/
+
       - name: Package Deployment Files
         run: |
           mkdir -p deploy
