@@ -14,17 +14,17 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Give gradlew execute permission
-        run: chmod +x ./gradlew
+        run: chmod +x MyProject/backend/server/spring/gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build -x test
+        run: MyProject/backend/server/spring/gradlew build -x test
 
       - name: Package Deployment Files
         run: |
           mkdir -p deploy
-          cp build/libs/*.jar deploy/myapp.jar
-          cp appspec.yml deploy/appspec.yml
-          cp scripts/start.sh deploy/start.sh
+          cp MyProject/backend/server/spring/build/libs/*.jar deploy/myapp.jar
+          cp MyProject/backend/server/spring/appspec.yml deploy/appspec.yml
+          cp MyProject/backend/server/spring/scripts/start.sh deploy/start.sh
           cd deploy && zip -r myapp.zip ./* && cd ..
 
       - name: Configure AWS Credentials
