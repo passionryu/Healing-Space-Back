@@ -1,0 +1,43 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+
+      - name: Package Deployment Files
+        run: |
+          mkdir -p deploy
+          cp build/libs/*.jar deploy/myapp.jar
+          cp appspec.yml deploy/appspec.yml
+          cp scripts/start.sh deploy/start.sh
+          cd deploy && zip -r myapp.zip ./* && cd ..
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp deploy/myapp.zip s3://healing-space-codedeploy-bucket/myapp.zip
+
+      - name: Deploy with CodeDeploy
+        run: |
+          aws deploy create-deployment \
+            --application-name healing-space-codedeploy \
+            --deployment-group-name healing-space-deploy-group \
+            --s3-location bucket=healing-space-codedeploy-bucket,key=myapp.zip,bundleType=zip
