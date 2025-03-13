@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build with Gradle
         run: ./gradlew build -x test # 테스트 제외, 클린 빌드 추가 고려
