@@ -38,8 +38,8 @@ jobs:
         run: |
             mkdir -p deploy
             cp Personal-HomePage-Project-main/MyProject/backend/server/spring/build/libs/myapp-0.0.1-SNAPSHOT.jar deploy/myapp.jar
-            cp Personal-HomePage-Project-main/MyProject/backend/server/spring/appspec.yml deploy/appspec.yml
-            cp Personal-HomePage-Project-main/MyProject/backend/server/spring/scripts/start.sh deploy/start.sh
+            cp Personal-HomePage-Project-main/appspec.yml deploy/appspec.yml
+            cp Personal-HomePage-Project-main/scripts/start.sh deploy/start.sh
             cd deploy && zip -r myapp.zip ./* && cd ..
 
       - name: Configure AWS Credentials
