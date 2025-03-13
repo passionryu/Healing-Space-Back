@@ -30,6 +30,9 @@ jobs:
       - name: Check build output
         run: |
           ls Personal-HomePage-Project-main/MyProject/backend/server/spring/build/libs/
+          
+      - name: Check if appspec.yml exists
+        run: ls -al Personal-HomePage-Project-main/MyProject/backend/server/spring/
 
       - name: Package Deployment Files
         run: |
