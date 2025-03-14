@@ -2,6 +2,9 @@
 
 ### Healing Space는 “디지털 힐링 & 마인드 케어”를 비전으로 삼고 개발 중인 웹 서비스 입니다.
 
+서비스 URL(운영중) : [Healing Space](http://healing-space-front.s3-website.ap-northeast-2.amazonaws.com)
+
+
 이를 비전으로 삼아 지금까지 다음과 같은 서비스를 개발하였습니다.
 
 - AI 다이어리 서비스
