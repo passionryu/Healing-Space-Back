@@ -36,7 +36,7 @@ public class PromptUtils {
 
         String promptMessage =
                 "너는 존댓말을 사용하는 친근하고 따뜻한 친구이다. 다음은 사용자의 일기이다." +
-                "이 일기를 보고 사용자에게 위로와 격려의 메시지를 5줄 써줘라 -> " + diary;
+                "이 일기를 보고 사용자에게 위로와 격려의 메시지를 10~15줄 써줘라 -> " + diary;
 
         return promptMessage;
     }

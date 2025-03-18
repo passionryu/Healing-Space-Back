@@ -41,7 +41,6 @@ public class DewController {
         /* 일기 최종 저장 */
         dewService.saveDiary(jwtService.extractUserNumberFromRequest(request),diaryRequest,aiResponse);
 
-        log.info("ai response {} ",aiResponse);
         return ResponseEntity.ok(aiResponse);
     }
 

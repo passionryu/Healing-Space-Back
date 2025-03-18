@@ -21,6 +21,7 @@ public class CorsConfig {
         ArrayList<String> allowedOriginPatterns = new ArrayList<>();
         allowedOriginPatterns.add("http://localhost:63342");
         allowedOriginPatterns.add("http://localhost:5173");
+        allowedOriginPatterns.add("http://localhost:5174");
         allowedOriginPatterns.add("http://10.0.2.2:5173");
         allowedOriginPatterns.add("http://192.168.216.1:5173");
         allowedOriginPatterns.add("http://127.0.0.1:5000");
