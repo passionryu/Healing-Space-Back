@@ -24,6 +24,7 @@ public class CorsConfig {
         allowedOriginPatterns.add("http://localhost:5174");
         allowedOriginPatterns.add("http://10.0.2.2:5173");
         allowedOriginPatterns.add("http://192.168.216.1:5173");
+        allowedOriginPatterns.add("http://192.168.216.1:5174");
         allowedOriginPatterns.add("http://127.0.0.1:5000");
         allowedOriginPatterns.add("http://healing-space-front.s3-website.ap-northeast-2.amazonaws.com");
         configuration.setAllowedOrigins(allowedOriginPatterns);

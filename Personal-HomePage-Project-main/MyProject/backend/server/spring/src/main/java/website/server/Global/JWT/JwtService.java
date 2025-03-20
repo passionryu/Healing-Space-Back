@@ -108,10 +108,6 @@ public class JwtService {
         return extractClaims(token).get("nickName").toString();
     }
     public Claims extractClaims(String token) {
-//        return Jwts.parser()// JWT 파서 객체 생성
-//                .setSigningKey(SECRET_KEY)
-//                .parseClaimsJws(token)
-//                .getBody();
         try {
             return Jwts.parser()
                     .setSigningKey(SECRET_KEY)
@@ -134,6 +130,10 @@ public class JwtService {
     }
 
     /* BLACK LIST CODE */
+    /* BLACK LIST CODE */
+    /* BLACK LIST CODE */
+    /* BLACK LIST CODE */
+    /* BLACK LIST CODE */
 
     /**
      * 토큰 검증 메서드 (블랙리스트 체크 포함)
@@ -141,11 +141,7 @@ public class JwtService {
      * @return true & false
      */
     public boolean validateToken(String token) {
-//        if (isTokenBlacklisted(token)) {
-//            return false;  // 블랙리스트에 있으면 유효하지 않음
-//        }
-//        // 여기서 JWT 토큰의 유효성 검사를 추가적으로 할 수 있습니다 (예: Expiration, Signature 등)
-//        return true;
+
         try {
             // 블랙리스트 체크
             if (isTokenBlacklisted(token)) {

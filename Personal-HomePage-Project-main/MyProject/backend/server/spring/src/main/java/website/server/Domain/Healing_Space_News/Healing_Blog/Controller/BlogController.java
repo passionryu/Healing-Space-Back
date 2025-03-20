@@ -30,7 +30,7 @@ public class BlogController {
     public ResponseEntity<List<BlogResponse>>  crawlHealingBlogs() throws IOException {
 
         String query = "힐링+블로그";
-        int limit = 9;
+        int limit = 6;
 
         blogService.deleteBlogDB();
         List<BlogResponse> blogs = blogService.crawlAndSaveBlogs(query, limit);
@@ -45,7 +45,7 @@ public class BlogController {
     public ResponseEntity<List<BlogResponse>> crawlingTest() throws IOException {
 
         String query = "힐링+블로그";
-        int limit = 9;
+        int limit = 6;
 
         blogService.deleteBlogDB();
         List<BlogResponse> blogs = blogService.crawlAndSaveBlogs(query, limit);

@@ -33,6 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             "/healingmessage/list",
             "/healingmusic/list",
             "/healingmessage/**",
+            "/healingmusic/**",
             "/blog",
             "/swagger-ui/**",
             "/auth/login/email",

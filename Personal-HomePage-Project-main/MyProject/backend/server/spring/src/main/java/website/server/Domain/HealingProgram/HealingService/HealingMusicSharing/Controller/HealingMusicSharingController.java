@@ -139,6 +139,7 @@ public class HealingMusicSharingController {
         return ResponseEntity.ok(commentId + "번 댓글 삭제 완료");
     }
 
+    //todo : problem 2025.03.20
     /**
      * 내가 올린 힐링 뮤직 리스트 조회 API
      * @param request 사용자 요청
@@ -147,6 +148,7 @@ public class HealingMusicSharingController {
     @Operation(summary = "내가 올린 힐링 뮤직 리스트 조회 API",description = "")
     @GetMapping("/list/my")
     public ResponseEntity<List<HealingMusicListResponse>> getMyHealingMusicList(HttpServletRequest request){
+        log.info("method name : getMyHealingMusicList request : {}", request);
 
         /* 힐링 뮤직 리스트 조회 */
         List<HealingMusicListResponse> healingMusicListResponses = healingMusicSharingService.getMyHealingMusicList(request);

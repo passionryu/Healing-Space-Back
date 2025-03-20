@@ -51,7 +51,7 @@ public class BlogServiceImpl implements BlogService{
         List<BlogResponse> blogResponses = new ArrayList<>(); // 블로그 응답 리스트 초기화
 
         Elements linkElems = doc.select("a.dsc_link"); // 모든 블로그 링크를 가져옴
-        for (int i = 0; i < Math.min(6, linkElems.size()); i++) { // 최대 6개까지 반복
+        for (int i = 0; i < Math.min(limit, linkElems.size()); i++) { // 최대 n개까지 반복
             String blogUrl = linkElems.get(i).attr("href"); // 각 링크의 href 속성 추출
             log.info("{}번 blog : {}", i + 1, blogUrl); // 각 링크 출력
 

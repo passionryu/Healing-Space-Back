@@ -51,6 +51,7 @@ public class SecurityConfig {
                         requestMatchers("/healingmessage/list").permitAll().
                         requestMatchers("/healingmusic/list").permitAll().
                         requestMatchers("/healingmessage/**").permitAll().
+                        requestMatchers("/healingmusic/**").permitAll().
 
                         /*Swagger 무권한 접근 허용*/
                         requestMatchers("/swagger-ui.html").permitAll().
