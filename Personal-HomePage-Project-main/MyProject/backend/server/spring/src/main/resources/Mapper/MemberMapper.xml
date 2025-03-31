@@ -5,56 +5,9 @@
 
     <!-- 회원가입 -->
     <insert id="register" useGeneratedKeys="true" keyProperty="user_number">
-        INSERT INTO member (role, register_date, username, nickname,phone_number,email, password, birth)
-        VALUES ('USER', NOW(), #{username},#{nickName},#{phone_number},#{email}, #{password}, #{birth})
+        INSERT INTO member (role, register_date, username, nickname,phone_number, password)
+        VALUES ('USER', NOW(), #{username},#{nickName},#{phone_number}, #{password})
     </insert>
-
-    <!-- 이메일로 사용자 찾기 -->
-    <select id="findMemberByEmail" resultType="website.server.Domain.Member.Entity.Member">
-        SELECT
-               user_number,
-               role,
-               register_date,
-               username,
-               nickname,
-               phone_number,
-               gender,
-               email,
-               password,
-               birth
-        FROM member
-        WHERE email = #{email}
-        LIMIT 1
-    </select>
-
-    <!-- 아이디로 사용자 찾기 -->
-    <select id="findMemberByNickname" resultType="website.server.Domain.Member.Entity.Member" parameterType="String">
-        SELECT
-            user_number,
-            role,
-            register_date,
-            username,
-            nickname,
-            phone_number,
-            gender,
-            email,
-            password,
-            birth
-        FROM
-            member
-        WHERE
-            nickname = #{nickname}
-    </select>
-
-    <!-- 정보 조회로 아이디 찾기 -->
-    <select id ="findID_option1" resultType="String">
-        SELECT
-            nickname
-        FROM
-            member
-        WHERE
-            username = #{username} AND email = #{email}
-    </select>
 
     <!-- 내 프로필 조회 -->
     <select id="getMyInfo" resultType="website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse">
@@ -83,8 +36,8 @@
         UPDATE member
         SET
             profileImagePath = #{profileImagePath},
-            nickname = #{nickname},
-            intro = #{intro}
+            nickname = #{nickname}
+
         WHERE
             user_number = #{userNumber}
     </update>
@@ -102,11 +55,55 @@
             nickname,
             username,
             phone_number,
-            birth,
-            email,
             register_date
         FROM member
         WHERE user_number = #{userNumber}
+    </select>
+
+    <!-- 이 아래 기능들은 현재 사용되지 않음. 추후 필요 시 활성화 예정 -->
+
+    <!-- 이메일로 사용자 찾기 -->
+    <!--    <select id="findMemberByEmail" resultType="website.server.Domain.Member.Entity.Member">-->
+    <!--        SELECT-->
+    <!--               user_number,-->
+    <!--               role,-->
+    <!--               register_date,-->
+    <!--               username,-->
+    <!--               nickname,-->
+    <!--               phone_number,-->
+    <!--              -->
+    <!--               password-->
+    <!--               -->
+    <!--        FROM member-->
+    <!--        WHERE email = #{email}-->
+    <!--        LIMIT 1-->
+    <!--    </select>-->
+
+    <!-- 정보 조회로 아이디 찾기 -->
+    <!--    <select id ="findID_option1" resultType="String">-->
+    <!--        SELECT-->
+    <!--            nickname-->
+    <!--        FROM-->
+    <!--            member-->
+    <!--        WHERE-->
+    <!--            username = #{username} AND email = #{email}-->
+    <!--    </select>-->
+
+    <!-- 아이디로 사용자 찾기 -->
+    <select id="findMemberByNickname" resultType="website.server.Domain.Member.Entity.Member" parameterType="String">
+        SELECT
+            user_number,
+            role,
+            register_date,
+            username,
+            nickname,
+            phone_number,
+            password
+
+        FROM
+            member
+        WHERE
+            nickname = #{nickname}
     </select>
 
 </mapper>

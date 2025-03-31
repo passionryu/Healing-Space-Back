@@ -83,8 +83,8 @@ public class AuthService {
         }
 
         /* JWT 생성 */
-        String AccessToken = jwtService.generateAccessToken(member.getEmail(), member.getNickName(),member.getUser_number());
-        String RefreshToken =jwtService.generateRefreshToken(member.getEmail(), member.getNickName(), member.getUser_number());
+        String AccessToken = jwtService.generateAccessToken(member.getPhone_number(), member.getNickName(),member.getUser_number());
+        String RefreshToken =jwtService.generateRefreshToken(member.getPhone_number(), member.getNickName(), member.getUser_number());
 
         /* 로그인과 동시에 엑세스 토큰 레디스 DB에 업로드 */
         redisTemplate.opsForValue().set("auth:" + member.getUser_number(), AccessToken, Duration.ofHours(1));
@@ -104,12 +104,10 @@ public class AuthService {
 
         // Extract token's expiration time
         Date expirationDate = jwtService.extractClaims(AccessToken).getExpiration();
-        log.info("{}'s expirationDate : {}",nickname,expirationDate);
 
         // Set ttl(Remain time for AccessToken)
         long ttl = expirationDate.getTime() - System.currentTimeMillis();
         double ttlInMinutes = ttl / (1000.0 * 60); // 부동소수점 연산
-        log.info("{}'s ttl : {} minutes", nickname, ttlInMinutes);
 
         // Upload to BlackList
         redisTemplate.opsForValue().set("blacklist:" + nickname, AccessToken, ttl, TimeUnit.MILLISECONDS);

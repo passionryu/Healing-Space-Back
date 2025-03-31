@@ -31,7 +31,6 @@ public class MemberController {
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody MemberRequest request) {
 
-        log.info("MemberRequest {} :", request);
         Long createdID = memberService.register(request);
 
         return ResponseEntity.ok().body("회원 가입에 성공. userID = " + createdID);
@@ -52,22 +51,27 @@ public class MemberController {
         return ResponseEntity.ok(nickname);
     }
 
-    // TODO : Work Later....
-    /* 전화번호 인증으로 아이디 찾기 */
-    @Operation(summary = "전화번호 인증으로 아이디 찾기",
-            description = "아이디 찾기 : 전화번호,이름 입력")
-    @PostMapping("/findID/option2")
-    public ResponseEntity<String> findID_Option2(){
-        return null;
-    }
 
-    // TODO : Work Later....
-    @Operation(summary = "비밀번호 분실 시 비밀번호 변경",
-            description = "비밀번호 변경")
-    @PostMapping("/changePW")
-    public ResponseEntity<String> changePW(HttpServletRequest request){
 
-        return null;
-    }
+
+
+    /*이 아래 기능들은 현재 사용되지 않음. 추후 필요 시 활성화 예정*/
+
+//
+//    /* 전화번호 인증으로 아이디 찾기 */
+//    @Operation(summary = "전화번호 인증으로 아이디 찾기",
+//            description = "아이디 찾기 : 전화번호,이름 입력")
+//    @PostMapping("/findID/option2")
+//    public ResponseEntity<String> findID_Option2(){
+//        return null;
+//    }
+//
+//    @Operation(summary = "비밀번호 분실 시 비밀번호 변경",
+//            description = "비밀번호 변경")
+//    @PostMapping("/changePW")
+//    public ResponseEntity<String> changePW(HttpServletRequest request){
+//
+//        return null;
+//    }
 
 }

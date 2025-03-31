@@ -18,16 +18,18 @@ public interface MemberService {
      */
     String findID_option1(FindIDRequest_Option1 request);
 
+    /* 이 아래 기능들은 현재 사용되지 않음. 추후 필요 시 활성화 예정 */
+
     /**
      * 전화번호 인증으로 아이디 찾기 인터페이스
      * @return
      */
-    String findID_option2();
+    //String findID_option2();
 
     /**
      * 비밀번호 변경 인터페이스
      * @return
      */
-    String changePW();
+    //String changePW();
 
 }
