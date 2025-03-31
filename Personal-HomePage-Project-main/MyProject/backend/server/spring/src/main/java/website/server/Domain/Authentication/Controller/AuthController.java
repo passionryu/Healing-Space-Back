@@ -26,16 +26,16 @@ public class AuthController {
      * @param request 로그인 DTO (이메일,비밀번호)
      * @return 200 ok + JWT 토큰
      */
-    @Operation(summary = " 이메일 로그인 API ", description = " 로그인 : email,password")
-    @PostMapping("/login/email")
-    public ResponseEntity<JwtTokenDto> email_Login(@RequestBody AuthRequest_email request){
-
-        JwtTokenDto jwtToken = authService.email_Login(request.email(), request.password());
-        if (jwtToken == null)
-            return null;
-
-        return ResponseEntity.ok(jwtToken);
-    }
+//    @Operation(summary = " 이메일 로그인 API ", description = " 로그인 : email,password")
+//    @PostMapping("/login/email")
+//    public ResponseEntity<JwtTokenDto> email_Login(@RequestBody AuthRequest_email request){
+//
+//        JwtTokenDto jwtToken = authService.email_Login(request.email(), request.password());
+//        if (jwtToken == null)
+//            return null;
+//
+//        return ResponseEntity.ok(jwtToken);
+//    }
 
     /**
      * 아이디 로그인 API

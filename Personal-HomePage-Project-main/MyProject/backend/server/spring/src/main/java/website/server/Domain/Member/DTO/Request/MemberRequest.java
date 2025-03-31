@@ -19,15 +19,9 @@ public record MemberRequest(
 
         @NotBlank(message = "Password is required")
         @Size(min = 6, message = "Password must be at least 6 characters long")
-        String password,
+        String password
 
-        @NotBlank(message = "Email is required")
-        @Email(message = "Email should be valid")
-        String email,
 
-        //생일에 대한 유효성 검사는 notblank(문자열)가 될 수 없다.
-        @NotNull
-        LocalDate birth
 ){
         public Member toEntity() {
         return Member.builder()
@@ -35,7 +29,5 @@ public record MemberRequest(
                 .nickName(this.nickName)
                 .phone_number(this.phoneNumber)
                 .password(this.password)
-                .email(this.email)
-                .birth(this.birth)
                 .build();
 }}

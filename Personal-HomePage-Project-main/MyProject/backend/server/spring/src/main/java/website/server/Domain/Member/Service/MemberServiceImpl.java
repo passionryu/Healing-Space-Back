@@ -55,13 +55,15 @@ public class MemberServiceImpl implements MemberService{
         return memberMapper.findID_option1(username,email);
     }
 
-    @Override
-    public String findID_option2() {
-        return null;
-    }
+    /*이 아래 기능들은 현재 사용되지 않음. 추후 필요 시 활성화 예정*/
 
-    @Override
-    public String changePW() {
-        return "";
-    }
+//    @Override
+//    public String findID_option2() {
+//        return null;
+//    }
+//
+//    @Override
+//    public String changePW() {
+//        return "";
+//    }
 }

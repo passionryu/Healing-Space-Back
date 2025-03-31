@@ -8,8 +8,7 @@ public record MyAllInformationResponse(
         String Id,
         String name,
         String phoneNumber,
-        LocalDate birth,
-        String email,
+
         LocalDateTime registerDate
 ) {
 }

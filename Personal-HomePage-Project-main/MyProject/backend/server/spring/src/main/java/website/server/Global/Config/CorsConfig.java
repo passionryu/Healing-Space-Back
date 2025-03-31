@@ -1,5 +1,6 @@
 package website.server.Global.Config;
 
+import com.google.common.net.HttpHeaders;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @NoArgsConstructor
@@ -38,7 +40,7 @@ public class CorsConfig {
         configuration.setAllowedMethods(allowedHttpMethods);
 
         configuration.setAllowedHeaders(Collections.singletonList("*"));
-//        configuration.setAllowedHeaders(List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE));
+        //configuration.setAllowedHeaders(List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE));
 
         //인증, 인가를 위한 credentials 를 TRUE로 설정
         configuration.setAllowCredentials(true);

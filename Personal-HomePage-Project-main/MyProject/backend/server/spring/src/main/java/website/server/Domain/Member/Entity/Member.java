@@ -28,10 +28,8 @@ public class Member {
     private String username; // 실제 사용자 이름
     private String nickName; // 아이디(활동명)
     private String phone_number;
-    private String gender;
-    private String email;
     private String password;
-    private LocalDate birth;
+
 
     /**
      * 프로필 조회 데이터
@@ -40,7 +38,7 @@ public class Member {
      * 3. 짧은 자기 소개
      */
     private String profileImagePath;
-    private String intro;
+
 
     public void encodePassword(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(this.password);
