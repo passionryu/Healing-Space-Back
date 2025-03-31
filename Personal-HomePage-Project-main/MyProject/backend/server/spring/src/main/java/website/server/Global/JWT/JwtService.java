@@ -31,12 +31,12 @@ public class JwtService {
 
     /**
      * 엑세스 토큰 생성 메서드
-     * @param email 토큰의 주체
+     *
      * @return 엑세스 토큰
      */
-    public String generateAccessToken(String email,String nickname,Long userNumber) {
+    public String generateAccessToken(String phone_number,String nickname,Long userNumber) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(phone_number)
                 .claim("userNumber",userNumber)
                 .claim("nickName", nickname)
                 .setIssuedAt(new Date())
@@ -47,12 +47,12 @@ public class JwtService {
 
     /**
      * 리프레시 토큰 생성 메서드
-     * @param email 토큰의 주체
+     *
      * @return 리프레시 토큰
      */
-    public String generateRefreshToken(String email,String nickname,Long userNumber) {
+    public String generateRefreshToken(String phone_number,String nickname,Long userNumber) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(phone_number)
                 .claim("userNumber",userNumber)
                 .claim("nickName", nickname)
                 .setIssuedAt(new Date())

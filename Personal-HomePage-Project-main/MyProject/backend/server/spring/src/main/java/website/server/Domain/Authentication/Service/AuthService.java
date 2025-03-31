@@ -40,28 +40,28 @@ public class AuthService {
      * @param password 비밀번호
      * @return JWT 토큰
      */
-    public JwtTokenDto email_Login(String email, String password) {
-
-        /* 사용자 조회 */
-        Member member = memberMapper.findMemberByEmail(email);
-
-        /* 사용자 인증 */
-        if (member == null) {
-            throw new MemberException(ErrorCode.NOT_FOUND_MEMBER);
-        }
-        if (!passwordEncoder.matches(password, member.getPassword())) {
-            throw new MemberException(ErrorCode.PW_NOT_MATCH);
-        }
-
-        /* JWT 생성 */
-        String AccessToken = jwtService.generateAccessToken(email,member.getNickName(),member.getUser_number());
-        String RefreshToken =jwtService.generateRefreshToken(email, member.getNickName(), member.getUser_number());
-
-        /* 로그인과 동시에 엑세스 토큰 레디스 DB에 업로드 */
-        redisTemplate.opsForValue().set("auth:" + member.getUser_number(), AccessToken, Duration.ofHours(1));
-
-        return new JwtTokenDto(AccessToken,RefreshToken);
-    }
+//    public JwtTokenDto email_Login(String email, String password) {
+//
+//        /* 사용자 조회 */
+//        Member member = memberMapper.findMemberByEmail(email);
+//
+//        /* 사용자 인증 */
+//        if (member == null) {
+//            throw new MemberException(ErrorCode.NOT_FOUND_MEMBER);
+//        }
+//        if (!passwordEncoder.matches(password, member.getPassword())) {
+//            throw new MemberException(ErrorCode.PW_NOT_MATCH);
+//        }
+//
+//        /* JWT 생성 */
+//        String AccessToken = jwtService.generateAccessToken(email,member.getNickName(),member.getUser_number());
+//        String RefreshToken =jwtService.generateRefreshToken(email, member.getNickName(), member.getUser_number());
+//
+//        /* 로그인과 동시에 엑세스 토큰 레디스 DB에 업로드 */
+//        redisTemplate.opsForValue().set("auth:" + member.getUser_number(), AccessToken, Duration.ofHours(1));
+//
+//        return new JwtTokenDto(AccessToken,RefreshToken);
+//    }
 
     /**
      * 아이디 로그인 메서드

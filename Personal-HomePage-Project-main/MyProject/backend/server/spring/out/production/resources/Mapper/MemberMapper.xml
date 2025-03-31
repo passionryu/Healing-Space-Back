@@ -9,6 +9,12 @@
         VALUES ('USER', NOW(), #{username},#{nickName},#{phone_number}, #{password})
     </insert>
 
+    <!-- 회원 탈퇴 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM member
+        WHERE user_number = #{userNumber}
+    </delete>
+
     <!-- 내 프로필 조회 -->
     <select id="getMyInfo" resultType="website.server.Domain.MyPage.DTO.Response.mypage.MyInformationResponse">
         SELECT
@@ -20,33 +26,6 @@
         WHERE
             user_number = #{userNumber}
     </select>
-
-    <!-- 내 프로필 사진 수정 -->
-    <update id="putProfileImage">
-        UPDATE member
-        SET
-            profileImagePath = #{filePath}
-        WHERE
-            user_number = #{userNumber}
-
-    </update>
-
-    <!-- 내 프로필 수정 -->
-    <update id="changeMyInfo">
-        UPDATE member
-        SET
-            profileImagePath = #{profileImagePath},
-            nickname = #{nickname}
-
-        WHERE
-            user_number = #{userNumber}
-    </update>
-
-    <!-- 회원 탈퇴 -->
-    <delete id="delete" parameterType="java.lang.Long">
-        DELETE FROM member
-        WHERE user_number = #{userNumber}
-    </delete>
 
     <!-- 마이페이지에서 내 모든 정보 조회 -->
     <select id="getMyInfoAll" resultType="website.server.Domain.MyPage.DTO.Response.mypage.MyAllInformationResponse">
@@ -105,5 +84,27 @@
         WHERE
             nickname = #{nickname}
     </select>
+
+    <!-- 내 프로필 수정 -->
+    <update id="changeMyInfo">
+        UPDATE member
+        SET
+            profileImagePath = #{profileImagePath},
+            nickname = #{nickname}
+
+        WHERE
+            user_number = #{userNumber}
+    </update>
+
+    <!-- 내 프로필 사진 수정 -->
+    <update id="putProfileImage">
+        UPDATE member
+        SET
+            profileImagePath = #{filePath}
+        WHERE
+            user_number = #{userNumber}
+
+    </update>
+
 
 </mapper>
