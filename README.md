@@ -25,7 +25,7 @@
 
 ### Next upgrade ver
 
-![image](https://github.com/user-attachments/assets/4bd07432-ffce-4b78-8730-c1f16b3edf54)
+![image](https://github.com/user-attachments/assets/32a4104c-c41e-4b49-9e73-9792d694b281)
 
 
 ### Dev Log... 
