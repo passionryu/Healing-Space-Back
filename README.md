@@ -18,9 +18,9 @@
 우 - 2차 아키텍쳐 (계획 중...)
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/14934d84-ffb9-47b7-beba-29ff315a55a2" width="450" height ="270"/>
+  <img src="https://github.com/user-attachments/assets/14934d84-ffb9-47b7-beba-29ff315a55a2" width="400" height ="270"/>
   &nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/3bfadac8-59b4-48a8-85d0-d6aa2c57253d" width="450" height ="270"/>
+  <img src="https://github.com/user-attachments/assets/3bfadac8-59b4-48a8-85d0-d6aa2c57253d" width="400" height ="270"/>
 </p>
 
 ### 깃모지
