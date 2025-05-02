@@ -14,15 +14,14 @@
 - 힐링 커뮤니티 운영(힐링 메시지 & 힐링 뮤직 공유 페이지)
 
 ### AWS 아키텍쳐
-좌 - 1차 아키텍쳐 (현재)
+좌 - 1차 아키텍쳐 (현재)   
 우 - 2차 아키텍쳐 (계획 중...)
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/0a67da21-282c-4669-b43a-2e82d028ffc2" width="400"/>
+  <img src="https://github.com/user-attachments/assets/14934d84-ffb9-47b7-beba-29ff315a55a2" width="450" height ="270"/>
   &nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/32a4104c-c41e-4b49-9e73-9792d694b281" width="400"/>
+  <img src="https://github.com/user-attachments/assets/3bfadac8-59b4-48a8-85d0-d6aa2c57253d" width="450" height ="270"/>
 </p>
-
 
 ### 깃모지
 
